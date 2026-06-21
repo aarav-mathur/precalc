@@ -31,11 +31,53 @@ notes_html = r"""<!DOCTYPE html>
         <h1>Chapter 2: Graphs and Functions</h1>
         
         <div class="card">
+            <h2>2.1 The Rectangular Coordinate System and Graphs</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> The Cartesian plane maps algebraic equations to geometric shapes. The Distance Formula is just the Pythagorean Theorem in disguise: \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\).
+            </div>
+            <p><strong>Midpoint Formula:</strong> The average of the x and y coordinates: \((\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2})\).</p>
+        </div>
+
+        <div class="card">
+            <h2>2.2 Circles</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> A circle is the set of all points exactly \(r\) distance from a center \((h, k)\). Squaring the distance formula gives the standard equation.
+            </div>
+            <p><strong>Standard Form:</strong> \((x - h)^2 + (y - k)^2 = r^2\)</p>
+            <p>To convert from general form to standard form, you must <em>Complete the Square</em> for both x and y.</p>
+        </div>
+
+        <div class="card">
             <h2>2.3 Lines</h2>
             <div class="first-principles">
                 <strong>First Principles:</strong> The slope of a line represents its rate of change. It's the ratio of the vertical change to the horizontal change. Parallel lines have equal slopes. Perpendicular lines have negative reciprocal slopes.
             </div>
             <p>Point-slope form: \( y - y_1 = m(x - x_1) \)</p>
+        </div>
+
+        <div class="card">
+            <h2>2.4 Relations and Functions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> A function is a rule that assigns exactly ONE output to every input. Graphically, it passes the Vertical Line Test.
+            </div>
+            <p><strong>Domain:</strong> The set of all valid inputs (watch out for dividing by zero or taking even roots of negative numbers).</p>
+            <p><strong>Range:</strong> The set of all resulting outputs.</p>
+        </div>
+
+        <div class="card">
+            <h2>2.5 Properties of Functions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Functions can be increasing, decreasing, or constant on an interval. They can also have symmetry.
+            </div>
+            <p><strong>Even Functions:</strong> \(f(-x) = f(x)\). Symmetric about the y-axis.</p>
+            <p><strong>Odd Functions:</strong> \(f(-x) = -f(x)\). Symmetric about the origin.</p>
+        </div>
+
+        <div class="card">
+            <h2>2.6 A Library of Functions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Memorize the parent graphs! The identity \(y=x\), the squaring function \(y=x^2\), the cubing function \(y=x^3\), the absolute value \(y=|x|\), the square root \(y=\sqrt{x}\), and the reciprocal \(y=1/x\).
+            </div>
         </div>
 
         <div class="card">
@@ -46,6 +88,16 @@ notes_html = r"""<!DOCTYPE html>
             <h3>Interactive Visualization</h3>
             <p>Observe how \(a, h,\) and \(k\) transform the parent function \(f(x) = |x|\) in \(y = a|x - h| + k\).</p>
             <div id="calculator" class="calculator-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>2.8 Combining Functions; Composite Functions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Functions can be combined algebraically (\(f+g\), \(f-g\), \(fg\), \(f/g\)) or composed (\(f \circ g\)). Composition means plugging the output of \(g\) directly into \(f\).
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> \((f \circ g)(x) \neq (g \circ f)(x)\). Function composition is NOT commutative!
+            </div>
         </div>
 
         <div class="card">

@@ -39,13 +39,40 @@ notes_html = r"""<!DOCTYPE html>
         </div>
 
         <div class="card">
+            <h2>1.2 Applications of Linear Equations</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Word problems map real-world scenarios to algebraic structures. "Rate x Time = Distance" and "Mixture Percentages" are core templates.
+            </div>
+            <div class="example-box">
+                <strong>Mixture Strategy:</strong> When mixing two acid solutions, set up an equation balancing the <em>pure amount</em> of acid: <br>
+                \( (\text{Percent}_1)(\text{Vol}_1) + (\text{Percent}_2)(\text{Vol}_2) = (\text{Final Percent})(\text{Vol}_1 + \text{Vol}_2) \)
+            </div>
+        </div>
+
+        <div class="card">
             <h2>1.3 Quadratic Equations</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> A quadratic equation forms a parabola. Solving \(ax^2+bx+c=0\) means finding exactly where this parabola crosses the x-axis. The discriminant \(\Delta = b^2 - 4ac\) tells you if there are 2 real roots (positive), 1 real root (zero), or 2 complex roots (negative).
+                <strong>First Principles:</strong> A quadratic equation forms a parabola. Solving \(ax^2+bx+c=0\) means finding exactly where this parabola crosses the x-axis. The discriminant \(\Delta = b^2 - 4ac\) dictates the nature of the roots.
             </div>
             <h3>Interactive Visualization</h3>
             <p>Use the sliders to see how \(a\), \(b\), and \(c\) shift the parabola. Watch the roots (x-intercepts) change!</p>
             <div id="calculator" class="calculator-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>1.4 Complex Numbers</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> When a parabola doesn't cross the x-axis, its roots are imaginary. We define \(i = \sqrt{-1}\), meaning \(i^2 = -1\).
+            </div>
+            <p>To divide complex numbers, you must multiply the numerator and denominator by the <strong>complex conjugate</strong> of the denominator.</p>
+        </div>
+
+        <div class="card">
+            <h2>1.5 Other Types of Equations</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Many higher-degree or rational equations can be converted into quadratic equations using \(u\)-substitution.
+            </div>
+            <p>If you see \(x^4 - 5x^2 + 4 = 0\), let \(u = x^2\). Then the equation becomes \(u^2 - 5u + 4 = 0\), which is a basic quadratic!</p>
         </div>
 
         <div class="card">
@@ -59,6 +86,16 @@ notes_html = r"""<!DOCTYPE html>
                 <strong>Rule:</strong> When you multiply or divide by a negative, YOU MUST FLIP THE SIGN!<br>
                 Result: \(x < -4\).
             </div>
+        </div>
+
+        <div class="card">
+            <h2>1.7 Absolute Value Equations and Inequalities</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Absolute value means "distance from zero." \(|x| = 5\) means \(x\) is 5 units away from zero, so \(x = 5\) OR \(x = -5\).
+            </div>
+            <p><strong>Inequalities:</strong><br>
+            - "Less thAND" rule: \(|x| < a \implies -a < x < a\)<br>
+            - "GreatOR" rule: \(|x| > a \implies x > a\) OR \(x < -a\)</p>
         </div>
     </div>
 

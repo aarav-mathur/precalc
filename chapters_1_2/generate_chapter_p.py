@@ -35,7 +35,7 @@ notes_html = r"""<!DOCTYPE html>
             <div class="first-principles">
                 <strong>First Principles:</strong> The real number system \(\mathbb{R}\) is the foundation of continuous mathematics. It includes numbers that can be written as fractions (rational) and those that cannot (irrational, like \(\pi\) and \(\sqrt{2}\)).
             </div>
-            <p><strong>Absolute Value:</strong> The distance of a number from zero on the number line. \(|x| = x\) if \(x \ge 0\), and \(|x| = -x\) if \(x < 0\).</p>
+            <p><strong>Absolute Value:</strong> The distance of a number from zero on the number line. \(|x| = x\) if \(x \ge 0\), and \(|x| = -x\) if \(x &lt; 0\).</p>
         </div>
 
         <div class="card">
@@ -145,7 +145,7 @@ for i in range(10):
     questions.append({"q": q4, "category": categories[3], "options": opts4, "answer": ans4, "explanation": "Multiply numerator and denominator by conjugate."})
 
     # Category 5: Critical Thinking
-    q5 = f"Why is the domain of \\( \\frac{{1}}{{\\sqrt{{x - {i+1}}}}} \\) restricted to \\( x > {i+1} \\) instead of \\( x \\ge {i+1} \\)?"
+    q5 = f"Why is the domain of \\( \\frac{{1}}{{\\sqrt{{x - {i+1}}}}} \\) restricted to \\( x &gt; {i+1} \\) instead of \\( x \\ge {i+1} \\)?"
     correct5 = f"Because \\(x = {i+1}\\) causes division by zero."
     opts5, ans5 = generate_distractors(correct5, f"Because the square root of {i+1} is irrational.", "Because you cannot take the square root of a negative number.", "Because fractions cannot have a positive denominator.")
     questions.append({"q": q5, "category": categories[4], "options": opts5, "answer": ans5, "explanation": "Division by zero is undefined."})

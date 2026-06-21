@@ -81,10 +81,10 @@ notes_html = r"""<!DOCTYPE html>
                 <strong>First Principles:</strong> Inequalities represent a range of values rather than a specific point.
             </div>
             <div class="example-box">
-                <strong>Gotcha Example:</strong> Solve \(-3x > 12\).<br>
-                Many students incorrectly divide by -3 and write \(x > -4\).<br>
+                <strong>Gotcha Example:</strong> Solve \(-3x &gt; 12\).<br>
+                Many students incorrectly divide by -3 and write \(x &gt; -4\).<br>
                 <strong>Rule:</strong> When you multiply or divide by a negative, YOU MUST FLIP THE SIGN!<br>
-                Result: \(x < -4\).
+                Result: \(x &lt; -4\).
             </div>
         </div>
 
@@ -94,8 +94,8 @@ notes_html = r"""<!DOCTYPE html>
                 <strong>First Principles:</strong> Absolute value means "distance from zero." \(|x| = 5\) means \(x\) is 5 units away from zero, so \(x = 5\) OR \(x = -5\).
             </div>
             <p><strong>Inequalities:</strong><br>
-            - "Less thAND" rule: \(|x| < a \implies -a < x < a\)<br>
-            - "GreatOR" rule: \(|x| > a \implies x > a\) OR \(x < -a\)</p>
+            - "Less thAND" rule: \(|x| &lt; a \implies -a &lt; x &lt; a\)<br>
+            - "GreatOR" rule: \(|x| &gt; a \implies x &gt; a\) OR \(x &lt; -a\)</p>
         </div>
     </div>
 
@@ -137,9 +137,9 @@ for i in range(10):
 
     # Category 2: Building Skills (Linear Inequalities)
     a = random.randint(2, 5)
-    q2 = f"Solve the inequality: \\(-{a}x > {a*3}\\)"
-    opts2, ans2 = generate_distractors(f"\\(x < -3\\)", f"\\(x > -3\\)", f"\\(x < 3\\)", f"\\(x > 3\\)")
-    questions.append({"q": q2, "category": categories[1], "options": opts2, "answer": ans2, "explanation": "When dividing by a negative number, you must flip the inequality symbol. So \\(x < -3\\)."})
+    q2 = f"Solve the inequality: \\(-{a}x &gt; {a*3}\\)"
+    opts2, ans2 = generate_distractors(f"\\(x &lt; -3\\)", f"\\(x &gt; -3\\)", f"\\(x &lt; 3\\)", f"\\(x &gt; 3\\)")
+    questions.append({"q": q2, "category": categories[1], "options": opts2, "answer": ans2, "explanation": "When dividing by a negative number, you must flip the inequality symbol. So \\(x &lt; -3\\)."})
 
     # Category 3: Applying the Concepts (Mixture problem)
     b = random.randint(10, 20)

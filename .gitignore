@@ -1,0 +1,9 @@
+# Ignore large PDF files
+*.pdf
+
+# System files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precalculus Interactive Quiz</title>
+    <!-- MathJax for rendering math equations beautifully -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #3b82f6;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .score-board {
+            position: sticky;
+            top: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
+        .score-board h3 { margin: 0; font-size: 1.2rem; }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: left;
+            font-size: 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--accent-color);
+            background: #eff6ff;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        /* Summary Modal */
+        #summary-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .modal-content h2 { color: var(--primary-color); font-size: 2rem; margin-top:0; }
+        .modal-content .final-score { font-size: 4rem; font-weight: bold; color: var(--accent-color); margin: 1rem 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Precalculus Mastery Quiz</h1>
+        <p class="subtitle">50 Questions covering Chapters P, 1, and 2.</p>
+
+        <div class="score-board">
+            <h3>Score: <span id="current-score">0</span> / 50</h3>
+            <h3>Attempted: <span id="attempted-count">0</span></h3>
+        </div>
+
+        <div id="quiz-container"></div>
+
+        <div class="actions">
+            <button class="btn" onclick="finishQuiz()">Finish Quiz</button>
+            <button class="btn" style="margin-left:1rem; background-color:var(--primary-color)" onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <div id="summary-modal">
+        <div class="modal-content">
+            <h2>Quiz Complete!</h2>
+            <p>Your Final Score:</p>
+            <div class="final-score" id="final-score-display">0%</div>
+            <p id="score-message"></p>
+            <button class="btn" style="margin-top:2rem;" onclick="restartQuiz()">Take Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questionsData = [{"q": "Which of the following is an irrational number?", "options": ["\\(3.14\\)", "\\(\\sqrt{4}\\)", "\\(\\frac{22}{7}\\)", "\\(\\pi\\)"], "answer": 3, "explanation": "\\(\\pi\\) is an irrational number because its decimal representation never terminates and never repeats. The others are rational numbers."}, {"q": "Simplify the expression: \\((2x^2y^3)(3x^4y^2)\\)", "options": ["\\(6x^6y^5\\)", "\\(5x^6y^5\\)", "\\(6x^8y^6\\)", "\\(5x^8y^6\\)"], "answer": 0, "explanation": "Multiply coefficients: \\(2 \\times 3 = 6\\). Add exponents of like bases: \\(x^{2+4} = x^6\\) and \\(y^{3+2} = y^5\\)."}, {"q": "Write \\(0.0000456\\) in scientific notation.", "options": ["\\(4.56 \\times 10^5\\)", "\\(4.56 \\times 10^{-5}\\)", "\\(45.6 \\times 10^{-6}\\)", "\\(0.456 \\times 10^{-4}\\)"], "answer": 1, "explanation": "Move the decimal point 5 places to the right to get a number between 1 and 10, giving \\(4.56 \\times 10^{-5}\\)."}, {"q": "What is the degree of the polynomial \\(5x^4 - 2x^7 + 3x - 1\\)?", "options": ["4", "7", "5", "1"], "answer": 1, "explanation": "The degree of a polynomial in one variable is the highest exponent of that variable. Here, it is 7."}, {"q": "Expand the binomial: \\((x - 4)^2\\)", "options": ["\\(x^2 - 16\\)", "\\(x^2 + 16\\)", "\\(x^2 - 8x + 16\\)", "\\(x^2 - 4x + 16\\)"], "answer": 2, "explanation": "Using the perfect square trinomial formula \\((a-b)^2 = a^2 - 2ab + b^2\\), we get \\(x^2 - 2(x)(4) + 4^2 = x^2 - 8x + 16\\)."}, {"q": "Factor completely: \\(x^2 - 9\\)", "options": ["\\((x - 3)^2\\)", "\\((x + 3)^2\\)", "\\((x - 9)(x + 1)\\)", "\\((x - 3)(x + 3)\\)"], "answer": 3, "explanation": "This is a difference of squares: \\(a^2 - b^2 = (a-b)(a+b)\\). Here, \\(a=x\\) and \\(b=3\\)."}, {"q": "Factor the trinomial: \\(x^2 + 5x + 6\\)", "options": ["\\((x + 1)(x + 6)\\)", "\\((x + 2)(x + 3)\\)", "\\((x - 2)(x - 3)\\)", "\\((x + 5)(x + 1)\\)"], "answer": 1, "explanation": "We need two numbers that multiply to 6 and add to 5. These numbers are 2 and 3."}, {"q": "Simplify the rational expression: \\(\\frac{x^2 - 1}{x - 1}\\)", "options": ["\\(x + 1\\)", "\\(x - 1\\)", "\\(x\\)", "1"], "answer": 0, "explanation": "Factor the numerator as \\((x-1)(x+1)\\). Cancel out the common \\((x-1)\\) term. The result is \\(x + 1\\) (where \\(x \\neq 1\\))."}, {"q": "Subtract the rational expressions: \\(\\frac{3}{x} - \\frac{1}{y}\\)", "options": ["\\(\\frac{2}{x-y}\\)", "\\(\\frac{3y - x}{xy}\\)", "\\(\\frac{3x - y}{xy}\\)", "\\(\\frac{2}{xy}\\)"], "answer": 1, "explanation": "Find a common denominator of \\(xy\\). The first term becomes \\(\\frac{3y}{xy}\\) and the second becomes \\(\\frac{x}{xy}\\). Subtracting gives \\(\\frac{3y - x}{xy}\\)."}, {"q": "Evaluate: \\(27^{2/3}\\)", "options": ["18", "9", "3", "81"], "answer": 1, "explanation": "The denominator 3 means cube root, and numerator 2 means square. \\(\\sqrt[3]{27} = 3\\). Then \\(3^2 = 9\\)."}, {"q": "Simplify: \\(\\sqrt{50}\\)", "options": ["\\(2\\sqrt{5}\\)", "\\(5\\sqrt{2}\\)", "\\(10\\sqrt{5}\\)", "\\(25\\sqrt{2}\\)"], "answer": 1, "explanation": "\\(\\sqrt{50} = \\sqrt{25 \\times 2} = \\sqrt{25} \\times \\sqrt{2} = 5\\sqrt{2}\\)."}, {"q": "Rationalize the denominator: \\(\\frac{4}{\\sqrt{2}}\\)", "options": ["\\(2\\sqrt{2}\\)", "\\(4\\sqrt{2}\\)", "\\(\\sqrt{2}\\)", "2"], "answer": 0, "explanation": "Multiply top and bottom by \\(\\sqrt{2}\\): \\(\\frac{4\\sqrt{2}}{\\sqrt{2}\\sqrt{2}} = \\frac{4\\sqrt{2}}{2} = 2\\sqrt{2}\\)."}, {"q": "What is the absolute value of \\(-15\\)?", "options": ["-15", "0", "15", "1"], "answer": 2, "explanation": "Absolute value is the distance from zero on the number line, which is always non-negative. \\(|-15| = 15\\)."}, {"q": "Evaluate \\(3x^2 - 2x + 1\\) for \\(x = -2\\)", "options": ["17", "9", "5", "13"], "answer": 0, "explanation": "Substitute -2 for x: \\(3(-2)^2 - 2(-2) + 1 = 3(4) + 4 + 1 = 12 + 4 + 1 = 17\\)."}, {"q": "Find the distance between points \\(A(2)\\) and \\(B(-5)\\) on the real number line.", "options": ["-3", "3", "7", "-7"], "answer": 2, "explanation": "The distance is \\(|-5 - 2| = |-7| = 7\\)."}, {"q": "Which property is illustrated by \\(3(x + 4) = 3x + 12\\)?", "options": ["Commutative", "Associative", "Distributive", "Identity"], "answer": 2, "explanation": "The distributive property distributes multiplication over addition."}, {"q": "Solve for x: \\(2x - 5 = 11\\)", "options": ["3", "8", "6", "16"], "answer": 1, "explanation": "Add 5 to both sides: \\(2x = 16\\). Divide by 2: \\(x = 8\\)."}, {"q": "An equation that is true for every real number is called:", "options": ["A conditional equation", "An identity", "An inconsistent equation", "A quadratic equation"], "answer": 1, "explanation": "An identity is an equation that holds true for all values in the domain of its variables (e.g., \\(x = x\\))."}, {"q": "Solve: \\(x - 3 = x + 2\\)", "options": ["x = -1", "x = 5", "All real numbers", "No solution"], "answer": 3, "explanation": "Subtracting \\(x\\) from both sides leaves \\(-3 = 2\\), which is a false statement. Thus, there is no solution (inconsistent)."}, {"q": "A shirt is on sale for 20% off. If the sale price is $40, what was the original price?", "options": ["$32", "$48", "$50", "$60"], "answer": 2, "explanation": "Let \\(x\\) be the original price. \\(x - 0.20x = 40 \\implies 0.80x = 40 \\implies x = 50\\)."}, {"q": "Find the discriminant of \\(2x^2 - 3x + 4 = 0\\)", "options": ["-23", "25", "-14", "41"], "answer": 0, "explanation": "Discriminant \\(\\Delta = b^2 - 4ac = (-3)^2 - 4(2)(4) = 9 - 32 = -23\\)."}, {"q": "Based on the discriminant above, how many real solutions does the equation have?", "options": ["Two", "One", "Zero", "Infinite"], "answer": 2, "explanation": "Since the discriminant is negative (-23), the equation has zero real solutions (it has two complex conjugate solutions)."}, {"q": "Solve for x: \\(x^2 = 25\\)", "options": ["5 only", "-5 only", "\\(\\pm 5\\)", "25"], "answer": 2, "explanation": "Taking the square root of both sides gives \\(x = \\pm \\sqrt{25} = \\pm 5\\)."}, {"q": "Simplify: \\((3 - 2i) + (4 + 5i)\\)", "options": ["\\(7 + 3i\\)", "\\(7 - 7i\\)", "\\(-1 + 3i\\)", "\\(12 - 10i\\)"], "answer": 0, "explanation": "Add real parts and imaginary parts separately: \\((3+4) + (-2+5)i = 7 + 3i\\)."}, {"q": "Multiply: \\(i^3\\)", "options": ["1", "-1", "i", "-i"], "answer": 3, "explanation": "\\(i^3 = i^2 \\times i = (-1) \\times i = -i\\)."}, {"q": "Solve: \\(\\sqrt{x + 3} = 4\\)", "options": ["1", "13", "19", "7"], "answer": 1, "explanation": "Square both sides: \\(x + 3 = 16\\). Subtract 3: \\(x = 13\\). Check: \\(\\sqrt{13+3} = 4\\), which is true."}, {"q": "Solve: \\(x^4 - 5x^2 + 4 = 0\\)", "options": ["\\(\\pm 1, \\pm 2\\)", "\\(1, 4\\)", "\\(\\pm 1, \\pm 4\\)", "\\(-1, -2\\)"], "answer": 0, "explanation": "Let \\(u = x^2\\). The equation becomes \\(u^2 - 5u + 4 = 0\\). Factoring gives \\((u-1)(u-4) = 0\\), so \\(u=1\\) or \\(u=4\\). Thus \\(x^2=1\\) or \\(x^2=4\\), leading to \\(\\pm 1, \\pm 2\\)."}, {"q": "Solve the inequality: \\(-3x < 12\\)", "options": ["\\(x < -4\\)", "\\(x > -4\\)", "\\(x < 4\\)", "\\(x > 4\\)"], "answer": 1, "explanation": "Divide both sides by -3. Remember to flip the inequality sign! \\(x > -4\\)."}, {"q": "Express the inequality \\(x \\ge 5\\) in interval notation.", "options": ["\\((5, \\infty)\\)", "\\([5, \\infty)\\)", "\\((-\\infty, 5]\\)", "\\([5, \\infty]\\)"], "answer": 1, "explanation": "The square bracket indicates that 5 is included (greater than or equal to)."}, {"q": "Solve: \\(|x - 2| = 5\\)", "options": ["7 only", "-3 only", "7, -3", "3, -7"], "answer": 2, "explanation": "The expression inside can be 5 or -5. So \\(x - 2 = 5 \\implies x = 7\\), and \\(x - 2 = -5 \\implies x = -3\\)."}, {"q": "Solve: \\(|x| < -2\\)", "options": ["x < -2", "x > -2", "-2 < x < 2", "No solution"], "answer": 3, "explanation": "Absolute value represents distance, which cannot be less than zero (or negative). Therefore, there is no solution."}, {"q": "Which formula solves a quadratic equation \\(ax^2+bx+c=0\\)?", "options": ["Pythagorean Theorem", "Quadratic Formula", "Distance Formula", "Midpoint Formula"], "answer": 1, "explanation": "The Quadratic Formula \\(x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}\\) solves quadratic equations."}, {"q": "Solve by factoring: \\(x^2 - x - 12 = 0\\)", "options": ["3, -4", "-3, 4", "2, -6", "-2, 6"], "answer": 1, "explanation": "Factor to \\((x - 4)(x + 3) = 0\\). Setting each to zero gives \\(x = 4\\) and \\(x = -3\\)."}, {"q": "Find the distance between \\((0,0)\\) and \\((3,4)\\).", "options": ["5", "7", "25", "1"], "answer": 0, "explanation": "Distance = \\(\\sqrt{(3-0)^2 + (4-0)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\)."}, {"q": "Find the midpoint of the segment connecting \\((2, 4)\\) and \\((6, 10)\\).", "options": ["\\((4, 7)\\)", "\\((8, 14)\\)", "\\((4, 6)\\)", "\\((3, 5)\\)"], "answer": 0, "explanation": "Midpoint = \\((\\frac{2+6}{2}, \\frac{4+10}{2}) = (4, 7)\\)."}, {"q": "What is the center of the circle \\((x - 1)^2 + (y + 5)^2 = 9\\)?", "options": ["\\((-1, 5)\\)", "\\((1, -5)\\)", "\\((1, 5)\\)", "\\((-1, -5)\\)"], "answer": 1, "explanation": "The standard form is \\((x-h)^2 + (y-k)^2 = r^2\\), so center \\((h,k)\\) is \\((1, -5)\\)."}, {"q": "What is the radius of the circle \\(x^2 + y^2 = 100\\)?", "options": ["100", "50", "10", "1"], "answer": 2, "explanation": "Since \\(r^2 = 100\\), the radius \\(r = \\sqrt{100} = 10\\)."}, {"q": "Find the slope of the line passing through \\((1, 2)\\) and \\((3, 8)\\).", "options": ["3", "-3", "1/3", "-1/3"], "answer": 0, "explanation": "Slope \\(m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{8 - 2}{3 - 1} = \\frac{6}{2} = 3\\)."}, {"q": "What is the slope of a line parallel to \\(y = -2x + 4\\)?", "options": ["2", "-2", "1/2", "-1/2"], "answer": 1, "explanation": "Parallel lines have the same slope. The slope of the given line is -2."}, {"q": "What is the slope of a line perpendicular to \\(y = \\frac{1}{3}x - 1\\)?", "options": ["3", "-3", "1/3", "-1/3"], "answer": 1, "explanation": "Perpendicular lines have negative reciprocal slopes. The negative reciprocal of 1/3 is -3."}, {"q": "Evaluate \\(f(-2)\\) for \\(f(x) = x^2 - x\\).", "options": ["2", "-6", "6", "0"], "answer": 2, "explanation": "\\(f(-2) = (-2)^2 - (-2) = 4 + 2 = 6\\)."}, {"q": "Which of the following passes the Vertical Line Test?", "options": ["A circle", "A vertical line", "A parabola opening left", "A parabola opening up"], "answer": 3, "explanation": "A parabola opening up is a function. The others fail the vertical line test because a vertical line can intersect them at more than one point."}, {"q": "What is the domain of \\(f(x) = \\sqrt{x - 3}\\)?", "options": ["\\(x < 3\\)", "\\(x \\le 3\\)", "\\(x > 3\\)", "\\(x \\ge 3\\)"], "answer": 3, "explanation": "The expression inside a square root must be non-negative. \\(x - 3 \\ge 0 \\implies x \\ge 3\\)."}, {"q": "If \\(f(x)\\) is an even function, then its graph is symmetric with respect to:", "options": ["The x-axis", "The y-axis", "The origin", "The line y=x"], "answer": 1, "explanation": "Even functions (where \\(f(-x) = f(x)\\)) have y-axis symmetry."}, {"q": "Describe the transformation from \\(y = x^2\\) to \\(y = (x+2)^2\\).", "options": ["Shift right 2", "Shift left 2", "Shift up 2", "Shift down 2"], "answer": 1, "explanation": "Adding a constant inside the function argument, \\(f(x+c)\\), shifts the graph to the left by \\(c\\) units."}, {"q": "Given \\(f(x) = 2x\\) and \\(g(x) = x + 3\\), find \\((f \\circ g)(x)\\).", "options": ["\\(2x + 3\\)", "\\(2x + 6\\)", "\\(3x + 3\\)", "\\(2x^2 + 6x\\)"], "answer": 1, "explanation": "\\(f(g(x)) = f(x + 3) = 2(x + 3) = 2x + 6\\)."}, {"q": "Find the inverse of \\(f(x) = \\frac{x}{2} - 1\\).", "options": ["\\(f^{-1}(x) = 2x + 1\\)", "\\(f^{-1}(x) = 2(x + 1)\\)", "\\(f^{-1}(x) = \\frac{2}{x} + 1\\)", "\\(f^{-1}(x) = 2x - 2\\)"], "answer": 1, "explanation": "Let \\(y = x/2 - 1\\). Swap variables: \\(x = y/2 - 1\\). Solve for y: \\(x + 1 = y/2 \\implies y = 2(x + 1)\\)."}, {"q": "Which function represents a constant rate of change?", "options": ["Linear function", "Quadratic function", "Exponential function", "Absolute value function"], "answer": 0, "explanation": "Linear functions have a constant slope, meaning their rate of change is constant."}, {"q": "What is the y-intercept of the graph of \\(y = 4x - 7\\)?", "options": ["4", "-7", "7", "-4"], "answer": 1, "explanation": "In \\(y = mx + b\\) form, \\(b\\) is the y-intercept. Here, \\(b = -7\\)."}, {"q": "Find the domain of \\(f(x) = \\frac{5}{x^2 - 4}\\).", "options": ["All real numbers", "\\(x \\neq 2\\)", "\\(x \\neq -2\\)", "\\(x \\neq \\pm 2\\)"], "answer": 3, "explanation": "The denominator cannot be zero. \\(x^2 - 4 \\neq 0 \\implies x^2 \\neq 4 \\implies x \\neq \\pm 2\\)."}];
+        
+        let score = 0;
+        let attempted = 0;
+        let answeredQuestions = new Set();
+
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreElement = document.getElementById('current-score');
+        const attemptedElement = document.getElementById('attempted-count');
+        const summaryModal = document.getElementById('summary-modal');
+
+        function initQuiz() {
+            quizContainer.innerHTML = '';
+            score = 0;
+            attempted = 0;
+            answeredQuestions.clear();
+            updateScoreBoard();
+            summaryModal.style.display = 'none';
+
+            questionsData.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${index}`;
+
+                let optionsHtml = '';
+                q.options.forEach((opt, optIndex) => {
+                    optionsHtml += `<button class="option-btn" id="q${index}-opt${optIndex}" onclick="checkAnswer(${index}, ${optIndex})">${opt}</button>`;
+                });
+
+                card.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q.q}</div>
+                    <div class="options-list">
+                        ${optionsHtml}
+                    </div>
+                    <div class="explanation" id="exp-${index}">
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                `;
+                quizContainer.appendChild(card);
+            });
+            
+            // Re-render MathJax
+            if(window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function checkAnswer(qIndex, selectedOptIndex) {
+            if (answeredQuestions.has(qIndex)) return;
+
+            const q = questionsData[qIndex];
+            const isCorrect = (selectedOptIndex === q.answer);
+            
+            // Update buttons
+            const selectedBtn = document.getElementById(`q${qIndex}-opt${selectedOptIndex}`);
+            const correctBtn = document.getElementById(`q${qIndex}-opt${q.answer}`);
+
+            if (isCorrect) {
+                selectedBtn.classList.add('correct');
+                score++;
+            } else {
+                selectedBtn.classList.add('wrong');
+                correctBtn.classList.add('correct'); // Show correct answer
+            }
+
+            // Disable all options for this question
+            q.options.forEach((_, idx) => {
+                document.getElementById(`q${qIndex}-opt${idx}`).disabled = true;
+            });
+
+            // Show explanation
+            document.getElementById(`exp-${qIndex}`).classList.add('show');
+
+            answeredQuestions.add(qIndex);
+            attempted++;
+            updateScoreBoard();
+        }
+
+        function updateScoreBoard() {
+            scoreElement.innerText = score;
+            attemptedElement.innerText = attempted;
+        }
+
+        function finishQuiz() {
+            const percentage = Math.round((score / questionsData.length) * 100);
+            document.getElementById('final-score-display').innerText = percentage + '%';
+            
+            let message = '';
+            if(percentage >= 90) message = "Outstanding! You have mastered these chapters.";
+            else if(percentage >= 70) message = "Great job! A solid understanding.";
+            else if(percentage >= 50) message = "Good effort! Review the notes to solidify your concepts.";
+            else message = "Keep practicing! Use the revision notes to brush up on the fundamentals.";
+            
+            document.getElementById('score-message').innerText = message;
+            summaryModal.style.display = 'flex';
+        }
+
+        function restartQuiz() {
+            window.scrollTo(0,0);
+            initQuiz();
+        }
+
+        // Initialize on load
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>

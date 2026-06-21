@@ -1,0 +1,366 @@
+import json
+
+questions = [
+    # Chapter P (5 questions)
+    {"q": "What is the absolute value of \\(-18\\)?", "accepted": ["18", "+18"], "explanation": "The absolute value represents distance from zero. \\(|-18| = 18\\)."},
+    {"q": "Simplify the expression: \\((x^3)^4\\)", "accepted": ["x^12", "x^{12}", "x**12", "x12"], "explanation": "Using the power rule for exponents: \\((x^a)^b = x^{a \\times b}\\), so \\(3 \\times 4 = 12\\)."},
+    {"q": "Factor the difference of squares completely: \\(x^2 - 25\\)", "accepted": ["(x-5)(x+5)", "(x+5)(x-5)", "(x - 5)(x + 5)", "(x + 5)(x - 5)"], "explanation": "The difference of squares formula is \\(a^2 - b^2 = (a-b)(a+b)\\). Here, \\(a=x\\) and \\(b=5\\)."},
+    {"q": "Simplify the radical expression: \\(\\sqrt{16x^2}\\) (assume \\(x > 0\\))", "accepted": ["4x", "4*x", "4 x"], "explanation": "Take the square root of 16 (which is 4) and the square root of \\(x^2\\) (which is \\(x\\)). Result is \\(4x\\)."},
+    {"q": "Evaluate: \\(8^{1/3}\\)", "accepted": ["2", "+2"], "explanation": "The 1/3 exponent is equivalent to taking the cube root. \\(\\sqrt[3]{8} = 2\\)."},
+    
+    # Chapter 1 (5 questions)
+    {"q": "Solve for x: \\(3x - 7 = 8\\)", "accepted": ["5", "x=5", "x = 5"], "explanation": "Add 7 to both sides: \\(3x = 15\\). Divide by 3: \\(x = 5\\)."},
+    {"q": "What is the discriminant of the quadratic equation \\(x^2 - 4x + 4 = 0\\)?", "accepted": ["0", "zero"], "explanation": "Discriminant \\(\\Delta = b^2 - 4ac = (-4)^2 - 4(1)(4) = 16 - 16 = 0\\)."},
+    {"q": "Simplify the complex number expression: \\(i^2\\)", "accepted": ["-1"], "explanation": "By definition, the imaginary unit \\(i\\) squared is equal to -1."},
+    {"q": "Solve for x in the equation \\(\\sqrt{x} = 5\\)", "accepted": ["25", "x=25", "x = 25"], "explanation": "Square both sides to eliminate the radical: \\((\\sqrt{x})^2 = 5^2\\), so \\(x = 25\\)."},
+    {"q": "Solve the absolute value equation: \\(|x| = 3\\) (Enter your answers separated by a comma, e.g., '1, -1')", "accepted": ["3, -3", "-3, 3", "3,-3", "-3,3", "3, - 3", "- 3, 3"], "explanation": "The absolute value of both 3 and -3 is 3."},
+
+    # Chapter 2 (5 questions)
+    {"q": "Find the distance between the points \\((0, 0)\\) and \\((6, 8)\\).", "accepted": ["10"], "explanation": "Distance = \\(\\sqrt{(6-0)^2 + (8-0)^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\)."},
+    {"q": "What is the slope of the line passing through \\((1, 2)\\) and \\((2, 5)\\)?", "accepted": ["3", "3/1", "+3"], "explanation": "Slope \\(m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{5 - 2}{2 - 1} = \\frac{3}{1} = 3\\)."},
+    {"q": "Find the y-intercept of the line \\(y = -2x + 9\\).", "accepted": ["9", "+9", "(0, 9)", "(0,9)", "y=9"], "explanation": "In slope-intercept form \\(y = mx + b\\), \\(b\\) is the y-intercept. Here, it is 9."},
+    {"q": "Given \\(f(x) = 2x^2\\), evaluate \\(f(3)\\).", "accepted": ["18"], "explanation": "Substitute 3 for x: \\(2(3)^2 = 2(9) = 18\\)."},
+    {"q": "If \\(f(x) = x + 1\\) and \\(g(x) = 2x\\), find \\((f \\circ g)(x)\\).", "accepted": ["2x + 1", "2x+1", "1 + 2x", "1+2x"], "explanation": "Substitute \\(g(x)\\) into \\(f(x)\\): \\(f(g(x)) = f(2x) = 2x + 1\\)."}
+]
+
+html_template = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precalculus Freeform Quiz</title>
+    <!-- MathJax for rendering math equations beautifully -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #8b5cf6;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .score-board {
+            position: sticky;
+            top: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
+        .score-board h3 { margin: 0; font-size: 1.2rem; }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s;
+        }
+
+        .question-card.correct { border-left: 6px solid var(--success-color); }
+        .question-card.wrong { border-left: 6px solid var(--danger-color); }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .check-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .check-btn:hover { background: #7c3aed; }
+        .check-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        .feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.show { display: block; }
+        .feedback.correct-text { color: #166534; }
+        .feedback.wrong-text { color: #991b1b; }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .explanation.show { display: block; }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background: #334155; }
+        
+        /* Summary Modal */
+        #summary-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .modal-content h2 { color: var(--primary-color); font-size: 2rem; margin-top:0; }
+        .modal-content .final-score { font-size: 4rem; font-weight: bold; color: var(--accent-color); margin: 1rem 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Precalculus Fill-in-the-Blank Quiz</h1>
+        <p class="subtitle">15 Free-form questions covering Chapters P, 1, and 2.</p>
+
+        <div class="score-board">
+            <h3>Score: <span id="current-score">0</span> / 15</h3>
+            <h3>Attempted: <span id="attempted-count">0</span></h3>
+        </div>
+
+        <div id="quiz-container"></div>
+
+        <div class="actions">
+            <button class="btn" onclick="finishQuiz()">Finish Quiz</button>
+            <button class="btn" style="margin-left:1rem; background-color:var(--accent-color)" onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <div id="summary-modal">
+        <div class="modal-content">
+            <h2>Quiz Complete!</h2>
+            <p>Your Final Score:</p>
+            <div class="final-score" id="final-score-display">0%</div>
+            <button class="btn" style="margin-top:2rem;" onclick="restartQuiz()">Take Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questionsData = REPLACE_ME_WITH_JSON;
+        
+        let score = 0;
+        let attempted = 0;
+        let answeredQuestions = new Set();
+
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreElement = document.getElementById('current-score');
+        const attemptedElement = document.getElementById('attempted-count');
+        const summaryModal = document.getElementById('summary-modal');
+
+        function initQuiz() {
+            quizContainer.innerHTML = '';
+            score = 0;
+            attempted = 0;
+            answeredQuestions.clear();
+            updateScoreBoard();
+            summaryModal.style.display = 'none';
+
+            questionsData.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${index}`;
+
+                card.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q.q}</div>
+                    <div class="input-group">
+                        <input type="text" id="input-${index}" placeholder="Type your answer here..." onkeypress="handleKeyPress(event, ${index})">
+                        <button class="check-btn" id="btn-${index}" onclick="checkAnswer(${index})">Check</button>
+                    </div>
+                    <div class="feedback" id="feedback-${index}"></div>
+                    <div class="explanation" id="exp-${index}">
+                        <strong>Accepted Answers:</strong> ${q.accepted.join(', ')}<br><br>
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                `;
+                quizContainer.appendChild(card);
+            });
+            
+            if(window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function handleKeyPress(e, index) {
+            if (e.key === 'Enter') {
+                checkAnswer(index);
+            }
+        }
+
+        function normalizeString(str) {
+            // Remove all spaces and make lowercase for robust comparison
+            return str.toLowerCase().replace(/\s+/g, '');
+        }
+
+        function checkAnswer(qIndex) {
+            if (answeredQuestions.has(qIndex)) return;
+
+            const q = questionsData[qIndex];
+            const inputEl = document.getElementById(`input-${qIndex}`);
+            const btnEl = document.getElementById(`btn-${qIndex}`);
+            const cardEl = document.getElementById(`q-card-${qIndex}`);
+            const feedbackEl = document.getElementById(`feedback-${qIndex}`);
+            const expEl = document.getElementById(`exp-${qIndex}`);
+
+            const userAnswer = inputEl.value;
+            if (!userAnswer.trim()) return; // don't grade empty answers
+
+            const normalizedUser = normalizeString(userAnswer);
+            const isCorrect = q.accepted.some(ans => normalizeString(ans) === normalizedUser);
+
+            inputEl.disabled = true;
+            btnEl.disabled = true;
+            answeredQuestions.add(qIndex);
+            attempted++;
+
+            if (isCorrect) {
+                cardEl.classList.add('correct');
+                feedbackEl.innerHTML = "✅ Correct!";
+                feedbackEl.className = "feedback show correct-text";
+                score++;
+            } else {
+                cardEl.classList.add('wrong');
+                feedbackEl.innerHTML = `❌ Incorrect.`;
+                feedbackEl.className = "feedback show wrong-text";
+            }
+
+            expEl.classList.add('show');
+            updateScoreBoard();
+            
+            if(window.MathJax) {
+                MathJax.typesetPromise([expEl]);
+            }
+        }
+
+        function updateScoreBoard() {
+            scoreElement.innerText = score;
+            attemptedElement.innerText = attempted;
+        }
+
+        function finishQuiz() {
+            const percentage = Math.round((score / questionsData.length) * 100);
+            document.getElementById('final-score-display').innerText = percentage + '%';
+            summaryModal.style.display = 'flex';
+        }
+
+        function restartQuiz() {
+            window.scrollTo(0,0);
+            initQuiz();
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
+"""
+
+html_out = html_template.replace("REPLACE_ME_WITH_JSON", json.dumps(questions))
+
+with open("/Users/ntnmathur/Desktop/aarav_precalc/freeform_quiz.html", "w") as f:
+    f.write(html_out)
+
+print("freeform_quiz.html generated successfully!")

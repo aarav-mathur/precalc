@@ -36,12 +36,14 @@ notes_html = r"""<!DOCTYPE html>
                 <strong>First Principles:</strong> The real number system \(\mathbb{R}\) is the foundation of continuous mathematics. It includes numbers that can be written as fractions (rational) and those that cannot (irrational, like \(\pi\) and \(\sqrt{2}\)).
             </div>
             <p><strong>Absolute Value:</strong> The distance of a number from zero on the number line. \(|x| = x\) if \(x \ge 0\), and \(|x| = -x\) if \(x < 0\).</p>
-            <div class="example-box">
-                <strong>Deep Example:</strong> Evaluate \(|x - 5|\) when \(x = 2\).<br>
-                1. Plug in: \(|2 - 5|\)<br>
-                2. Inside the absolute value: \(|-3|\)<br>
-                3. The distance from 0 is 3. So, 3.
+        </div>
+
+        <div class="card">
+            <h2>P.2 Integer Exponents and Scientific Notation</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Exponents are repeated multiplication. A negative exponent means repeated division (the reciprocal).
             </div>
+            <p><strong>Rules:</strong> \(x^m \cdot x^n = x^{m+n}\), \(\frac{x^m}{x^n} = x^{m-n}\), \((x^m)^n = x^{mn}\).</p>
         </div>
 
         <div class="card">
@@ -55,6 +57,18 @@ notes_html = r"""<!DOCTYPE html>
             <h3>Interactive Visualization</h3>
             <p>Interact with the Desmos graph below to see how the factors of a polynomial dictate its roots. Change the sliders for \(a\), \(b\), and \(c\)!</p>
             <div id="calculator" class="calculator-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>P.5 Rational Expressions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Rational expressions are fractions where the numerator and denominator are polynomials. You can only cancel <em>factors</em>, never <em>terms</em>!
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> Simplify \(\frac{x^2 + 2x}{x}\).<br>
+                Many students illegally cancel the \(x\)'s to get \(x^2 + 2\).<br>
+                <strong>Correct Way:</strong> Factor the numerator first: \(\frac{x(x + 2)}{x}\). Then cancel the factor \(x\) to get \(x + 2\) (for \(x \neq 0\)).
+            </div>
         </div>
 
         <div class="card">
@@ -89,8 +103,6 @@ notes_html = r"""<!DOCTYPE html>
 # ==========================================
 
 questions = []
-
-# Generate exactly 50 MCQ questions across 5 categories
 categories = [
     "Concepts and Vocabulary",
     "Building Skills",
@@ -110,47 +122,33 @@ for i in range(10):
     opts1, ans1 = generate_distractors("Symmetric Property", "Reflexive Property", "Transitive Property", "Commutative Property")
     questions.append({"q": q1, "category": categories[0], "options": opts1, "answer": ans1, "explanation": "The Symmetric Property states that if a=b, then b=a."})
 
-    # Category 2: Building Skills (Factoring difference of squares)
+    # Category 2: Building Skills
     a = random.randint(2, 9)
     q2 = f"Factor completely: \\({a**2}x^2 - 81\\)"
     correct2 = f"\\(({a}x - 9)({a}x + 9)\\)"
-    w1 = f"\\(({a}x - 9)^2\\)" # Student thinks it's a perfect square
-    w2 = f"\\(({a**2}x - 9)({a**2}x + 9)\\)" # Forgot to square root a^2
-    w3 = f"\\(({a}x - 81)({a}x + 81)\\)" # Forgot to square root 81
-    opts2, ans2 = generate_distractors(correct2, w1, w2, w3)
-    questions.append({"q": q2, "category": categories[1], "options": opts2, "answer": ans2, "explanation": "Difference of squares: \\(A^2 - B^2 = (A-B)(A+B)\\). Here A = \\({a}x\\) and B = 9."})
+    opts2, ans2 = generate_distractors(correct2, f"\\(({a}x - 9)^2\\)", f"\\(({a**2}x - 9)({a**2}x + 9)\\)", f"\\(({a}x - 81)({a}x + 81)\\)")
+    questions.append({"q": q2, "category": categories[1], "options": opts2, "answer": ans2, "explanation": "Difference of squares."})
 
-    # Category 3: Applying the Concepts (Exponent rules)
+    # Category 3: Applying the Concepts
     b = random.randint(2, 5)
     c = random.randint(2, 4)
     q3 = "Simplify the expression using exponent rules: \\( (\\frac{x^" + str(b) + "}{y^{-" + str(c) + "}})^{-2} \\)"
     correct3 = f"\\( \\frac{{1}}{{x^{b*2}y^{c*2}}} \\)"
-    w1_3 = f"\\( \\frac{{y^{c*2}}}{{x^{b*2}}} \\)" # Sign error on y
-    w2_3 = f"\\( x^{b*-2} y^{c*-2} \\)" # Formatted without fraction, but wait let's make it look like a wrong fraction
-    w2_3 = f"\\( \\frac{{x^{b*2}}}{{y^{c*2}}} \\)" # Flipped numerator/denominator completely wrong
-    w3_3 = f"\\( \\frac{{1}}{{x^{b+2}y^{c+2}}} \\)" # Student added instead of multiplied exponents
-    opts3, ans3 = generate_distractors(correct3, w1_3, w2_3, w3_3)
-    questions.append({"q": q3, "category": categories[2], "options": opts3, "answer": ans3, "explanation": "First apply the negative exponent to flip the fraction, or multiply exponents: \\(x^{-2b} / y^{2c}\\). To make powers positive, move x to denominator: \\(1 / (x^{2b} y^{2c})\\)."})
+    opts3, ans3 = generate_distractors(correct3, f"\\( \\frac{{y^{c*2}}}{{x^{b*2}}} \\)", f"\\( \\frac{{x^{b*2}}}{{y^{c*2}}} \\)", f"\\( \\frac{{1}}{{x^{b+2}y^{c+2}}} \\)")
+    questions.append({"q": q3, "category": categories[2], "options": opts3, "answer": ans3, "explanation": "Flip the fraction and multiply exponents."})
 
-    # Category 4: Beyond the Basics (Rationalizing denominator with conjugates)
+    # Category 4: Beyond the Basics
     d = random.randint(2, 5)
     q4 = f"Rationalize the denominator: \\( \\frac{{{d}}}{{ \\sqrt{{x}} - {d} }} \\)"
     correct4 = f"\\( \\frac{{{d}\\sqrt{{x}} + {d**2}}}{{x - {d**2}}} \\)"
-    w1_4 = f"\\( \\frac{{{d}\\sqrt{{x}} - {d**2}}}{{x - {d**2}}} \\)" # Wrong sign in numerator
-    w2_4 = f"\\( \\frac{{{d}\\sqrt{{x}} + {d**2}}}{{x + {d**2}}} \\)" # Wrong sign in denominator
-    w3_4 = f"\\( \\frac{{{d}\\sqrt{{x}} + {d}}}{{x - {d**2}}} \\)" # Forgot to distribute the d to the d
-    opts4, ans4 = generate_distractors(correct4, w1_4, w2_4, w3_4)
-    questions.append({"q": q4, "category": categories[3], "options": opts4, "answer": ans4, "explanation": "Multiply numerator and denominator by the conjugate \\(\\sqrt{{x}} + {d}\\). Denominator becomes \\(x - {d**2}\\). Numerator becomes \\({d}(\\sqrt{{x}} + {d}) = {d}\\sqrt{{x}} + {d**2}\\)."})
+    opts4, ans4 = generate_distractors(correct4, f"\\( \\frac{{{d}\\sqrt{{x}} - {d**2}}}{{x - {d**2}}} \\)", f"\\( \\frac{{{d}\\sqrt{{x}} + {d**2}}}{{x + {d**2}}} \\)", f"\\( \\frac{{{d}\\sqrt{{x}} + {d}}}{{x - {d**2}}} \\)")
+    questions.append({"q": q4, "category": categories[3], "options": opts4, "answer": ans4, "explanation": "Multiply numerator and denominator by conjugate."})
 
     # Category 5: Critical Thinking
     q5 = f"Why is the domain of \\( \\frac{{1}}{{\\sqrt{{x - {i+1}}}}} \\) restricted to \\( x > {i+1} \\) instead of \\( x \\ge {i+1} \\)?"
-    correct5 = f"Because \\(x = {i+1}\\) causes division by zero, even though the square root of 0 is valid."
-    w1_5 = f"Because the square root of {i+1} is irrational."
-    w2_5 = f"Because you cannot take the square root of a negative number." # True but doesn't explain why not EQUAL to i+1
-    w3_5 = f"Because fractions cannot have a positive denominator."
-    opts5, ans5 = generate_distractors(correct5, w1_5, w2_5, w3_5)
-    questions.append({"q": q5, "category": categories[4], "options": opts5, "answer": ans5, "explanation": "The radicand must be \\(\\ge 0\\) (so \\(x - {i+1} \\ge 0\\)), but since it is in the denominator, it cannot be exactly 0. Thus \\(x - {i+1} > 0\\)."})
-
+    correct5 = f"Because \\(x = {i+1}\\) causes division by zero."
+    opts5, ans5 = generate_distractors(correct5, f"Because the square root of {i+1} is irrational.", "Because you cannot take the square root of a negative number.", "Because fractions cannot have a positive denominator.")
+    questions.append({"q": q5, "category": categories[4], "options": opts5, "answer": ans5, "explanation": "Division by zero is undefined."})
 
 quiz_html = r"""<!DOCTYPE html>
 <html lang="en">
@@ -227,7 +225,30 @@ quiz_html = r"""<!DOCTYPE html>
 # ==========================================
 # 3. GENERATE FREEFORM QUIZ (chapter_p_freeform.html)
 # ==========================================
-# Integrating math.js to evaluate equivalence algebraically!
+
+freeform_questions = []
+
+for i in range(20):
+    a = random.randint(2, 6)
+    b = random.randint(1, 5)
+    q_type = i % 4
+    if q_type == 0:
+        q = f"Expand and simplify: (x - {a})(x + {b})"
+        ans = f"x^2 + {b-a}x - {a*b}"
+    elif q_type == 1:
+        q = f"Factor completely: x^2 - {a**2}"
+        ans = f"(x-{a})(x+{a})"
+    elif q_type == 2:
+        q = f"Simplify the rational expression: (x^2 - {a**2}) / (x - {a})"
+        ans = f"x+{a}"
+    else:
+        q = f"Expand the perfect square: (x + {b})^2"
+        ans = f"x^2 + {2*b}x + {b**2}"
+        
+    freeform_questions.append({
+        "q": q,
+        "a": ans
+    })
 
 freeform_html = r"""<!DOCTYPE html>
 <html lang="en">
@@ -236,7 +257,6 @@ freeform_html = r"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter P: Freeform Mastery</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- MATH.JS SYMBOLIC GRADING ENGINE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; padding: 2rem; max-width: 900px; margin: 0 auto; }
@@ -245,98 +265,58 @@ freeform_html = r"""<!DOCTYPE html>
         .card.correct { border-left-color: #22c55e; }
         .card.wrong { border-left-color: #ef4444; }
         input[type="text"] { width: 60%; padding: 0.75rem; font-size: 1rem; border: 2px solid #cbd5e1; border-radius: 0.5rem; }
-        button { background: #8b5cf6; color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.5rem; cursor: pointer; }
+        button { background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.5rem; cursor: pointer; }
         .feedback { margin-top: 1rem; font-weight: bold; display: none; }
     </style>
 </head>
 <body>
-    <h1>Chapter P: Freeform Quiz with Symbolic Grading</h1>
-    <p><em>Type your answers using standard math notation (e.g., x^2 + 2x). Math.js will evaluate your answer algebraically against the correct answer! Even if you type x(x+2), it knows it's equal to x^2+2x.</em></p>
+    <h1>Chapter P: Freeform Quiz (20 Questions)</h1>
+    <p><em>Type your answers using standard math notation. Math.js will evaluate your answer algebraically!</em></p>
     
     <div class="score-board">
-        <h3>Score: <span id="score">0</span> / 5</h3>
+        <h3>Score: <span id="score">0</span> / 20</h3>
     </div>
-    
-    <div id="quiz-container">
-        <!-- Q1 -->
-        <div class="card" id="card0">
-            <p><strong>1. Expanding:</strong> Expand and simplify the expression: (x - 4)(x + 5)</p>
-            <input type="text" id="input0" placeholder="e.g. x^2 + x - 20">
-            <button onclick="checkFreeform(0, 'x^2 + x - 20')">Check</button>
-            <div class="feedback" id="feedback0"></div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="card" id="card1">
-            <p><strong>2. Factoring:</strong> Factor out the greatest common factor: 6x^3 - 15x^2</p>
-            <input type="text" id="input1" placeholder="e.g. 3x^2(2x - 5)">
-            <button onclick="checkFreeform(1, '3*x^2*(2x - 5)')">Check</button>
-            <div class="feedback" id="feedback1"></div>
-        </div>
-        
-        <!-- Q3 -->
-        <div class="card" id="card2">
-            <p><strong>3. Special Products:</strong> Expand (2x - 3)^2</p>
-            <input type="text" id="input2" placeholder="e.g. 4x^2 - 12x + 9">
-            <button onclick="checkFreeform(2, '4x^2 - 12x + 9')">Check</button>
-            <div class="feedback" id="feedback2"></div>
-        </div>
-        
-        <!-- Q4 -->
-        <div class="card" id="card3">
-            <p><strong>4. Adding Rational Expressions:</strong> Add and simplify: 1/x + 2/(x+1)</p>
-            <input type="text" id="input3" placeholder="e.g. (3x+1)/(x(x+1))">
-            <button onclick="checkFreeform(3, '(3x+1)/(x*(x+1))')">Check</button>
-            <div class="feedback" id="feedback3"></div>
-        </div>
-        
-        <!-- Q5 -->
-        <div class="card" id="card4">
-            <p><strong>5. Critical Thinking:</strong> Simplify (x^3 - 8) / (x - 2)</p>
-            <input type="text" id="input4" placeholder="e.g. x^2 + 2x + 4">
-            <button onclick="checkFreeform(4, 'x^2 + 2x + 4')">Check</button>
-            <div class="feedback" id="feedback4"></div>
-        </div>
-    </div>
+    <div id="quiz-container"></div>
 
     <script>
-        let score = 0;
+        const questions = REPLACE_ME_WITH_JSON;
+        const container = document.getElementById('quiz-container');
         
+        questions.forEach((q, i) => {
+            let html = `
+            <div class="card" id="card${i}">
+                <p><strong>${i+1}.</strong> ${q.q}</p>
+                <input type="text" id="input${i}" placeholder="e.g. x^2 + 2x">
+                <button onclick="checkFreeform(${i}, '${q.a}')">Check</button>
+                <div class="feedback" id="feedback${i}"></div>
+            </div>`;
+            container.innerHTML += html;
+        });
+
+        let score = 0;
         function checkFreeform(index, correctAnswerStr) {
             const userStr = document.getElementById('input' + index).value;
             const card = document.getElementById('card' + index);
             const feedback = document.getElementById('feedback' + index);
-            
             if(!userStr) return;
-
             try {
-                // We use math.js to evaluate if UserExpr - CorrectExpr == 0 for random test points
                 const nodeUser = math.parse(userStr).compile();
                 const nodeCorrect = math.parse(correctAnswerStr).compile();
-                
                 let isEquivalent = true;
-                
-                // Test 5 random points to empirically prove algebraic equivalence
                 for(let i=0; i<5; i++) {
-                    const testX = Math.random() * 10 + 1; // avoid 0 to prevent div by zero
+                    const testX = Math.random() * 10 + 1;
                     const scope = { x: testX };
-                    
                     const valUser = nodeUser.evaluate(scope);
                     const valCorrect = nodeCorrect.evaluate(scope);
-                    
-                    // Allow small floating point differences
                     if(Math.abs(valUser - valCorrect) > 0.0001) {
-                        isEquivalent = false;
-                        break;
+                        isEquivalent = false; break;
                     }
                 }
-                
                 if(isEquivalent) {
                     card.classList.add('correct');
                     feedback.innerHTML = "✅ Correct! Math.js verified the algebraic equivalence.";
                     feedback.style.color = "#166534";
-                    score++;
-                    document.getElementById('score').innerText = score;
+                    score++; document.getElementById('score').innerText = score;
                 } else {
                     card.classList.add('wrong');
                     feedback.innerHTML = "❌ Incorrect. Try again!";
@@ -344,7 +324,7 @@ freeform_html = r"""<!DOCTYPE html>
                 }
                 feedback.style.display = "block";
             } catch (err) {
-                feedback.innerHTML = "⚠️ Math Syntax Error. Make sure you use standard notation like x^2, *(multiply).";
+                feedback.innerHTML = "⚠️ Math Syntax Error. Use standard notation like x^2, *(multiply).";
                 feedback.style.color = "#ca8a04";
                 feedback.style.display = "block";
             }
@@ -352,15 +332,11 @@ freeform_html = r"""<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
+""".replace("REPLACE_ME_WITH_JSON", json.dumps(freeform_questions))
 
 os.makedirs("/Users/ntnmathur/Desktop/precalc/chapters_1_2", exist_ok=True)
-
-with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_notes.html", "w") as f:
-    f.write(notes_html)
-with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_quiz.html", "w") as f:
-    f.write(quiz_html)
-with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_freeform.html", "w") as f:
-    f.write(freeform_html)
+with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_notes.html", "w") as f: f.write(notes_html)
+with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_quiz.html", "w") as f: f.write(quiz_html)
+with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_p_freeform.html", "w") as f: f.write(freeform_html)
 
 print("Chapter P files generated successfully!")

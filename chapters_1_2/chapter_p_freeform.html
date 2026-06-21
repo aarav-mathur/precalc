@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter P: Freeform Mastery</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- MATH.JS SYMBOLIC GRADING ENGINE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; padding: 2rem; max-width: 900px; margin: 0 auto; }
@@ -14,98 +13,58 @@
         .card.correct { border-left-color: #22c55e; }
         .card.wrong { border-left-color: #ef4444; }
         input[type="text"] { width: 60%; padding: 0.75rem; font-size: 1rem; border: 2px solid #cbd5e1; border-radius: 0.5rem; }
-        button { background: #8b5cf6; color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.5rem; cursor: pointer; }
+        button { background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.5rem; cursor: pointer; }
         .feedback { margin-top: 1rem; font-weight: bold; display: none; }
     </style>
 </head>
 <body>
-    <h1>Chapter P: Freeform Quiz with Symbolic Grading</h1>
-    <p><em>Type your answers using standard math notation (e.g., x^2 + 2x). Math.js will evaluate your answer algebraically against the correct answer! Even if you type x(x+2), it knows it's equal to x^2+2x.</em></p>
+    <h1>Chapter P: Freeform Quiz (20 Questions)</h1>
+    <p><em>Type your answers using standard math notation. Math.js will evaluate your answer algebraically!</em></p>
     
     <div class="score-board">
-        <h3>Score: <span id="score">0</span> / 5</h3>
+        <h3>Score: <span id="score">0</span> / 20</h3>
     </div>
-    
-    <div id="quiz-container">
-        <!-- Q1 -->
-        <div class="card" id="card0">
-            <p><strong>1. Expanding:</strong> Expand and simplify the expression: (x - 4)(x + 5)</p>
-            <input type="text" id="input0" placeholder="e.g. x^2 + x - 20">
-            <button onclick="checkFreeform(0, 'x^2 + x - 20')">Check</button>
-            <div class="feedback" id="feedback0"></div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="card" id="card1">
-            <p><strong>2. Factoring:</strong> Factor out the greatest common factor: 6x^3 - 15x^2</p>
-            <input type="text" id="input1" placeholder="e.g. 3x^2(2x - 5)">
-            <button onclick="checkFreeform(1, '3*x^2*(2x - 5)')">Check</button>
-            <div class="feedback" id="feedback1"></div>
-        </div>
-        
-        <!-- Q3 -->
-        <div class="card" id="card2">
-            <p><strong>3. Special Products:</strong> Expand (2x - 3)^2</p>
-            <input type="text" id="input2" placeholder="e.g. 4x^2 - 12x + 9">
-            <button onclick="checkFreeform(2, '4x^2 - 12x + 9')">Check</button>
-            <div class="feedback" id="feedback2"></div>
-        </div>
-        
-        <!-- Q4 -->
-        <div class="card" id="card3">
-            <p><strong>4. Adding Rational Expressions:</strong> Add and simplify: 1/x + 2/(x+1)</p>
-            <input type="text" id="input3" placeholder="e.g. (3x+1)/(x(x+1))">
-            <button onclick="checkFreeform(3, '(3x+1)/(x*(x+1))')">Check</button>
-            <div class="feedback" id="feedback3"></div>
-        </div>
-        
-        <!-- Q5 -->
-        <div class="card" id="card4">
-            <p><strong>5. Critical Thinking:</strong> Simplify (x^3 - 8) / (x - 2)</p>
-            <input type="text" id="input4" placeholder="e.g. x^2 + 2x + 4">
-            <button onclick="checkFreeform(4, 'x^2 + 2x + 4')">Check</button>
-            <div class="feedback" id="feedback4"></div>
-        </div>
-    </div>
+    <div id="quiz-container"></div>
 
     <script>
-        let score = 0;
+        const questions = [{"q": "Expand and simplify: (x - 2)(x + 1)", "a": "x^2 + -1x - 2"}, {"q": "Factor completely: x^2 - 36", "a": "(x-6)(x+6)"}, {"q": "Simplify the rational expression: (x^2 - 4) / (x - 2)", "a": "x+2"}, {"q": "Expand the perfect square: (x + 1)^2", "a": "x^2 + 2x + 1"}, {"q": "Expand and simplify: (x - 3)(x + 4)", "a": "x^2 + 1x - 12"}, {"q": "Factor completely: x^2 - 36", "a": "(x-6)(x+6)"}, {"q": "Simplify the rational expression: (x^2 - 4) / (x - 2)", "a": "x+2"}, {"q": "Expand the perfect square: (x + 3)^2", "a": "x^2 + 6x + 9"}, {"q": "Expand and simplify: (x - 3)(x + 3)", "a": "x^2 + 0x - 9"}, {"q": "Factor completely: x^2 - 4", "a": "(x-2)(x+2)"}, {"q": "Simplify the rational expression: (x^2 - 36) / (x - 6)", "a": "x+6"}, {"q": "Expand the perfect square: (x + 3)^2", "a": "x^2 + 6x + 9"}, {"q": "Expand and simplify: (x - 2)(x + 4)", "a": "x^2 + 2x - 8"}, {"q": "Factor completely: x^2 - 25", "a": "(x-5)(x+5)"}, {"q": "Simplify the rational expression: (x^2 - 16) / (x - 4)", "a": "x+4"}, {"q": "Expand the perfect square: (x + 3)^2", "a": "x^2 + 6x + 9"}, {"q": "Expand and simplify: (x - 3)(x + 1)", "a": "x^2 + -2x - 3"}, {"q": "Factor completely: x^2 - 16", "a": "(x-4)(x+4)"}, {"q": "Simplify the rational expression: (x^2 - 4) / (x - 2)", "a": "x+2"}, {"q": "Expand the perfect square: (x + 5)^2", "a": "x^2 + 10x + 25"}];
+        const container = document.getElementById('quiz-container');
         
+        questions.forEach((q, i) => {
+            let html = `
+            <div class="card" id="card${i}">
+                <p><strong>${i+1}.</strong> ${q.q}</p>
+                <input type="text" id="input${i}" placeholder="e.g. x^2 + 2x">
+                <button onclick="checkFreeform(${i}, '${q.a}')">Check</button>
+                <div class="feedback" id="feedback${i}"></div>
+            </div>`;
+            container.innerHTML += html;
+        });
+
+        let score = 0;
         function checkFreeform(index, correctAnswerStr) {
             const userStr = document.getElementById('input' + index).value;
             const card = document.getElementById('card' + index);
             const feedback = document.getElementById('feedback' + index);
-            
             if(!userStr) return;
-
             try {
-                // We use math.js to evaluate if UserExpr - CorrectExpr == 0 for random test points
                 const nodeUser = math.parse(userStr).compile();
                 const nodeCorrect = math.parse(correctAnswerStr).compile();
-                
                 let isEquivalent = true;
-                
-                // Test 5 random points to empirically prove algebraic equivalence
                 for(let i=0; i<5; i++) {
-                    const testX = Math.random() * 10 + 1; // avoid 0 to prevent div by zero
+                    const testX = Math.random() * 10 + 1;
                     const scope = { x: testX };
-                    
                     const valUser = nodeUser.evaluate(scope);
                     const valCorrect = nodeCorrect.evaluate(scope);
-                    
-                    // Allow small floating point differences
                     if(Math.abs(valUser - valCorrect) > 0.0001) {
-                        isEquivalent = false;
-                        break;
+                        isEquivalent = false; break;
                     }
                 }
-                
                 if(isEquivalent) {
                     card.classList.add('correct');
                     feedback.innerHTML = "✅ Correct! Math.js verified the algebraic equivalence.";
                     feedback.style.color = "#166534";
-                    score++;
-                    document.getElementById('score').innerText = score;
+                    score++; document.getElementById('score').innerText = score;
                 } else {
                     card.classList.add('wrong');
                     feedback.innerHTML = "❌ Incorrect. Try again!";
@@ -113,7 +72,7 @@
                 }
                 feedback.style.display = "block";
             } catch (err) {
-                feedback.innerHTML = "⚠️ Math Syntax Error. Make sure you use standard notation like x^2, *(multiply).";
+                feedback.innerHTML = "⚠️ Math Syntax Error. Use standard notation like x^2, *(multiply).";
                 feedback.style.color = "#ca8a04";
                 feedback.style.display = "block";
             }

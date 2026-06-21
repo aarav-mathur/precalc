@@ -18,56 +18,30 @@
     </style>
 </head>
 <body>
-    <h1>Chapter 1: Freeform Quiz with Symbolic Grading</h1>
+    <h1>Chapter 1: Freeform Quiz (20 Questions)</h1>
     <p><em>Type your answers algebraically. Math.js will evaluate equivalence!</em></p>
     
     <div class="score-board">
-        <h3>Score: <span id="score">0</span> / 5</h3>
+        <h3>Score: <span id="score">0</span> / 20</h3>
     </div>
     
-    <div id="quiz-container">
-        <!-- Q1 -->
-        <div class="card" id="card0">
-            <p><strong>1. Linear Equations:</strong> Solve 3(x - 2) = x + 10. (Enter just the expression for x)</p>
-            <input type="text" id="input0" placeholder="e.g. 8">
-            <button onclick="checkFreeform(0, '8')">Check</button>
-            <div class="feedback" id="feedback0"></div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="card" id="card1">
-            <p><strong>2. Quadratics:</strong> Expand (x + 3)^2 - 9</p>
-            <input type="text" id="input1" placeholder="e.g. x^2 + 6x">
-            <button onclick="checkFreeform(1, 'x^2 + 6x')">Check</button>
-            <div class="feedback" id="feedback1"></div>
-        </div>
-        
-        <!-- Q3 -->
-        <div class="card" id="card2">
-            <p><strong>3. Complex Numbers:</strong> Multiply (2 + 3i)(2 - 3i). Note: treat 'i' as a variable for the grader.</p>
-            <input type="text" id="input2" placeholder="e.g. 13">
-            <button onclick="checkFreeform(2, '4 - 9*(i^2)')">Check</button>
-            <div class="feedback" id="feedback2"></div>
-        </div>
-        
-        <!-- Q4 -->
-        <div class="card" id="card3">
-            <p><strong>4. Rational Equations:</strong> Multiply both sides by the LCD to simplify: 1/x + 1/2 = 3. What is the LCD?</p>
-            <input type="text" id="input3" placeholder="e.g. 2x">
-            <button onclick="checkFreeform(3, '2x')">Check</button>
-            <div class="feedback" id="feedback3"></div>
-        </div>
-        
-        <!-- Q5 -->
-        <div class="card" id="card4">
-            <p><strong>5. Critical Thinking:</strong> What is the discriminant of 2x^2 + 4x + 2?</p>
-            <input type="text" id="input4" placeholder="e.g. 0">
-            <button onclick="checkFreeform(4, '0')">Check</button>
-            <div class="feedback" id="feedback4"></div>
-        </div>
-    </div>
+    <div id="quiz-container"></div>
 
     <script>
+        const questions = [{"q": "Expand the quadratic: (x + 6)^2 - 5", "a": "x^2 + 12x + 31"}, {"q": "Multiply complex numbers: (4 + 1i)(4 - 1i). Treat 'i' as a variable.", "a": "16 - 1*(i^2)"}, {"q": "Solve for expression equal to 0: 6x - 3 = x + 10", "a": "5x - 13"}, {"q": "What is the discriminant of x^2 + 2x + 3?", "a": "-8"}, {"q": "Expand the quadratic: (x + 5)^2 - 1", "a": "x^2 + 10x + 24"}, {"q": "Multiply complex numbers: (2 + 1i)(2 - 1i). Treat 'i' as a variable.", "a": "4 - 1*(i^2)"}, {"q": "Solve for expression equal to 0: 5x - 3 = x + 10", "a": "4x - 13"}, {"q": "What is the discriminant of x^2 + 3x + 2?", "a": "1"}, {"q": "Expand the quadratic: (x + 2)^2 - 2", "a": "x^2 + 4x + 2"}, {"q": "Multiply complex numbers: (6 + 2i)(6 - 2i). Treat 'i' as a variable.", "a": "36 - 4*(i^2)"}, {"q": "Solve for expression equal to 0: 6x - 5 = x + 10", "a": "5x - 15"}, {"q": "What is the discriminant of x^2 + 5x + 3?", "a": "13"}, {"q": "Expand the quadratic: (x + 5)^2 - 2", "a": "x^2 + 10x + 23"}, {"q": "Multiply complex numbers: (4 + 5i)(4 - 5i). Treat 'i' as a variable.", "a": "16 - 25*(i^2)"}, {"q": "Solve for expression equal to 0: 4x - 1 = x + 10", "a": "3x - 11"}, {"q": "What is the discriminant of x^2 + 4x + 5?", "a": "-4"}, {"q": "Expand the quadratic: (x + 4)^2 - 4", "a": "x^2 + 8x + 12"}, {"q": "Multiply complex numbers: (2 + 3i)(2 - 3i). Treat 'i' as a variable.", "a": "4 - 9*(i^2)"}, {"q": "Solve for expression equal to 0: 3x - 3 = x + 10", "a": "2x - 13"}, {"q": "What is the discriminant of x^2 + 5x + 2?", "a": "17"}];
+        const container = document.getElementById('quiz-container');
+        
+        questions.forEach((q, i) => {
+            let html = `
+            <div class="card" id="card${i}">
+                <p><strong>${i+1}.</strong> ${q.q}</p>
+                <input type="text" id="input${i}" placeholder="e.g. x^2 + 2x">
+                <button onclick="checkFreeform(${i}, '${q.a}')">Check</button>
+                <div class="feedback" id="feedback${i}"></div>
+            </div>`;
+            container.innerHTML += html;
+        });
+
         let score = 0;
         function checkFreeform(index, correctAnswerStr) {
             const userStr = document.getElementById('input' + index).value;
@@ -80,11 +54,10 @@
                 let isEquivalent = true;
                 for(let i=0; i<5; i++) {
                     const testX = Math.random() * 10 + 1;
-                    const testI = Math.sqrt(-1); // if they typed i literally
+                    const testI = Math.sqrt(-1);
                     const scope = { x: testX, i: testI };
                     const valUser = nodeUser.evaluate(scope);
                     const valCorrect = nodeCorrect.evaluate(scope);
-                    // For complex/real comparison
                     let diff;
                     if(valUser.re !== undefined && valCorrect.re !== undefined) {
                        diff = Math.abs(valUser.re - valCorrect.re);

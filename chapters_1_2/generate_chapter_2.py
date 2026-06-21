@@ -255,6 +255,30 @@ quiz_html = r"""<!DOCTYPE html>
 # 3. GENERATE FREEFORM QUIZ (chapter_2_freeform.html)
 # ==========================================
 
+freeform_questions = []
+
+for i in range(20):
+    a = random.randint(2, 6)
+    b = random.randint(1, 5)
+    q_type = i % 4
+    if q_type == 0:
+        q = f"Evaluate f(x) = x^2 - {a}x at x = {b}"
+        ans = f"{b**2 - a*b}"
+    elif q_type == 1:
+        q = f"If f(x) = x+{a} and g(x) = {b}x^2, find f(g(x))"
+        ans = f"{b}x^2 + {a}"
+    elif q_type == 2:
+        q = f"Find the inverse of y = {a}x - {b}"
+        ans = f"(x+{b})/{a}"
+    else:
+        q = f"What is the slope of the line {a}x - {b}y = 8?"
+        ans = f"{a}/{b}"
+        
+    freeform_questions.append({
+        "q": q,
+        "a": ans
+    })
+
 freeform_html = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -275,56 +299,30 @@ freeform_html = r"""<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <h1>Chapter 2: Freeform Quiz with Symbolic Grading</h1>
+    <h1>Chapter 2: Freeform Quiz (20 Questions)</h1>
     <p><em>Type your answers algebraically. Math.js will evaluate equivalence!</em></p>
     
     <div class="score-board">
-        <h3>Score: <span id="score">0</span> / 5</h3>
+        <h3>Score: <span id="score">0</span> / 20</h3>
     </div>
     
-    <div id="quiz-container">
-        <!-- Q1 -->
-        <div class="card" id="card0">
-            <p><strong>1. Functions:</strong> Evaluate f(x) = x^2 - 3x at x = 2.</p>
-            <input type="text" id="input0" placeholder="e.g. -2">
-            <button onclick="checkFreeform(0, '-2')">Check</button>
-            <div class="feedback" id="feedback0"></div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="card" id="card1">
-            <p><strong>2. Composite Functions:</strong> If f(x) = x+1 and g(x) = x^2, find f(g(x)).</p>
-            <input type="text" id="input1" placeholder="e.g. x^2 + 1">
-            <button onclick="checkFreeform(1, 'x^2 + 1')">Check</button>
-            <div class="feedback" id="feedback1"></div>
-        </div>
-        
-        <!-- Q3 -->
-        <div class="card" id="card2">
-            <p><strong>3. Inverse Functions:</strong> Find the inverse of y = 3x - 1.</p>
-            <input type="text" id="input2" placeholder="e.g. (x+1)/3">
-            <button onclick="checkFreeform(2, '(x+1)/3')">Check</button>
-            <div class="feedback" id="feedback2"></div>
-        </div>
-        
-        <!-- Q4 -->
-        <div class="card" id="card3">
-            <p><strong>4. Lines:</strong> What is the slope of the line 4x - 2y = 8?</p>
-            <input type="text" id="input3" placeholder="e.g. 2">
-            <button onclick="checkFreeform(3, '2')">Check</button>
-            <div class="feedback" id="feedback3"></div>
-        </div>
-        
-        <!-- Q5 -->
-        <div class="card" id="card4">
-            <p><strong>5. Critical Thinking:</strong> Simplify the difference quotient (f(x+h) - f(x))/h for f(x) = x^2.</p>
-            <input type="text" id="input4" placeholder="e.g. 2x + h">
-            <button onclick="checkFreeform(4, '2x + h')">Check</button>
-            <div class="feedback" id="feedback4"></div>
-        </div>
-    </div>
+    <div id="quiz-container"></div>
 
     <script>
+        const questions = REPLACE_ME_WITH_JSON;
+        const container = document.getElementById('quiz-container');
+        
+        questions.forEach((q, i) => {
+            let html = `
+            <div class="card" id="card${i}">
+                <p><strong>${i+1}.</strong> ${q.q}</p>
+                <input type="text" id="input${i}" placeholder="e.g. x^2 + 2x">
+                <button onclick="checkFreeform(${i}, '${q.a}')">Check</button>
+                <div class="feedback" id="feedback${i}"></div>
+            </div>`;
+            container.innerHTML += html;
+        });
+
         let score = 0;
         function checkFreeform(index, correctAnswerStr) {
             const userStr = document.getElementById('input' + index).value;
@@ -365,7 +363,7 @@ freeform_html = r"""<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
+""".replace("REPLACE_ME_WITH_JSON", json.dumps(freeform_questions))
 
 os.makedirs("/Users/ntnmathur/Desktop/precalc/chapters_1_2", exist_ok=True)
 with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/chapter_2_notes.html", "w") as f: f.write(notes_html)

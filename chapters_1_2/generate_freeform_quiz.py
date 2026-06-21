@@ -1,26 +1,52 @@
 import json
 
 questions = [
-    # Chapter P (5 questions)
-    {"q": "What is the absolute value of \\(-18\\)?", "accepted": ["18", "+18"], "explanation": "The absolute value represents distance from zero. \\(|-18| = 18\\)."},
-    {"q": "Simplify the expression: \\((x^3)^4\\)", "accepted": ["x^12", "x^{12}", "x**12", "x12"], "explanation": "Using the power rule for exponents: \\((x^a)^b = x^{a \\times b}\\), so \\(3 \\times 4 = 12\\)."},
-    {"q": "Factor the difference of squares completely: \\(x^2 - 25\\)", "accepted": ["(x-5)(x+5)", "(x+5)(x-5)", "(x - 5)(x + 5)", "(x + 5)(x - 5)"], "explanation": "The difference of squares formula is \\(a^2 - b^2 = (a-b)(a+b)\\). Here, \\(a=x\\) and \\(b=5\\)."},
-    {"q": "Simplify the radical expression: \\(\\sqrt{16x^2}\\) (assume \\(x > 0\\))", "accepted": ["4x", "4*x", "4 x"], "explanation": "Take the square root of 16 (which is 4) and the square root of \\(x^2\\) (which is \\(x\\)). Result is \\(4x\\)."},
-    {"q": "Evaluate: \\(8^{1/3}\\)", "accepted": ["2", "+2"], "explanation": "The 1/3 exponent is equivalent to taking the cube root. \\(\\sqrt[3]{8} = 2\\)."},
-    
-    # Chapter 1 (5 questions)
-    {"q": "Solve for x: \\(3x - 7 = 8\\)", "accepted": ["5", "x=5", "x = 5"], "explanation": "Add 7 to both sides: \\(3x = 15\\). Divide by 3: \\(x = 5\\)."},
-    {"q": "What is the discriminant of the quadratic equation \\(x^2 - 4x + 4 = 0\\)?", "accepted": ["0", "zero"], "explanation": "Discriminant \\(\\Delta = b^2 - 4ac = (-4)^2 - 4(1)(4) = 16 - 16 = 0\\)."},
-    {"q": "Simplify the complex number expression: \\(i^2\\)", "accepted": ["-1"], "explanation": "By definition, the imaginary unit \\(i\\) squared is equal to -1."},
-    {"q": "Solve for x in the equation \\(\\sqrt{x} = 5\\)", "accepted": ["25", "x=25", "x = 25"], "explanation": "Square both sides to eliminate the radical: \\((\\sqrt{x})^2 = 5^2\\), so \\(x = 25\\)."},
-    {"q": "Solve the absolute value equation: \\(|x| = 3\\) (Enter your answers separated by a comma, e.g., '1, -1')", "accepted": ["3, -3", "-3, 3", "3,-3", "-3,3", "3, - 3", "- 3, 3"], "explanation": "The absolute value of both 3 and -3 is 3."},
+    # Concepts and Vocabulary
+    {"q": "What is the definition of the discriminant of the quadratic equation \\(ax^2+bx+c=0\\)? (Provide the expression)", "category": "Concepts and Vocabulary", "accepted": ["b^2-4ac", "b^2 - 4ac", "b^2 - 4*a*c"], "explanation": "The discriminant is the expression under the square root in the quadratic formula, \\(\\Delta = b^2 - 4ac\\)."},
+    {"q": "If a function \\(f(x)\\) is even, what kind of symmetry does its graph exhibit?", "category": "Concepts and Vocabulary", "accepted": ["y-axis", "y axis", "y-axis symmetry", "across the y axis", "across y axis"], "explanation": "An even function satisfies \\(f(-x) = f(x)\\), which means reflecting across the y-axis produces the exact same graph."},
+    {"q": "True or False: The domain of a composed function \\(f(g(x))\\) is always simply the intersection of the domains of \\(f(x)\\) and \\(g(x)\\).", "category": "Concepts and Vocabulary", "accepted": ["False", "F"], "explanation": "False. The domain of \\(f(g(x))\\) requires that \\(x\\) is in the domain of \\(g\\), AND that the output \\(g(x)\\) is in the domain of \\(f\\). It's not just a simple intersection of independent domains."},
 
-    # Chapter 2 (5 questions)
-    {"q": "Find the distance between the points \\((0, 0)\\) and \\((6, 8)\\).", "accepted": ["10"], "explanation": "Distance = \\(\\sqrt{(6-0)^2 + (8-0)^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\)."},
-    {"q": "What is the slope of the line passing through \\((1, 2)\\) and \\((2, 5)\\)?", "accepted": ["3", "3/1", "+3"], "explanation": "Slope \\(m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{5 - 2}{2 - 1} = \\frac{3}{1} = 3\\)."},
-    {"q": "Find the y-intercept of the line \\(y = -2x + 9\\).", "accepted": ["9", "+9", "(0, 9)", "(0,9)", "y=9"], "explanation": "In slope-intercept form \\(y = mx + b\\), \\(b\\) is the y-intercept. Here, it is 9."},
-    {"q": "Given \\(f(x) = 2x^2\\), evaluate \\(f(3)\\).", "accepted": ["18"], "explanation": "Substitute 3 for x: \\(2(3)^2 = 2(9) = 18\\)."},
-    {"q": "If \\(f(x) = x + 1\\) and \\(g(x) = 2x\\), find \\((f \\circ g)(x)\\).", "accepted": ["2x + 1", "2x+1", "1 + 2x", "1+2x"], "explanation": "Substitute \\(g(x)\\) into \\(f(x)\\): \\(f(g(x)) = f(2x) = 2x + 1\\)."}
+    # Building Skills
+    {"q": "Find the difference quotient \\(\\frac{f(x+h) - f(x)}{h}\\) for the function \\(f(x) = 2x^2 - x\\). (Simplify completely)", "category": "Building Skills", "accepted": ["4x+2h-1", "4x + 2h - 1", "-1+2h+4x", "2h+4x-1"], "explanation": "\\(f(x+h) = 2(x+h)^2 - (x+h) = 2(x^2+2xh+h^2) - x - h = 2x^2+4xh+2h^2-x-h\\). Subtract \\(f(x)\\): \\(4xh+2h^2-h\\). Divide by \\(h\\): \\(4x + 2h - 1\\)."},
+    {"q": "Solve for x: \\(|2x - 5| = 11\\) (Enter answers separated by a comma, e.g., '1, -1')", "category": "Building Skills", "accepted": ["8, -3", "-3, 8", "8,-3", "-3,8"], "explanation": "\\(2x - 5 = 11 \\implies 2x = 16 \\implies x = 8\\). Or \\(2x - 5 = -11 \\implies 2x = -6 \\implies x = -3\\)."},
+    {"q": "Write the complex number \\(\\frac{3 - 4i}{1 + 2i}\\) in standard form \\(a + bi\\). (No spaces)", "category": "Building Skills", "accepted": ["-1-2i", "-1-2*i"], "explanation": "Multiply top and bottom by \\(1 - 2i\\). Denominator: \\(1^2 + 2^2 = 5\\). Numerator: \\((3-4i)(1-2i) = 3 - 6i - 4i + 8i^2 = 3 - 10i - 8 = -5 - 10i\\). Result is \\(\\frac{-5 - 10i}{5} = -1 - 2i\\)."},
+
+    # Applying the Concepts
+    {"q": "A rectangular garden is to be enclosed using 200 feet of fencing. One side of the garden borders a straight river and does not require fencing. What is the maximum area (in sq feet) that can be enclosed?", "category": "Applying the Concepts", "accepted": ["5000", "5000 sq ft", "5000 square feet"], "explanation": "Let width be \\(x\\) and length (along the river) be \\(y\\). We know \\(2x + y = 200\\), so \\(y = 200 - 2x\\). Area \\(A(x) = xy = x(200 - 2x) = 200x - 2x^2\\). This is a downward parabola. The maximum occurs at the vertex: \\(x = \\frac{-b}{2a} = \\frac{-200}{2(-2)} = 50\\). If \\(x = 50\\), \\(y = 100\\). Max Area = \\(50 \\times 100 = 5000\\)."},
+    {"q": "Two ships leave a port at the same time. Ship A travels north at 15 mph. Ship B travels east at 20 mph. How far apart (in miles) are the ships after 3 hours?", "category": "Applying the Concepts", "accepted": ["75", "75 miles", "75 mi"], "explanation": "In 3 hours, Ship A travels \\(15 \\times 3 = 45\\) miles north. Ship B travels \\(20 \\times 3 = 60\\) miles east. They form a right triangle. Distance \\(d = \\sqrt{45^2 + 60^2} = \\sqrt{2025 + 3600} = \\sqrt{5625} = 75\\). (Or note it's a 3-4-5 triangle scaled by 15: \\(3(15), 4(15), 5(15) = 75\\))."},
+
+    # Beyond the Basics
+    {"q": "If \\(f(x) = \\frac{ax+b}{cx-a}\\), find \\(f(f(x))\\). (Assume \\(x \\neq a/c\\))", "category": "Beyond the Basics", "accepted": ["x"], "explanation": "\\(f(f(x)) = \\frac{a(\\frac{ax+b}{cx-a}) + b}{c(\\frac{ax+b}{cx-a}) - a}\\). Multiply numerator and denominator by \\(cx-a\\): \\(\\frac{a(ax+b) + b(cx-a)}{c(ax+b) - a(cx-a)} = \\frac{a^2x + ab + bcx - ab}{acx + bc - acx + a^2} = \\frac{(a^2+bc)x}{a^2+bc} = x\\). This function is its own inverse!"},
+    {"q": "Find the sum of all real roots of the equation: \\((x^2 - 5x + 5)^{x^2 - 9x + 20} = 1\\)", "category": "Beyond the Basics", "accepted": ["14"], "explanation": "Case 1: Exponent = 0. \\(x^2 - 9x + 20 = 0 \\implies (x-4)(x-5)=0 \\implies x=4, 5\\). \nCase 2: Base = 1. \\(x^2 - 5x + 5 = 1 \\implies x^2 - 5x + 4 = 0 \\implies (x-1)(x-4)=0 \\implies x=1, 4\\).\nCase 3: Base = -1 AND Exponent is even. \\(x^2 - 5x + 5 = -1 \\implies x^2 - 5x + 6 = 0 \\implies x=2, 3\\). Check exponent parity: If \\(x=2\\), exp = \\(4-18+20 = 6\\) (even, valid). If \\(x=3\\), exp = \\(9-27+20 = 2\\) (even, valid).\nUnique roots: 1, 2, 3, 4, 5. Sum = 1+2+3+4+5 = 15. WAIT. Let me double check. Ah! Is base non-zero for exponent 0? If x=4, base = 16-20+5 = 1. If x=5, base = 25-25+5 = 5. Valid. Sum of unique roots is 1+2+3+4+5 = 15. Let me change accepted to 15! I'll do it right now.", "accepted": ["15"]},
+    
+    {"q": "Find the sum of all unique real roots of the equation: \\((x^2 - 5x + 5)^{x^2 - 9x + 20} = 1\\)", "category": "Beyond the Basics", "accepted": ["15"], "explanation": "Case 1: Exponent = 0, \\(x=4, 5\\). \nCase 2: Base = 1, \\(x=1, 4\\).\nCase 3: Base = -1 AND Exponent is even. Base = -1 at \\(x=2, 3\\). Exponents are even for both. \nUnique roots: 1, 2, 3, 4, 5. Sum = 15."},
+
+    # Critical Thinking / Discussion / Writing
+    {"q": "A polynomial \\(P(x)\\) gives a remainder of 3 when divided by \\(x-1\\), and a remainder of 5 when divided by \\(x-2\\). What is the remainder when \\(P(x)\\) is divided by \\((x-1)(x-2)\\)?", "category": "Critical Thinking / Discussion / Writing", "accepted": ["2x+1", "2x + 1"], "explanation": "By the remainder theorem, \\(P(1)=3\\) and \\(P(2)=5\\). When dividing by a quadratic \\((x-1)(x-2)\\), the remainder is linear: \\(R(x) = ax + b\\). So \\(P(x) = Q(x)(x-1)(x-2) + (ax+b)\\). \nPlug in \\(x=1\\): \\(a(1)+b = 3\\). \nPlug in \\(x=2\\): \\(a(2)+b = 5\\). \nSubtracting gives \\(a = 2\\). Plugging back gives \\(b = 1\\). Remainder is \\(2x + 1\\)."}
+]
+
+# Filtering out my intermediate test item
+clean_questions = [
+    # Concepts and Vocabulary
+    {"q": "What is the definition of the discriminant of the quadratic equation \\(ax^2+bx+c=0\\)? (Provide the expression)", "category": "Concepts and Vocabulary", "accepted": ["b^2-4ac", "b^2 - 4ac", "b^2 - 4*a*c"], "explanation": "The discriminant is the expression under the square root in the quadratic formula, \\(\\Delta = b^2 - 4ac\\)."},
+    {"q": "If a function \\(f(x)\\) is even, what kind of symmetry does its graph exhibit?", "category": "Concepts and Vocabulary", "accepted": ["y-axis", "y axis", "y-axis symmetry", "across the y axis", "across y axis"], "explanation": "An even function satisfies \\(f(-x) = f(x)\\), which means reflecting across the y-axis produces the exact same graph."},
+    {"q": "True or False: The domain of a composed function \\(f(g(x))\\) is always simply the intersection of the domains of \\(f(x)\\) and \\(g(x)\\).", "category": "Concepts and Vocabulary", "accepted": ["False", "F", "false", "f"], "explanation": "False. The domain of \\(f(g(x))\\) requires that \\(x\\) is in the domain of \\(g\\), AND that the output \\(g(x)\\) is in the domain of \\(f\\). It's not just a simple intersection of independent domains."},
+
+    # Building Skills
+    {"q": "Find the difference quotient \\(\\frac{f(x+h) - f(x)}{h}\\) for the function \\(f(x) = 2x^2 - x\\). (Simplify completely)", "category": "Building Skills", "accepted": ["4x+2h-1", "4x + 2h - 1", "-1+2h+4x", "2h+4x-1"], "explanation": "\\(f(x+h) = 2(x+h)^2 - (x+h) = 2(x^2+2xh+h^2) - x - h = 2x^2+4xh+2h^2-x-h\\). Subtract \\(f(x)\\): \\(4xh+2h^2-h\\). Divide by \\(h\\): \\(4x + 2h - 1\\)."},
+    {"q": "Solve for x: \\(|2x - 5| = 11\\) (Enter answers separated by a comma, e.g., '1,-1')", "category": "Building Skills", "accepted": ["8, -3", "-3, 8", "8,-3", "-3,8"], "explanation": "\\(2x - 5 = 11 \\implies 2x = 16 \\implies x = 8\\). Or \\(2x - 5 = -11 \\implies 2x = -6 \\implies x = -3\\)."},
+    {"q": "Write the complex number \\(\\frac{3 - 4i}{1 + 2i}\\) in standard form \\(a + bi\\). (No spaces)", "category": "Building Skills", "accepted": ["-1-2i", "-1-2*i"], "explanation": "Multiply top and bottom by \\(1 - 2i\\). Denominator: \\(1^2 + 2^2 = 5\\). Numerator: \\((3-4i)(1-2i) = 3 - 6i - 4i + 8i^2 = 3 - 10i - 8 = -5 - 10i\\). Result is \\(\\frac{-5 - 10i}{5} = -1 - 2i\\)."},
+
+    # Applying the Concepts
+    {"q": "A rectangular garden is to be enclosed using 200 feet of fencing. One side of the garden borders a straight river and does not require fencing. What is the maximum area (in sq feet) that can be enclosed?", "category": "Applying the Concepts", "accepted": ["5000", "5000 sq ft", "5000 square feet"], "explanation": "Let width be \\(x\\) and length (along the river) be \\(y\\). We know \\(2x + y = 200\\), so \\(y = 200 - 2x\\). Area \\(A(x) = xy = x(200 - 2x) = 200x - 2x^2\\). This is a downward parabola. The maximum occurs at the vertex: \\(x = \\frac{-b}{2a} = \\frac{-200}{2(-2)} = 50\\). If \\(x = 50\\), \\(y = 100\\). Max Area = \\(50 \\times 100 = 5000\\)."},
+    {"q": "Two ships leave a port at the same time. Ship A travels north at 15 mph. Ship B travels east at 20 mph. How far apart (in miles) are the ships after 3 hours?", "category": "Applying the Concepts", "accepted": ["75", "75 miles", "75 mi"], "explanation": "In 3 hours, Ship A travels \\(15 \\times 3 = 45\\) miles north. Ship B travels \\(20 \\times 3 = 60\\) miles east. They form a right triangle. Distance \\(d = \\sqrt{45^2 + 60^2} = \\sqrt{2025 + 3600} = \\sqrt{5625} = 75\\). (Or note it's a 3-4-5 triangle scaled by 15: \\(3(15), 4(15), 5(15) = 75\\))."},
+
+    # Beyond the Basics
+    {"q": "If \\(f(x) = \\frac{ax+b}{cx-a}\\), find \\(f(f(x))\\). (Assume \\(x \\neq a/c\\))", "category": "Beyond the Basics", "accepted": ["x"], "explanation": "\\(f(f(x)) = \\frac{a(\\frac{ax+b}{cx-a}) + b}{c(\\frac{ax+b}{cx-a}) - a}\\). Multiply numerator and denominator by \\(cx-a\\): \\(\\frac{a(ax+b) + b(cx-a)}{c(ax+b) - a(cx-a)} = \\frac{a^2x + ab + bcx - ab}{acx + bc - acx + a^2} = \\frac{(a^2+bc)x}{a^2+bc} = x\\). This function is its own inverse!"},
+    {"q": "Find the sum of all unique real roots of the equation: \\((x^2 - 5x + 5)^{x^2 - 9x + 20} = 1\\)", "category": "Beyond the Basics", "accepted": ["15"], "explanation": "Case 1: Exponent = 0, \\(x=4, 5\\). \nCase 2: Base = 1, \\(x=1, 4\\).\nCase 3: Base = -1 AND Exponent is even. Base = -1 at \\(x=2, 3\\). Exponents are even for both. \nUnique roots: 1, 2, 3, 4, 5. Sum = 15."},
+
+    # Critical Thinking / Discussion / Writing
+    {"q": "A polynomial \\(P(x)\\) gives a remainder of 3 when divided by \\(x-1\\), and a remainder of 5 when divided by \\(x-2\\). What is the remainder when \\(P(x)\\) is divided by \\((x-1)(x-2)\\)?", "category": "Critical Thinking / Discussion / Writing", "accepted": ["2x+1", "2x + 1"], "explanation": "By the remainder theorem, \\(P(1)=3\\) and \\(P(2)=5\\). When dividing by a quadratic \\((x-1)(x-2)\\), the remainder is linear: \\(R(x) = ax + b\\). So \\(P(x) = Q(x)(x-1)(x-2) + (ax+b)\\). \nPlug in \\(x=1\\): \\(a(1)+b = 3\\). \nPlug in \\(x=2\\): \\(a(2)+b = 5\\). \nSubtracting gives \\(a = 2\\). Plugging back gives \\(b = 1\\). Remainder is \\(2x + 1\\)."}
 ]
 
 html_template = r"""<!DOCTYPE html>
@@ -28,7 +54,7 @@ html_template = r"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precalculus Freeform Quiz</title>
+    <title>Precalculus Freeform Quiz (Categorized)</title>
     <!-- MathJax for rendering math equations beautifully -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
@@ -57,7 +83,7 @@ html_template = r"""<!DOCTYPE html>
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 2rem;
             box-sizing: border-box;
         }
@@ -66,6 +92,7 @@ html_template = r"""<!DOCTYPE html>
             text-align: center;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-size: 2.5rem;
         }
 
         .subtitle {
@@ -90,6 +117,18 @@ html_template = r"""<!DOCTYPE html>
         }
 
         .score-board h3 { margin: 0; font-size: 1.2rem; }
+        
+        .category-header {
+            background-color: #e2e8f0;
+            color: var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent-color);
+        }
 
         .question-card {
             background: var(--card-bg);
@@ -214,11 +253,11 @@ html_template = r"""<!DOCTYPE html>
 <body>
 
     <div class="container">
-        <h1>Precalculus Fill-in-the-Blank Quiz</h1>
-        <p class="subtitle">15 Free-form questions covering Chapters P, 1, and 2.</p>
+        <h1>Precalculus Free-form Quiz</h1>
+        <p class="subtitle">High-Difficulty Questions by Textbook Exercise Categories</p>
 
         <div class="score-board">
-            <h3>Score: <span id="current-score">0</span> / 15</h3>
+            <h3>Score: <span id="current-score">0</span> / 11</h3>
             <h3>Attempted: <span id="attempted-count">0</span></h3>
         </div>
 
@@ -259,7 +298,17 @@ html_template = r"""<!DOCTYPE html>
             updateScoreBoard();
             summaryModal.style.display = 'none';
 
+            let currentCategory = "";
+
             questionsData.forEach((q, index) => {
+                if (q.category !== currentCategory) {
+                    currentCategory = q.category;
+                    const catHeader = document.createElement('div');
+                    catHeader.className = 'category-header';
+                    catHeader.innerText = currentCategory;
+                    quizContainer.appendChild(catHeader);
+                }
+
                 const card = document.createElement('div');
                 card.className = 'question-card';
                 card.id = `q-card-${index}`;
@@ -272,7 +321,7 @@ html_template = r"""<!DOCTYPE html>
                     </div>
                     <div class="feedback" id="feedback-${index}"></div>
                     <div class="explanation" id="exp-${index}">
-                        <strong>Accepted Answers:</strong> ${q.accepted.join(', ')}<br><br>
+                        <strong>Accepted Answers:</strong> ${q.accepted.join(' | ')}<br><br>
                         <strong>Explanation:</strong> ${q.explanation}
                     </div>
                 `;
@@ -291,7 +340,6 @@ html_template = r"""<!DOCTYPE html>
         }
 
         function normalizeString(str) {
-            // Remove all spaces and make lowercase for robust comparison
             return str.toLowerCase().replace(/\s+/g, '');
         }
 
@@ -306,7 +354,7 @@ html_template = r"""<!DOCTYPE html>
             const expEl = document.getElementById(`exp-${qIndex}`);
 
             const userAnswer = inputEl.value;
-            if (!userAnswer.trim()) return; // don't grade empty answers
+            if (!userAnswer.trim()) return;
 
             const normalizedUser = normalizeString(userAnswer);
             const isCorrect = q.accepted.some(ans => normalizeString(ans) === normalizedUser);
@@ -318,7 +366,7 @@ html_template = r"""<!DOCTYPE html>
 
             if (isCorrect) {
                 cardEl.classList.add('correct');
-                feedbackEl.innerHTML = "✅ Correct!";
+                feedbackEl.innerHTML = "✅ Correct! Ultrathink achieved.";
                 feedbackEl.className = "feedback show correct-text";
                 score++;
             } else {
@@ -357,9 +405,9 @@ html_template = r"""<!DOCTYPE html>
 </html>
 """
 
-html_out = html_template.replace("REPLACE_ME_WITH_JSON", json.dumps(questions))
+html_out = html_template.replace("REPLACE_ME_WITH_JSON", json.dumps(clean_questions))
 
-with open("/Users/ntnmathur/Desktop/aarav_precalc/freeform_quiz.html", "w") as f:
+with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/freeform_quiz.html", "w") as f:
     f.write(html_out)
 
 print("freeform_quiz.html generated successfully!")

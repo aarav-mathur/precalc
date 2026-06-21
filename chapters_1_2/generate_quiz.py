@@ -1,61 +1,60 @@
 import json
 
 questions = [
-    # Chapter P (1-16)
-    {"q": "Which of the following is an irrational number?", "options": ["\\(3.14\\)", "\\(\\sqrt{4}\\)", "\\(\\frac{22}{7}\\)", "\\(\\pi\\)"], "answer": 3, "explanation": "\\(\\pi\\) is an irrational number because its decimal representation never terminates and never repeats. The others are rational numbers."},
-    {"q": "Simplify the expression: \\((2x^2y^3)(3x^4y^2)\\)", "options": ["\\(6x^6y^5\\)", "\\(5x^6y^5\\)", "\\(6x^8y^6\\)", "\\(5x^8y^6\\)"], "answer": 0, "explanation": "Multiply coefficients: \\(2 \\times 3 = 6\\). Add exponents of like bases: \\(x^{2+4} = x^6\\) and \\(y^{3+2} = y^5\\)."},
-    {"q": "Write \\(0.0000456\\) in scientific notation.", "options": ["\\(4.56 \\times 10^5\\)", "\\(4.56 \\times 10^{-5}\\)", "\\(45.6 \\times 10^{-6}\\)", "\\(0.456 \\times 10^{-4}\\)"], "answer": 1, "explanation": "Move the decimal point 5 places to the right to get a number between 1 and 10, giving \\(4.56 \\times 10^{-5}\\)."},
-    {"q": "What is the degree of the polynomial \\(5x^4 - 2x^7 + 3x - 1\\)?", "options": ["4", "7", "5", "1"], "answer": 1, "explanation": "The degree of a polynomial in one variable is the highest exponent of that variable. Here, it is 7."},
-    {"q": "Expand the binomial: \\((x - 4)^2\\)", "options": ["\\(x^2 - 16\\)", "\\(x^2 + 16\\)", "\\(x^2 - 8x + 16\\)", "\\(x^2 - 4x + 16\\)"], "answer": 2, "explanation": "Using the perfect square trinomial formula \\((a-b)^2 = a^2 - 2ab + b^2\\), we get \\(x^2 - 2(x)(4) + 4^2 = x^2 - 8x + 16\\)."},
-    {"q": "Factor completely: \\(x^2 - 9\\)", "options": ["\\((x - 3)^2\\)", "\\((x + 3)^2\\)", "\\((x - 9)(x + 1)\\)", "\\((x - 3)(x + 3)\\)"], "answer": 3, "explanation": "This is a difference of squares: \\(a^2 - b^2 = (a-b)(a+b)\\). Here, \\(a=x\\) and \\(b=3\\)."},
-    {"q": "Factor the trinomial: \\(x^2 + 5x + 6\\)", "options": ["\\((x + 1)(x + 6)\\)", "\\((x + 2)(x + 3)\\)", "\\((x - 2)(x - 3)\\)", "\\((x + 5)(x + 1)\\)"], "answer": 1, "explanation": "We need two numbers that multiply to 6 and add to 5. These numbers are 2 and 3."},
-    {"q": "Simplify the rational expression: \\(\\frac{x^2 - 1}{x - 1}\\)", "options": ["\\(x + 1\\)", "\\(x - 1\\)", "\\(x\\)", "1"], "answer": 0, "explanation": "Factor the numerator as \\((x-1)(x+1)\\). Cancel out the common \\((x-1)\\) term. The result is \\(x + 1\\) (where \\(x \\neq 1\\))."},
-    {"q": "Subtract the rational expressions: \\(\\frac{3}{x} - \\frac{1}{y}\\)", "options": ["\\(\\frac{2}{x-y}\\)", "\\(\\frac{3y - x}{xy}\\)", "\\(\\frac{3x - y}{xy}\\)", "\\(\\frac{2}{xy}\\)"], "answer": 1, "explanation": "Find a common denominator of \\(xy\\). The first term becomes \\(\\frac{3y}{xy}\\) and the second becomes \\(\\frac{x}{xy}\\). Subtracting gives \\(\\frac{3y - x}{xy}\\)."},
-    {"q": "Evaluate: \\(27^{2/3}\\)", "options": ["18", "9", "3", "81"], "answer": 1, "explanation": "The denominator 3 means cube root, and numerator 2 means square. \\(\\sqrt[3]{27} = 3\\). Then \\(3^2 = 9\\)."},
-    {"q": "Simplify: \\(\\sqrt{50}\\)", "options": ["\\(2\\sqrt{5}\\)", "\\(5\\sqrt{2}\\)", "\\(10\\sqrt{5}\\)", "\\(25\\sqrt{2}\\)"], "answer": 1, "explanation": "\\(\\sqrt{50} = \\sqrt{25 \\times 2} = \\sqrt{25} \\times \\sqrt{2} = 5\\sqrt{2}\\)."},
-    {"q": "Rationalize the denominator: \\(\\frac{4}{\\sqrt{2}}\\)", "options": ["\\(2\\sqrt{2}\\)", "\\(4\\sqrt{2}\\)", "\\(\\sqrt{2}\\)", "2"], "answer": 0, "explanation": "Multiply top and bottom by \\(\\sqrt{2}\\): \\(\\frac{4\\sqrt{2}}{\\sqrt{2}\\sqrt{2}} = \\frac{4\\sqrt{2}}{2} = 2\\sqrt{2}\\)."},
-    {"q": "What is the absolute value of \\(-15\\)?", "options": ["-15", "0", "15", "1"], "answer": 2, "explanation": "Absolute value is the distance from zero on the number line, which is always non-negative. \\(|-15| = 15\\)."},
-    {"q": "Evaluate \\(3x^2 - 2x + 1\\) for \\(x = -2\\)", "options": ["17", "9", "5", "13"], "answer": 0, "explanation": "Substitute -2 for x: \\(3(-2)^2 - 2(-2) + 1 = 3(4) + 4 + 1 = 12 + 4 + 1 = 17\\)."},
-    {"q": "Find the distance between points \\(A(2)\\) and \\(B(-5)\\) on the real number line.", "options": ["-3", "3", "7", "-7"], "answer": 2, "explanation": "The distance is \\(|-5 - 2| = |-7| = 7\\)."},
-    {"q": "Which property is illustrated by \\(3(x + 4) = 3x + 12\\)?", "options": ["Commutative", "Associative", "Distributive", "Identity"], "answer": 2, "explanation": "The distributive property distributes multiplication over addition."},
+    # Concepts and Vocabulary
+    {"q": "Let \\(f(x)\\) be an invertible function. If the domain of \\(f(x)\\) is \\((-2, \\infty)\\) and the range is \\([4, 10]\\), what are the domain and range of \\(f^{-1}(x)\\)?", "category": "Concepts and Vocabulary", "options": ["Domain: \\((-2, \\infty)\\), Range: \\([4, 10]\\)", "Domain: \\([4, 10]\\), Range: \\((-2, \\infty)\\)", "Domain: \\((-\\infty, 2)\\), Range: \\([-10, -4]\\)", "Cannot be determined without the equation."], "answer": 1, "explanation": "The domain of an inverse function is exactly the range of the original function, and its range is the domain of the original function."},
+    {"q": "Which of the following statements about complex conjugates is ALWAYS true for any complex number \\(z = a + bi\\)?", "category": "Concepts and Vocabulary", "options": ["\\(z + \\bar{z}\\) is purely imaginary.", "\\(z - \\bar{z}\\) is purely real.", "\\(z \\cdot \\bar{z}\\) is a non-negative real number.", "\\(z / \\bar{z}\\) is always 1."], "answer": 2, "explanation": "\\(z \\cdot \\bar{z} = (a+bi)(a-bi) = a^2 - (bi)^2 = a^2 + b^2\\). Since \\(a\\) and \\(b\\) are real, \\(a^2 + b^2\\) is a sum of squares, which is always a non-negative real number."},
+    {"q": "What is the primary purpose of the discriminant in the quadratic formula?", "category": "Concepts and Vocabulary", "options": ["To find the vertex of the parabola.", "To determine the number and type of roots of the equation.", "To calculate the y-intercept of the quadratic function.", "To complete the square geometrically."], "answer": 1, "explanation": "The discriminant \\(\\Delta = b^2 - 4ac\\) determines if the roots are real and distinct (positive), real and repeated (zero), or complex conjugates (negative)."},
+    
+    # Building Skills
+    {"q": "Solve for x: \\(\\frac{3}{x+2} - \\frac{1}{x-2} = \\frac{12}{x^2 - 4}\\)", "category": "Building Skills", "options": ["x = 5", "x = 4", "x = -1", "No solution"], "answer": 0, "explanation": "The LCD is \\((x+2)(x-2)\\). Multiplying everything by the LCD yields: \\(3(x-2) - 1(x+2) = 12 \\implies 3x - 6 - x - 2 = 12 \\implies 2x - 8 = 12 \\implies 2x = 20 \\implies x = 10\\). Wait, the options don't have 10? Let's recalculate: \\(3(x-2) - (x+2) = 12 \\implies 2x - 8 = 12 \\implies x = 10\\). Let me fix the answer choices! Ah, if the answer is x=10, the correct option should be 10. Let me use x=10 for option 0.", "options": ["x = 10", "x = 4", "x = -1", "No solution"]},
+    {"q": "Solve for x: \\(\\frac{3}{x+2} - \\frac{1}{x-2} = \\frac{12}{x^2 - 4}\\)", "category": "Building Skills", "options": ["x = 10", "x = 4", "x = -1", "No solution"], "answer": 0, "explanation": "The LCD is \\((x+2)(x-2)\\). Multiplying everything by the LCD yields: \\(3(x-2) - 1(x+2) = 12 \\implies 3x - 6 - x - 2 = 12 \\implies 2x - 8 = 12 \\implies 2x = 20 \\implies x = 10\\)."},
+    {"q": "Rationalize the denominator and simplify: \\(\\frac{5 - \\sqrt{3}}{2 + \\sqrt{3}}\\)", "category": "Building Skills", "options": ["\\(13 - 7\\sqrt{3}\\)", "\\(7 - 3\\sqrt{3}\\)", "\\(10 - 2\\sqrt{3}\\)", "\\(13 + 7\\sqrt{3}\\)"], "answer": 0, "explanation": "Multiply numerator and denominator by \\(2 - \\sqrt{3}\\). Denominator becomes \\(4 - 3 = 1\\). Numerator becomes \\((5 - \\sqrt{3})(2 - \\sqrt{3}) = 10 - 5\\sqrt{3} - 2\\sqrt{3} + 3 = 13 - 7\\sqrt{3}\\)."},
+    {"q": "Find the inverse function \\(f^{-1}(x)\\) for \\(f(x) = \\frac{4x - 1}{2x + 3}\\)", "category": "Building Skills", "options": ["\\(f^{-1}(x) = \\frac{2x + 3}{4x - 1}\\)", "\\(f^{-1}(x) = \\frac{3x + 1}{4 - 2x}\\)", "\\(f^{-1}(x) = \\frac{3x - 1}{4 + 2x}\\)", "\\(f^{-1}(x) = \\frac{4x + 1}{2x - 3}\\)"], "answer": 1, "explanation": "Let \\(y = \\frac{4x-1}{2x+3}\\). Swap: \\(x = \\frac{4y-1}{2y+3}\\). Multiply: \\(2xy + 3x = 4y - 1\\). Isolate y terms: \\(2xy - 4y = -3x - 1 \\implies y(2x - 4) = -3x - 1 \\implies y = \\frac{-3x - 1}{2x - 4} = \\frac{3x + 1}{4 - 2x}\\)."},
 
-    # Chapter 1 (17-33)
-    {"q": "Solve for x: \\(2x - 5 = 11\\)", "options": ["3", "8", "6", "16"], "answer": 1, "explanation": "Add 5 to both sides: \\(2x = 16\\). Divide by 2: \\(x = 8\\)."},
-    {"q": "An equation that is true for every real number is called:", "options": ["A conditional equation", "An identity", "An inconsistent equation", "A quadratic equation"], "answer": 1, "explanation": "An identity is an equation that holds true for all values in the domain of its variables (e.g., \\(x = x\\))."},
-    {"q": "Solve: \\(x - 3 = x + 2\\)", "options": ["x = -1", "x = 5", "All real numbers", "No solution"], "answer": 3, "explanation": "Subtracting \\(x\\) from both sides leaves \\(-3 = 2\\), which is a false statement. Thus, there is no solution (inconsistent)."},
-    {"q": "A shirt is on sale for 20% off. If the sale price is $40, what was the original price?", "options": ["$32", "$48", "$50", "$60"], "answer": 2, "explanation": "Let \\(x\\) be the original price. \\(x - 0.20x = 40 \\implies 0.80x = 40 \\implies x = 50\\)."},
-    {"q": "Find the discriminant of \\(2x^2 - 3x + 4 = 0\\)", "options": ["-23", "25", "-14", "41"], "answer": 0, "explanation": "Discriminant \\(\\Delta = b^2 - 4ac = (-3)^2 - 4(2)(4) = 9 - 32 = -23\\)."},
-    {"q": "Based on the discriminant above, how many real solutions does the equation have?", "options": ["Two", "One", "Zero", "Infinite"], "answer": 2, "explanation": "Since the discriminant is negative (-23), the equation has zero real solutions (it has two complex conjugate solutions)."},
-    {"q": "Solve for x: \\(x^2 = 25\\)", "options": ["5 only", "-5 only", "\\(\\pm 5\\)", "25"], "answer": 2, "explanation": "Taking the square root of both sides gives \\(x = \\pm \\sqrt{25} = \\pm 5\\)."},
-    {"q": "Simplify: \\((3 - 2i) + (4 + 5i)\\)", "options": ["\\(7 + 3i\\)", "\\(7 - 7i\\)", "\\(-1 + 3i\\)", "\\(12 - 10i\\)"], "answer": 0, "explanation": "Add real parts and imaginary parts separately: \\((3+4) + (-2+5)i = 7 + 3i\\)."},
-    {"q": "Multiply: \\(i^3\\)", "options": ["1", "-1", "i", "-i"], "answer": 3, "explanation": "\\(i^3 = i^2 \\times i = (-1) \\times i = -i\\)."},
-    {"q": "Solve: \\(\\sqrt{x + 3} = 4\\)", "options": ["1", "13", "19", "7"], "answer": 1, "explanation": "Square both sides: \\(x + 3 = 16\\). Subtract 3: \\(x = 13\\). Check: \\(\\sqrt{13+3} = 4\\), which is true."},
-    {"q": "Solve: \\(x^4 - 5x^2 + 4 = 0\\)", "options": ["\\(\\pm 1, \\pm 2\\)", "\\(1, 4\\)", "\\(\\pm 1, \\pm 4\\)", "\\(-1, -2\\)"], "answer": 0, "explanation": "Let \\(u = x^2\\). The equation becomes \\(u^2 - 5u + 4 = 0\\). Factoring gives \\((u-1)(u-4) = 0\\), so \\(u=1\\) or \\(u=4\\). Thus \\(x^2=1\\) or \\(x^2=4\\), leading to \\(\\pm 1, \\pm 2\\)."},
-    {"q": "Solve the inequality: \\(-3x < 12\\)", "options": ["\\(x < -4\\)", "\\(x > -4\\)", "\\(x < 4\\)", "\\(x > 4\\)"], "answer": 1, "explanation": "Divide both sides by -3. Remember to flip the inequality sign! \\(x > -4\\)."},
-    {"q": "Express the inequality \\(x \\ge 5\\) in interval notation.", "options": ["\\((5, \\infty)\\)", "\\([5, \\infty)\\)", "\\((-\\infty, 5]\\)", "\\([5, \\infty]\\)"], "answer": 1, "explanation": "The square bracket indicates that 5 is included (greater than or equal to)."},
-    {"q": "Solve: \\(|x - 2| = 5\\)", "options": ["7 only", "-3 only", "7, -3", "3, -7"], "answer": 2, "explanation": "The expression inside can be 5 or -5. So \\(x - 2 = 5 \\implies x = 7\\), and \\(x - 2 = -5 \\implies x = -3\\)."},
-    {"q": "Solve: \\(|x| < -2\\)", "options": ["x < -2", "x > -2", "-2 < x < 2", "No solution"], "answer": 3, "explanation": "Absolute value represents distance, which cannot be less than zero (or negative). Therefore, there is no solution."},
-    {"q": "Which formula solves a quadratic equation \\(ax^2+bx+c=0\\)?", "options": ["Pythagorean Theorem", "Quadratic Formula", "Distance Formula", "Midpoint Formula"], "answer": 1, "explanation": "The Quadratic Formula \\(x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}\\) solves quadratic equations."},
-    {"q": "Solve by factoring: \\(x^2 - x - 12 = 0\\)", "options": ["3, -4", "-3, 4", "2, -6", "-2, 6"], "answer": 1, "explanation": "Factor to \\((x - 4)(x + 3) = 0\\). Setting each to zero gives \\(x = 4\\) and \\(x = -3\\)."},
+    # Applying the Concepts
+    {"q": "A chemist needs 10 liters of a 30% acid solution. They only have 10% and 50% acid solutions in the lab. How many liters of the 50% solution should they mix with the 10% solution?", "category": "Applying the Concepts", "options": ["2.5 L", "4 L", "5 L", "7.5 L"], "answer": 2, "explanation": "Let \\(x\\) be the liters of 50% solution, so \\(10-x\\) is the 10% solution. Equation: \\(0.50x + 0.10(10-x) = 0.30(10)\\). \\(0.50x + 1 - 0.10x = 3 \\implies 0.40x = 2 \\implies x = 5\\)."},
+    {"q": "A ball is thrown straight up. Its height \\(h\\) in feet after \\(t\\) seconds is given by \\(h(t) = -16t^2 + 64t + 80\\). How long will it take for the ball to hit the ground?", "category": "Applying the Concepts", "options": ["2 seconds", "4 seconds", "5 seconds", "8 seconds"], "answer": 2, "explanation": "Set \\(h(t) = 0\\). \\(-16t^2 + 64t + 80 = 0\\). Divide by -16: \\(t^2 - 4t - 5 = 0\\). Factor: \\((t-5)(t+1) = 0\\). Since \\(t > 0\\), \\(t = 5\\) seconds."},
+    {"q": "A rectangle is inscribed in a semicircle of radius 10. If the length of the rectangle on the diameter is \\(2x\\), express the area of the rectangle as a function of \\(x\\).", "category": "Applying the Concepts", "options": ["\\(A(x) = x\\sqrt{100 - x^2}\\)", "\\(A(x) = 2x\\sqrt{100 - x^2}\\)", "\\(A(x) = 2x(100 - x^2)\\)", "\\(A(x) = x(100 - x^2)\\)"], "answer": 1, "explanation": "The coordinates of the top right corner of the rectangle on the circle are \\((x, y)\\). The equation of the circle is \\(x^2 + y^2 = 100\\), so \\(y = \\sqrt{100 - x^2}\\). The base of the rectangle is \\(2x\\) and height is \\(y\\). Area \\(A = 2xy = 2x\\sqrt{100 - x^2}\\)."},
 
-    # Chapter 2 (34-50)
-    {"q": "Find the distance between \\((0,0)\\) and \\((3,4)\\).", "options": ["5", "7", "25", "1"], "answer": 0, "explanation": "Distance = \\(\\sqrt{(3-0)^2 + (4-0)^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\)."},
-    {"q": "Find the midpoint of the segment connecting \\((2, 4)\\) and \\((6, 10)\\).", "options": ["\\((4, 7)\\)", "\\((8, 14)\\)", "\\((4, 6)\\)", "\\((3, 5)\\)"], "answer": 0, "explanation": "Midpoint = \\((\\frac{2+6}{2}, \\frac{4+10}{2}) = (4, 7)\\)."},
-    {"q": "What is the center of the circle \\((x - 1)^2 + (y + 5)^2 = 9\\)?", "options": ["\\((-1, 5)\\)", "\\((1, -5)\\)", "\\((1, 5)\\)", "\\((-1, -5)\\)"], "answer": 1, "explanation": "The standard form is \\((x-h)^2 + (y-k)^2 = r^2\\), so center \\((h,k)\\) is \\((1, -5)\\)."},
-    {"q": "What is the radius of the circle \\(x^2 + y^2 = 100\\)?", "options": ["100", "50", "10", "1"], "answer": 2, "explanation": "Since \\(r^2 = 100\\), the radius \\(r = \\sqrt{100} = 10\\)."},
-    {"q": "Find the slope of the line passing through \\((1, 2)\\) and \\((3, 8)\\).", "options": ["3", "-3", "1/3", "-1/3"], "answer": 0, "explanation": "Slope \\(m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{8 - 2}{3 - 1} = \\frac{6}{2} = 3\\)."},
-    {"q": "What is the slope of a line parallel to \\(y = -2x + 4\\)?", "options": ["2", "-2", "1/2", "-1/2"], "answer": 1, "explanation": "Parallel lines have the same slope. The slope of the given line is -2."},
-    {"q": "What is the slope of a line perpendicular to \\(y = \\frac{1}{3}x - 1\\)?", "options": ["3", "-3", "1/3", "-1/3"], "answer": 1, "explanation": "Perpendicular lines have negative reciprocal slopes. The negative reciprocal of 1/3 is -3."},
-    {"q": "Evaluate \\(f(-2)\\) for \\(f(x) = x^2 - x\\).", "options": ["2", "-6", "6", "0"], "answer": 2, "explanation": "\\(f(-2) = (-2)^2 - (-2) = 4 + 2 = 6\\)."},
-    {"q": "Which of the following passes the Vertical Line Test?", "options": ["A circle", "A vertical line", "A parabola opening left", "A parabola opening up"], "answer": 3, "explanation": "A parabola opening up is a function. The others fail the vertical line test because a vertical line can intersect them at more than one point."},
-    {"q": "What is the domain of \\(f(x) = \\sqrt{x - 3}\\)?", "options": ["\\(x < 3\\)", "\\(x \\le 3\\)", "\\(x > 3\\)", "\\(x \\ge 3\\)"], "answer": 3, "explanation": "The expression inside a square root must be non-negative. \\(x - 3 \\ge 0 \\implies x \\ge 3\\)."},
-    {"q": "If \\(f(x)\\) is an even function, then its graph is symmetric with respect to:", "options": ["The x-axis", "The y-axis", "The origin", "The line y=x"], "answer": 1, "explanation": "Even functions (where \\(f(-x) = f(x)\\)) have y-axis symmetry."},
-    {"q": "Describe the transformation from \\(y = x^2\\) to \\(y = (x+2)^2\\).", "options": ["Shift right 2", "Shift left 2", "Shift up 2", "Shift down 2"], "answer": 1, "explanation": "Adding a constant inside the function argument, \\(f(x+c)\\), shifts the graph to the left by \\(c\\) units."},
-    {"q": "Given \\(f(x) = 2x\\) and \\(g(x) = x + 3\\), find \\((f \\circ g)(x)\\).", "options": ["\\(2x + 3\\)", "\\(2x + 6\\)", "\\(3x + 3\\)", "\\(2x^2 + 6x\\)"], "answer": 1, "explanation": "\\(f(g(x)) = f(x + 3) = 2(x + 3) = 2x + 6\\)."},
-    {"q": "Find the inverse of \\(f(x) = \\frac{x}{2} - 1\\).", "options": ["\\(f^{-1}(x) = 2x + 1\\)", "\\(f^{-1}(x) = 2(x + 1)\\)", "\\(f^{-1}(x) = \\frac{2}{x} + 1\\)", "\\(f^{-1}(x) = 2x - 2\\)"], "answer": 1, "explanation": "Let \\(y = x/2 - 1\\). Swap variables: \\(x = y/2 - 1\\). Solve for y: \\(x + 1 = y/2 \\implies y = 2(x + 1)\\)."},
-    {"q": "Which function represents a constant rate of change?", "options": ["Linear function", "Quadratic function", "Exponential function", "Absolute value function"], "answer": 0, "explanation": "Linear functions have a constant slope, meaning their rate of change is constant."},
-    {"q": "What is the y-intercept of the graph of \\(y = 4x - 7\\)?", "options": ["4", "-7", "7", "-4"], "answer": 1, "explanation": "In \\(y = mx + b\\) form, \\(b\\) is the y-intercept. Here, \\(b = -7\\)."},
-    {"q": "Find the domain of \\(f(x) = \\frac{5}{x^2 - 4}\\).", "options": ["All real numbers", "\\(x \\neq 2\\)", "\\(x \\neq -2\\)", "\\(x \\neq \\pm 2\\)"], "answer": 3, "explanation": "The denominator cannot be zero. \\(x^2 - 4 \\neq 0 \\implies x^2 \\neq 4 \\implies x \\neq \\pm 2\\)."}
+    # Beyond the Basics
+    {"q": "Solve the inequality: \\(\\frac{x^2 - x - 6}{x^2 + 4x + 4} \\ge 0\\)", "category": "Beyond the Basics", "options": ["\\((-\\infty, -2) \\cup (-2, 3]\\)", "\\((-\\infty, -2) \\cup [3, \\infty)\\)", "\\([-2, 3]\\)", "\\((-\\infty, -2) \\cup (-2, -2] \\cup [3, \\infty)\\) -> actually (-inf, -2) U ( -2, 3]"], "answer": 1, "explanation": "Let's fix options! Factoring gives \\(\\frac{(x-3)(x+2)}{(x+2)^2} \\ge 0\\). The \\((x+2)\\) factor cancels partially, giving \\(\\frac{x-3}{x+2} \\ge 0\\) with a hole at \\(x=-2\\). The critical points are -2 (vertical asymptote/hole) and 3 (root). Sign analysis on intervals \\((-\\infty, -2)\\), \\((-2, 3)\\), \\((3, \\infty)\\) gives positive, negative, positive. Thus \\((-\\infty, -2) \\cup [3, \\infty)\\).", "options": ["\\((-\\infty, -2) \\cup (-2, 3]\\)", "\\((-\\infty, -2) \\cup [3, \\infty)\\)", "\\((-\\infty, -2) \\cup [3, \\infty)\\) Wait, duplicate. Let's fix.", "\\([-2, 3]\\)"]},
+    {"q": "Solve the inequality: \\(\\frac{x^2 - x - 6}{x^2 + 4x + 4} \\ge 0\\)", "category": "Beyond the Basics", "options": ["\\((-\\infty, -2) \\cup (-2, 3]\\)", "\\((-\\infty, -2) \\cup [3, \\infty)\\)", "\\([-2, 3]\\)", "\\([3, \\infty)\\)"], "answer": 1, "explanation": "Factor the numerator and denominator: \\(\\frac{(x-3)(x+2)}{(x+2)^2} \\ge 0\\). This simplifies to \\(\\frac{x-3}{x+2} \\ge 0\\) where \\(x \\neq -2\\). The boundary points are \\(x = 3\\) (numerator) and \\(x = -2\\) (denominator). Testing regions gives positive on \\((-\\infty, -2)\\) and \\([3, \\infty)\\)."},
+    {"q": "Find all real solutions to the equation: \\(x^{2/3} - 5x^{1/3} + 6 = 0\\)", "category": "Beyond the Basics", "options": ["\\(x = 2, 3\\)", "\\(x = 4, 9\\)", "\\(x = 8, 27\\)", "\\(x = \\sqrt{2}, \\sqrt{3}\\)"], "answer": 2, "explanation": "This is quadratic in form. Let \\(u = x^{1/3}\\). The equation is \\(u^2 - 5u + 6 = 0\\), which factors to \\((u-2)(u-3)=0\\). Thus \\(u=2\\) or \\(u=3\\). Since \\(u = x^{1/3}\\), cubing both sides gives \\(x = 2^3 = 8\\) and \\(x = 3^3 = 27\\)."},
+    {"q": "Determine the end behavior and maximum number of turning points for \\(f(x) = -3x^5 + 4x^3 - x + 1\\).", "category": "Beyond the Basics", "options": ["As \\(x \\to \\infty, y \\to \\infty\\); As \\(x \\to -\\infty, y \\to -\\infty\\); 5 turning points", "As \\(x \\to \\infty, y \\to -\\infty\\); As \\(x \\to -\\infty, y \\to \\infty\\); 4 turning points", "As \\(x \\to \\pm\\infty, y \\to -\\infty\\); 4 turning points", "As \\(x \\to \\infty, y \\to -\\infty\\); As \\(x \\to -\\infty, y \\to \\infty\\); 5 turning points"], "answer": 1, "explanation": "The leading term is \\(-3x^5\\) (odd degree, negative coefficient). This means it rises to the left and falls to the right (\\(y \\to \\infty\\) as \\(x \\to -\\infty\\) and \\(y \\to -\\infty\\) as \\(x \\to \\infty\\)). A polynomial of degree \\(n\\) has at most \\(n-1\\) turning points, so \\(5-1 = 4\\)."},
+
+    # Critical Thinking / Discussion / Writing
+    {"q": "Consider the function \\(f(x) = \\sqrt{1 - x^2}\\). Without graphing, logically deduce why this function is NOT one-to-one, and therefore does not have a global inverse.", "category": "Critical Thinking / Discussion / Writing", "options": ["Because its domain is restricted to \\([-1, 1]\\).", "Because it contains a square root, and square roots inherently have two answers.", "Because \\(f(x)\\) is an even function, meaning \\(f(-x) = f(x)\\), so two different inputs yield the same output.", "Because the range only contains positive numbers."], "answer": 2, "explanation": "A function is one-to-one if \\(f(a) = f(b) \\implies a = b\\). Since \\(f(x) = \\sqrt{1-x^2}\\) is an even function, \\(f(0.5) = f(-0.5) = \\sqrt{0.75}\\). Since two different x-values produce the same y-value, it fails the horizontal line test and is not one-to-one."},
+    {"q": "A student solves \\(\\sqrt{x+6} = x\\) by squaring both sides to get \\(x+6 = x^2\\), leading to roots \\(x = 3\\) and \\(x = -2\\). They declare both as solutions. Why is this logically flawed?", "category": "Critical Thinking / Discussion / Writing", "options": ["Squaring both sides is an invalid mathematical operation.", "The student factored the quadratic equation incorrectly.", "Squaring both sides creates a new equation where the principal square root is forced to equal a negative number, introducing extraneous solutions. (\\(\\sqrt{4} \\neq -2\\))", "The domain of the original equation does not include positive numbers."], "answer": 2, "explanation": "Squaring is a non-reversible operation if signs aren't restricted. Plugging \\(x=-2\\) back into the original gives \\(\\sqrt{4} = -2\\), which is false because the radical symbol denotes the *principal* (positive) root."},
+    {"q": "Explain algebraically why the composition of two odd functions is always an odd function.", "category": "Critical Thinking / Discussion / Writing", "options": ["If \\(f\\) and \\(g\\) are odd, \\(f(g(-x)) = f(-g(x)) = -f(g(x))\\).", "If \\(f\\) and \\(g\\) are odd, \\(f(g(-x)) = -f(-g(x)) = f(g(x))\\).", "Odd functions have odd powers, and multiplying odd powers creates odd powers.", "It is not always an odd function; it depends on the coefficients."], "answer": 0, "explanation": "Let \\(f\\) and \\(g\\) be odd, meaning \\(g(-x) = -g(x)\\) and \\(f(-x) = -f(x)\\). Then the composition evaluated at \\(-x\\) is \\((f \\circ g)(-x) = f(g(-x)) = f(-g(x)) = -f(g(x)) = -(f \\circ g)(x)\\). This perfectly defines an odd function."}
+]
+
+# We need to drop the dummy duplicates we introduced during generation above. I'll construct a clean list.
+clean_questions = [
+    # Concepts and Vocabulary
+    {"q": "Let \\(f(x)\\) be an invertible function. If the domain of \\(f(x)\\) is \\((-2, \\infty)\\) and the range is \\([4, 10]\\), what are the domain and range of \\(f^{-1}(x)\\)?", "category": "Concepts and Vocabulary", "options": ["Domain: \\((-2, \\infty)\\), Range: \\([4, 10]\\)", "Domain: \\([4, 10]\\), Range: \\((-2, \\infty)\\)", "Domain: \\((-\\infty, 2)\\), Range: \\([-10, -4]\\)", "Cannot be determined without the equation."], "answer": 1, "explanation": "The domain of an inverse function is exactly the range of the original function, and its range is the domain of the original function."},
+    {"q": "Which of the following statements about complex conjugates is ALWAYS true for any complex number \\(z = a + bi\\)?", "category": "Concepts and Vocabulary", "options": ["\\(z + \\bar{z}\\) is purely imaginary.", "\\(z - \\bar{z}\\) is purely real.", "\\(z \\cdot \\bar{z}\\) is a non-negative real number.", "\\(z / \\bar{z}\\) is always 1."], "answer": 2, "explanation": "\\(z \\cdot \\bar{z} = (a+bi)(a-bi) = a^2 - (bi)^2 = a^2 + b^2\\). Since \\(a\\) and \\(b\\) are real, \\(a^2 + b^2\\) is a sum of squares, which is always a non-negative real number."},
+    {"q": "What is the primary purpose of the discriminant in the quadratic formula?", "category": "Concepts and Vocabulary", "options": ["To find the vertex of the parabola.", "To determine the number and type of roots of the equation.", "To calculate the y-intercept of the quadratic function.", "To complete the square geometrically."], "answer": 1, "explanation": "The discriminant \\(\\Delta = b^2 - 4ac\\) determines if the roots are real and distinct (positive), real and repeated (zero), or complex conjugates (negative)."},
+    
+    # Building Skills
+    {"q": "Solve for x: \\(\\frac{3}{x+2} - \\frac{1}{x-2} = \\frac{12}{x^2 - 4}\\)", "category": "Building Skills", "options": ["x = 10", "x = 4", "x = -1", "No solution"], "answer": 0, "explanation": "The LCD is \\((x+2)(x-2)\\). Multiplying everything by the LCD yields: \\(3(x-2) - 1(x+2) = 12 \\implies 3x - 6 - x - 2 = 12 \\implies 2x - 8 = 12 \\implies 2x = 20 \\implies x = 10\\)."},
+    {"q": "Rationalize the denominator and simplify: \\(\\frac{5 - \\sqrt{3}}{2 + \\sqrt{3}}\\)", "category": "Building Skills", "options": ["\\(13 - 7\\sqrt{3}\\)", "\\(7 - 3\\sqrt{3}\\)", "\\(10 - 2\\sqrt{3}\\)", "\\(13 + 7\\sqrt{3}\\)"], "answer": 0, "explanation": "Multiply numerator and denominator by \\(2 - \\sqrt{3}\\). Denominator becomes \\(4 - 3 = 1\\). Numerator becomes \\((5 - \\sqrt{3})(2 - \\sqrt{3}) = 10 - 5\\sqrt{3} - 2\\sqrt{3} + 3 = 13 - 7\\sqrt{3}\\)."},
+    {"q": "Find the inverse function \\(f^{-1}(x)\\) for \\(f(x) = \\frac{4x - 1}{2x + 3}\\)", "category": "Building Skills", "options": ["\\(f^{-1}(x) = \\frac{2x + 3}{4x - 1}\\)", "\\(f^{-1}(x) = \\frac{3x + 1}{4 - 2x}\\)", "\\(f^{-1}(x) = \\frac{3x - 1}{4 + 2x}\\)", "\\(f^{-1}(x) = \\frac{4x + 1}{2x - 3}\\)"], "answer": 1, "explanation": "Let \\(y = \\frac{4x-1}{2x+3}\\). Swap: \\(x = \\frac{4y-1}{2y+3}\\). Multiply: \\(2xy + 3x = 4y - 1\\). Isolate y terms: \\(2xy - 4y = -3x - 1 \\implies y(2x - 4) = -3x - 1 \\implies y = \\frac{-3x - 1}{2x - 4} = \\frac{3x + 1}{4 - 2x}\\)."},
+
+    # Applying the Concepts
+    {"q": "A chemist needs 10 liters of a 30% acid solution. They only have 10% and 50% acid solutions in the lab. How many liters of the 50% solution should they mix with the 10% solution?", "category": "Applying the Concepts", "options": ["2.5 L", "4 L", "5 L", "7.5 L"], "answer": 2, "explanation": "Let \\(x\\) be the liters of 50% solution, so \\(10-x\\) is the 10% solution. Equation: \\(0.50x + 0.10(10-x) = 0.30(10)\\). \\(0.50x + 1 - 0.10x = 3 \\implies 0.40x = 2 \\implies x = 5\\)."},
+    {"q": "A ball is thrown straight up. Its height \\(h\\) in feet after \\(t\\) seconds is given by \\(h(t) = -16t^2 + 64t + 80\\). How long will it take for the ball to hit the ground?", "category": "Applying the Concepts", "options": ["2 seconds", "4 seconds", "5 seconds", "8 seconds"], "answer": 2, "explanation": "Set \\(h(t) = 0\\). \\(-16t^2 + 64t + 80 = 0\\). Divide by -16: \\(t^2 - 4t - 5 = 0\\). Factor: \\((t-5)(t+1) = 0\\). Since \\(t > 0\\), \\(t = 5\\) seconds."},
+    {"q": "A rectangle is inscribed in a semicircle of radius 10. If the length of the rectangle on the diameter is \\(2x\\), express the area of the rectangle as a function of \\(x\\).", "category": "Applying the Concepts", "options": ["\\(A(x) = x\\sqrt{100 - x^2}\\)", "\\(A(x) = 2x\\sqrt{100 - x^2}\\)", "\\(A(x) = 2x(100 - x^2)\\)", "\\(A(x) = x(100 - x^2)\\)"], "answer": 1, "explanation": "The coordinates of the top right corner of the rectangle on the circle are \\((x, y)\\). The equation of the circle is \\(x^2 + y^2 = 100\\), so \\(y = \\sqrt{100 - x^2}\\). The base of the rectangle is \\(2x\\) and height is \\(y\\). Area \\(A = 2xy = 2x\\sqrt{100 - x^2}\\)."},
+
+    # Beyond the Basics
+    {"q": "Solve the inequality: \\(\\frac{x^2 - x - 6}{x^2 + 4x + 4} \\ge 0\\)", "category": "Beyond the Basics", "options": ["\\((-\\infty, -2) \\cup (-2, 3]\\)", "\\((-\\infty, -2) \\cup [3, \\infty)\\)", "\\([-2, 3]\\)", "\\([3, \\infty)\\)"], "answer": 1, "explanation": "Factor the numerator and denominator: \\(\\frac{(x-3)(x+2)}{(x+2)^2} \\ge 0\\). This simplifies to \\(\\frac{x-3}{x+2} \\ge 0\\) where \\(x \\neq -2\\). The boundary points are \\(x = 3\\) (numerator) and \\(x = -2\\) (denominator). Testing regions gives positive on \\((-\\infty, -2)\\) and \\([3, \\infty)\\)."},
+    {"q": "Find all real solutions to the equation: \\(x^{2/3} - 5x^{1/3} + 6 = 0\\)", "category": "Beyond the Basics", "options": ["\\(x = 2, 3\\)", "\\(x = 4, 9\\)", "\\(x = 8, 27\\)", "\\(x = \\sqrt{2}, \\sqrt{3}\\)"], "answer": 2, "explanation": "This is quadratic in form. Let \\(u = x^{1/3}\\). The equation is \\(u^2 - 5u + 6 = 0\\), which factors to \\((u-2)(u-3)=0\\). Thus \\(u=2\\) or \\(u=3\\). Since \\(u = x^{1/3}\\), cubing both sides gives \\(x = 2^3 = 8\\) and \\(x = 3^3 = 27\\)."},
+    {"q": "Determine the end behavior and maximum number of turning points for \\(f(x) = -3x^5 + 4x^3 - x + 1\\).", "category": "Beyond the Basics", "options": ["As \\(x \\to \\infty, y \\to \\infty\\); As \\(x \\to -\\infty, y \\to -\\infty\\); 5 turning points", "As \\(x \\to \\infty, y \\to -\\infty\\); As \\(x \\to -\\infty, y \\to \\infty\\); 4 turning points", "As \\(x \\to \\pm\\infty, y \\to -\\infty\\); 4 turning points", "As \\(x \\to \\infty, y \\to -\\infty\\); As \\(x \\to -\\infty, y \\to \\infty\\); 5 turning points"], "answer": 1, "explanation": "The leading term is \\(-3x^5\\) (odd degree, negative coefficient). This means it rises to the left and falls to the right (\\(y \\to \\infty\\) as \\(x \\to -\\infty\\) and \\(y \\to -\\infty\\) as \\(x \\to \\infty\\)). A polynomial of degree \\(n\\) has at most \\(n-1\\) turning points, so \\(5-1 = 4\\)."},
+
+    # Critical Thinking / Discussion / Writing
+    {"q": "Consider the function \\(f(x) = \\sqrt{1 - x^2}\\). Without graphing, logically deduce why this function is NOT one-to-one, and therefore does not have a global inverse.", "category": "Critical Thinking / Discussion / Writing", "options": ["Because its domain is restricted to \\([-1, 1]\\).", "Because it contains a square root, and square roots inherently have two answers.", "Because \\(f(x)\\) is an even function, meaning \\(f(-x) = f(x)\\), so two different inputs yield the same output.", "Because the range only contains positive numbers."], "answer": 2, "explanation": "A function is one-to-one if \\(f(a) = f(b) \\implies a = b\\). Since \\(f(x) = \\sqrt{1-x^2}\\) is an even function, \\(f(0.5) = f(-0.5) = \\sqrt{0.75}\\). Since two different x-values produce the same y-value, it fails the horizontal line test and is not one-to-one."},
+    {"q": "A student solves \\(\\sqrt{x+6} = x\\) by squaring both sides to get \\(x+6 = x^2\\), leading to roots \\(x = 3\\) and \\(x = -2\\). They declare both as solutions. Why is this logically flawed?", "category": "Critical Thinking / Discussion / Writing", "options": ["Squaring both sides is an invalid mathematical operation.", "The student factored the quadratic equation incorrectly.", "Squaring both sides creates a new equation where the principal square root is forced to equal a negative number, introducing extraneous solutions.", "The domain of the original equation does not include positive numbers."], "answer": 2, "explanation": "Squaring is a non-reversible operation if signs aren't restricted. Plugging \\(x=-2\\) back into the original gives \\(\\sqrt{4} = -2\\), which is false because the radical symbol denotes the *principal* (positive) root."},
+    {"q": "Explain algebraically why the composition of two odd functions is always an odd function.", "category": "Critical Thinking / Discussion / Writing", "options": ["If \\(f\\) and \\(g\\) are odd, \\(f(g(-x)) = f(-g(x)) = -f(g(x))\\).", "If \\(f\\) and \\(g\\) are odd, \\(f(g(-x)) = -f(-g(x)) = f(g(x))\\).", "Odd functions have odd powers, and multiplying odd powers creates odd powers.", "It is not always an odd function; it depends on the coefficients."], "answer": 0, "explanation": "Let \\(f\\) and \\(g\\) be odd, meaning \\(g(-x) = -g(x)\\) and \\(f(-x) = -f(x)\\). Then the composition evaluated at \\(-x\\) is \\((f \\circ g)(-x) = f(g(-x)) = f(-g(x)) = -f(g(x)) = -(f \\circ g)(x)\\). This perfectly defines an odd function."}
 ]
 
 html_template = r"""<!DOCTYPE html>
@@ -63,7 +62,7 @@ html_template = r"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precalculus Interactive Quiz</title>
+    <title>Precalculus Mastery Quiz (Categorized)</title>
     <!-- MathJax for rendering math equations beautifully -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
@@ -92,7 +91,7 @@ html_template = r"""<!DOCTYPE html>
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 2rem;
             box-sizing: border-box;
         }
@@ -101,6 +100,7 @@ html_template = r"""<!DOCTYPE html>
             text-align: center;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-size: 2.5rem;
         }
 
         .subtitle {
@@ -125,6 +125,18 @@ html_template = r"""<!DOCTYPE html>
         }
 
         .score-board h3 { margin: 0; font-size: 1.2rem; }
+        
+        .category-header {
+            background-color: #e2e8f0;
+            color: var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent-color);
+        }
 
         .question-card {
             background: var(--card-bg);
@@ -252,10 +264,10 @@ html_template = r"""<!DOCTYPE html>
 
     <div class="container">
         <h1>Precalculus Mastery Quiz</h1>
-        <p class="subtitle">50 Questions covering Chapters P, 1, and 2.</p>
+        <p class="subtitle">High-Difficulty Questions by Textbook Exercise Categories</p>
 
         <div class="score-board">
-            <h3>Score: <span id="current-score">0</span> / 50</h3>
+            <h3>Score: <span id="current-score">0</span> / 15</h3>
             <h3>Attempted: <span id="attempted-count">0</span></h3>
         </div>
 
@@ -297,7 +309,17 @@ html_template = r"""<!DOCTYPE html>
             updateScoreBoard();
             summaryModal.style.display = 'none';
 
+            let currentCategory = "";
+
             questionsData.forEach((q, index) => {
+                if (q.category !== currentCategory) {
+                    currentCategory = q.category;
+                    const catHeader = document.createElement('div');
+                    catHeader.className = 'category-header';
+                    catHeader.innerText = currentCategory;
+                    quizContainer.appendChild(catHeader);
+                }
+
                 const card = document.createElement('div');
                 card.className = 'question-card';
                 card.id = `q-card-${index}`;
@@ -366,10 +388,10 @@ html_template = r"""<!DOCTYPE html>
             document.getElementById('final-score-display').innerText = percentage + '%';
             
             let message = '';
-            if(percentage >= 90) message = "Outstanding! You have mastered these chapters.";
-            else if(percentage >= 70) message = "Great job! A solid understanding.";
-            else if(percentage >= 50) message = "Good effort! Review the notes to solidify your concepts.";
-            else message = "Keep practicing! Use the revision notes to brush up on the fundamentals.";
+            if(percentage >= 90) message = "Outstanding! You possess Ultrathink mastery.";
+            else if(percentage >= 70) message = "Great job! A very solid understanding of advanced concepts.";
+            else if(percentage >= 50) message = "Good effort! Review the notes to solidify your fundamentals.";
+            else message = "Keep practicing! Use the revision notes to brush up.";
             
             document.getElementById('score-message').innerText = message;
             summaryModal.style.display = 'flex';
@@ -387,9 +409,9 @@ html_template = r"""<!DOCTYPE html>
 </html>
 """
 
-html_out = html_template.replace("REPLACE_ME_WITH_JSON", json.dumps(questions))
+html_out = html_template.replace("REPLACE_ME_WITH_JSON", json.dumps(clean_questions))
 
-with open("/Users/ntnmathur/Desktop/aarav_precalc/quiz.html", "w") as f:
+with open("/Users/ntnmathur/Desktop/precalc/chapters_1_2/quiz.html", "w") as f:
     f.write(html_out)
 
 print("quiz.html generated successfully!")

@@ -31,7 +31,7 @@
 
         /* Sidebar Navigation */
         .sidebar {
-            width: 280px;
+            width: 300px;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             height: 100vh;
@@ -84,9 +84,9 @@
 
         /* Main Content */
         .main-content {
-            margin-left: 280px;
+            margin-left: 300px;
             padding: 3rem 4rem;
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -108,27 +108,21 @@
             padding-bottom: 0.5rem;
         }
 
-        h3 {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            margin-top: 2rem;
-        }
-
         .concept-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .concept-card h4 {
             margin-top: 0;
             color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
         }
 
         .formula-box {
@@ -145,7 +139,7 @@
             background-color: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 0.5rem;
-            padding: 1rem 1.5rem;
+            padding: 1.5rem;
             margin: 1rem 0;
         }
 
@@ -153,20 +147,7 @@
             font-weight: bold;
             color: #166534;
             margin-bottom: 0.5rem;
-        }
-
-        .qa-box {
-            background-color: #fffbeb;
-            border: 1px solid #fde68a;
-            border-radius: 0.5rem;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-        }
-
-        .qa-title {
-            font-weight: bold;
-            color: #b45309;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .first-principles {
@@ -176,33 +157,15 @@
             padding: 1rem;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
-        }
-
-        /* Diagrams */
-        .diagram-container {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 1rem;
-            background: white;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .coordinate-plane {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-            border: 1px solid #cbd5e1;
-            background-image: 
-                linear-gradient(#f1f5f9 1px, transparent 1px),
-                linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
-            background-size: 30px 30px;
+            border: 1px dashed #cbd5e1;
         }
         
-        .axis-x { position: absolute; top: 150px; left: 0; width: 100%; height: 2px; background: black; }
-        .axis-y { position: absolute; left: 150px; top: 0; height: 100%; width: 2px; background: black; }
-        .point { position: absolute; width: 8px; height: 8px; background: red; border-radius: 50%; transform: translate(-50%, -50%); }
+        .sub-topic {
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: #334155;
+            font-size: 1.1rem;
+        }
 
         @media (max-width: 768px) {
             .sidebar { display: none; }
@@ -217,30 +180,30 @@
         <h2>📚 Precalculus Notes</h2>
         <ul>
             <li class="chapter-title">Chapter P: Basic Algebra</li>
-            <li><a href="#p1">P.1 Real Numbers</a></li>
-            <li><a href="#p2">P.2 Exponents & Notation</a></li>
+            <li><a href="#p1">P.1 The Real Numbers</a></li>
+            <li><a href="#p2">P.2 Integer Exponents & Sci Notation</a></li>
             <li><a href="#p3">P.3 Polynomials</a></li>
-            <li><a href="#p4">P.4 Factoring</a></li>
+            <li><a href="#p4">P.4 Factoring Polynomials</a></li>
             <li><a href="#p5">P.5 Rational Expressions</a></li>
-            <li><a href="#p6">P.6 Radicals & Exponents</a></li>
+            <li><a href="#p6">P.6 Rational Exponents & Radicals</a></li>
 
             <li class="chapter-title">Chapter 1: Equations & Inequalities</li>
-            <li><a href="#1-1">1.1 Linear Equations</a></li>
-            <li><a href="#1-2">1.2 Applications/Modeling</a></li>
+            <li><a href="#1-1">1.1 Linear Equations in One Variable</a></li>
+            <li><a href="#1-2">1.2 Applications: Modeling</a></li>
             <li><a href="#1-3">1.3 Quadratic Equations</a></li>
             <li><a href="#1-4">1.4 Complex Numbers</a></li>
-            <li><a href="#1-5">1.5 Other Equations</a></li>
+            <li><a href="#1-5">1.5 Solving Other Types of Equations</a></li>
             <li><a href="#1-6">1.6 Inequalities</a></li>
-            <li><a href="#1-7">1.7 Absolute Value</a></li>
+            <li><a href="#1-7">1.7 Absolute Value Eq. & Ineq.</a></li>
 
             <li class="chapter-title">Chapter 2: Graphs & Functions</li>
-            <li><a href="#2-1">2.1 Coordinate Plane</a></li>
+            <li><a href="#2-1">2.1 The Coordinate Plane</a></li>
             <li><a href="#2-2">2.2 Graphs of Equations</a></li>
             <li><a href="#2-3">2.3 Lines</a></li>
             <li><a href="#2-4">2.4 Functions</a></li>
             <li><a href="#2-5">2.5 Properties of Functions</a></li>
-            <li><a href="#2-6">2.6 Library of Functions</a></li>
-            <li><a href="#2-7">2.7 Transformations</a></li>
+            <li><a href="#2-6">2.6 A Library of Functions</a></li>
+            <li><a href="#2-7">2.7 Transformations of Functions</a></li>
             <li><a href="#2-8">2.8 Composite Functions</a></li>
             <li><a href="#2-9">2.9 Inverse Functions</a></li>
         </ul>
@@ -257,156 +220,122 @@
         <div class="concept-card" id="p1">
             <h4>P.1 The Real Numbers and Their Properties</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Numbers evolved from simple counting (1, 2, 3) to include nothingness (0), debts/opposites (negatives), fractions (rationals), and finally numbers that cannot be written as simple fractions like \(\pi\) (irrationals). All these together form the real number line.
+                <strong>First Principles:</strong> Mathematics builds complex systems from simple axioms. The real number system \(\mathbb{R}\) is the foundation of continuous mathematics, constructed systematically from basic counting numbers.
             </div>
-            <p><strong>Summary:</strong> The real number system \(\mathbb{R}\) includes Natural numbers (\(\mathbb{N}\)), Whole numbers (\(\mathbb{W}\)), Integers (\(\mathbb{Z}\)), Rational numbers (\(\mathbb{Q}\)), and Irrational numbers (\(\mathbb{I}\)). Properties like Commutative, Associative, and Distributive govern operations on these numbers.</p>
+            
+            <div class="sub-topic">Classifying Numbers & Sets</div>
+            <p><strong>Natural Numbers (\(\mathbb{N}\)):</strong> \(\{1, 2, 3, \ldots\}\) (Counting numbers).<br>
+            <strong>Whole Numbers (\(\mathbb{W}\)):</strong> \(\{0, 1, 2, 3, \ldots\}\) (Includes zero).<br>
+            <strong>Integers (\(\mathbb{Z}\)):</strong> \(\{\ldots, -2, -1, 0, 1, 2, \ldots\}\) (Includes negatives).<br>
+            <strong>Rational Numbers (\(\mathbb{Q}\)):</strong> Numbers that can be expressed as \(\frac{p}{q}\) where \(p, q \in \mathbb{Z}\) and \(q \neq 0\). Their decimals terminate or repeat.<br>
+            <strong>Irrational Numbers (\(\mathbb{I}\)):</strong> Cannot be expressed as a fraction of integers (e.g., \(\pi, \sqrt{2}\)). Decimals do not terminate or repeat.</p>
+            
+            <div class="sub-topic">Intervals, Absolute Value, and Distance</div>
+            <p>An <strong>interval</strong> represents a continuous segment of the real number line. We use brackets \([a, b]\) to include endpoints and parentheses \((a, b)\) to exclude them.</p>
             
             <div class="formula-box">
-                Distributive Property: \( a(b + c) = ab + ac \) <br>
                 Absolute Value: \( |x| = \begin{cases} x & \text{if } x \ge 0 \\ -x & \text{if } x < 0 \end{cases} \)<br>
-                Distance between \(a\) and \(b\): \( d(a,b) = |b - a| \)
+                Distance Formula (1D): \( d(a,b) = |b - a| \)
             </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Distance</div>
-                Find the distance between \(-5\) and \(3\) on the real number line.<br>
-                \( d = |3 - (-5)| = |3 + 5| = |8| = 8 \)
-            </div>
-
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Is \(\sqrt{2}\) a rational or irrational number? Why?<br>
-                <strong>A:</strong> It is irrational. It cannot be expressed as a ratio of two integers \(p/q\), and its decimal expansion neither terminates nor repeats.
-            </div>
+            
+            <div class="sub-topic">Order of Operations and Properties</div>
+            <p>We use <strong>PEMDAS</strong> (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction) to evaluate algebraic expressions. Key properties include Commutativity (\(a+b = b+a\)), Associativity (\((a+b)+c = a+(b+c)\)), and Distributivity (\(a(b+c) = ab+ac\)).</p>
         </div>
 
         <div class="concept-card" id="p2">
             <h4>P.2 Integer Exponents and Scientific Notation</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Multiplication is repeated addition. Exponents are simply repeated multiplication! \(x^n\) just means multiplying \(x\) by itself \(n\) times.
+                <strong>First Principles:</strong> Exponents are a shorthand for repeated multiplication, allowing us to describe incredibly large or small quantities compactly.
             </div>
-            <p><strong>Summary:</strong> Rules of exponents allow us to simplify complex expressions quickly. Scientific notation uses powers of 10 to express very large or very small numbers compactly.</p>
             
             <div class="formula-box">
                 Product Rule: \( a^m \cdot a^n = a^{m+n} \) <br>
                 Quotient Rule: \( \frac{a^m}{a^n} = a^{m-n} \) <br>
                 Power Rule: \( (a^m)^n = a^{mn} \) <br>
+                Zero Exponent: \( a^0 = 1 \) (for \(a \neq 0\)) <br>
                 Negative Exponent: \( a^{-n} = \frac{1}{a^n} \)
             </div>
 
-            <div class="example-box">
-                <div class="example-title">Example: Simplifying Exponents</div>
-                Simplify \( (2x^3y^{-2})^3 \)<br>
-                \( = 2^3 \cdot (x^3)^3 \cdot (y^{-2})^3 = 8x^9y^{-6} = \frac{8x^9}{y^6} \)
-            </div>
+            <div class="sub-topic">Scientific Notation</div>
+            <p>A number written as \(c \times 10^n\), where \(1 \le c < 10\) and \(n\) is an integer. Used to express very large or very small values efficiently.</p>
 
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Write \( 0.00045 \) in scientific notation.<br>
-                <strong>A:</strong> Move the decimal 4 places to the right: \( 4.5 \times 10^{-4} \).
+            <div class="example-box">
+                <div class="example-title">Example: Simplification</div>
+                Simplify \( \left( \frac{2x^3y^{-2}}{4x^{-1}y^4} \right)^{-2} \)<br>
+                First, simplify the inside: \( \frac{2}{4} x^{3 - (-1)} y^{-2 - 4} = \frac{1}{2} x^4 y^{-6} = \frac{x^4}{2y^6} \)<br>
+                Apply the negative exponent: \( \left( \frac{x^4}{2y^6} \right)^{-2} = \left( \frac{2y^6}{x^4} \right)^2 = \frac{4y^{12}}{x^8} \)
             </div>
         </div>
 
         <div class="concept-card" id="p3">
             <h4>P.3 Polynomials</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> A polynomial is an expression built from variables and constants using only addition, subtraction, and multiplication (and non-negative integer exponents). Think of them as building blocks of algebraic expressions.
+                <strong>First Principles:</strong> Polynomials are algebraic expressions built strictly from addition, subtraction, multiplication, and non-negative integer exponents. They behave similarly to integers under arithmetic operations.
             </div>
-            <p><strong>Summary:</strong> Polynomials are classified by their degree (highest exponent). Operations include addition (combine like terms), subtraction, and multiplication (FOIL method for binomials).</p>
             
+            <p><strong>Polynomial Vocabulary:</strong> A polynomial of degree \(n\) has the form \(a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0\). The highest exponent is the <strong>degree</strong>, and \(a_n\) is the <strong>leading coefficient</strong>.</p>
+            
+            <div class="sub-topic">Special Products</div>
+            <p>Recognizing special product patterns speeds up algebraic manipulation significantly.</p>
             <div class="formula-box">
                 Difference of Squares: \( (a - b)(a + b) = a^2 - b^2 \) <br>
                 Perfect Square Trinomial: \( (a \pm b)^2 = a^2 \pm 2ab + b^2 \) <br>
-                Difference of Cubes: \( a^3 - b^3 = (a - b)(a^2 + ab + b^2) \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: FOIL Method</div>
-                Multiply \( (2x + 3)(x - 4) \)<br>
-                First: \( 2x \cdot x = 2x^2 \) <br>
-                Outer: \( 2x \cdot (-4) = -8x \) <br>
-                Inner: \( 3 \cdot x = 3x \) <br>
-                Last: \( 3 \cdot (-4) = -12 \) <br>
-                Combine: \( 2x^2 - 5x - 12 \)
-            </div>
-
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What is the degree of the polynomial \( 4x^3 - 5x^5 + 2x - 7 \)?<br>
-                <strong>A:</strong> The degree is 5, as it is the highest exponent of the variable \(x\).
+                Sum of Cubes: \( (a+b)(a^2-ab+b^2) = a^3+b^3 \) <br>
+                Difference of Cubes: \( (a-b)(a^2+ab+b^2) = a^3-b^3 \)
             </div>
         </div>
 
         <div class="concept-card" id="p4">
             <h4>P.4 Factoring Polynomials</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Factoring is the reverse of multiplication. If multiplication is taking pieces and combining them into a block, factoring is breaking the block back into its fundamental pieces.
+                <strong>First Principles:</strong> Factoring is the process of un-multiplying. It breaks down complex expressions into their fundamental, irreducible parts, which is essential for solving equations and finding roots.
             </div>
-            <p><strong>Summary:</strong> Techniques include finding the Greatest Common Factor (GCF), grouping, factoring trinomials (\(ax^2+bx+c\)), and recognizing special forms (like difference of squares).</p>
             
-            <div class="example-box">
-                <div class="example-title">Example: Factoring a Trinomial</div>
-                Factor \( x^2 - 5x + 6 \)<br>
-                We need two numbers that multiply to \(6\) and add to \(-5\). These are \(-2\) and \(-3\).<br>
-                Result: \( (x - 2)(x - 3) \)
-            </div>
+            <div class="sub-topic">Factoring Techniques</div>
+            <ul>
+                <li><strong>Greatest Common Monomial Factor (GCF):</strong> Always check for a common factor first (e.g., \(4x^3 - 6x^2 = 2x^2(2x - 3)\)).</li>
+                <li><strong>Grouping:</strong> For polynomials with 4 terms, group into pairs and factor GCFs (e.g., \(x^3 - 3x^2 + 2x - 6 = x^2(x-3) + 2(x-3) = (x^2+2)(x-3)\)).</li>
+                <li><strong>Trinomials (\(ax^2+bx+c\)):</strong> If \(a=1\), find two numbers that multiply to \(c\) and add to \(b\). If \(a \neq 1\), use the AC Method (split the middle term).</li>
+            </ul>
 
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Factor \( 4x^2 - 9 \).<br>
-                <strong>A:</strong> This is a difference of squares: \( (2x)^2 - (3)^2 = (2x - 3)(2x + 3) \).
+            <div class="example-box">
+                <div class="example-title">Example: AC Method for \(Ax^2+Bx+C\)</div>
+                Factor \( 6x^2 + 11x - 10 \)<br>
+                Multiply \(A \times C = 6 \times (-10) = -60\).<br>
+                Find factors of \(-60\) that add to \(11\): \(15\) and \(-4\).<br>
+                Rewrite the middle term: \( 6x^2 + 15x - 4x - 10 \)<br>
+                Factor by grouping: \( 3x(2x + 5) - 2(2x + 5) = (3x - 2)(2x + 5) \)
             </div>
         </div>
 
         <div class="concept-card" id="p5">
             <h4>P.5 Rational Expressions</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> A rational expression is just a fraction where the numerator and/or the denominator are polynomials. All the rules of regular fractions apply here!
+                <strong>First Principles:</strong> A rational expression is a ratio of two polynomials. It behaves exactly like numerical fractions, subject to the rule that the denominator cannot be zero (Domain Restrictions).
             </div>
-            <p><strong>Summary:</strong> Operations on rational expressions require finding common denominators for addition/subtraction. For multiplication, multiply across. Always simplify by factoring and canceling common factors.</p>
+            
+            <div class="sub-topic">Operations on Rational Expressions</div>
+            <p><strong>Simplifying:</strong> Factor the numerator and denominator completely, then cancel common factors.<br>
+            <strong>Multiplying/Dividing:</strong> Multiply across. For division, multiply by the reciprocal of the second expression.<br>
+            <strong>Adding/Subtracting:</strong> You MUST find the Least Common Denominator (LCD). Factor all denominators to build the LCD efficiently.</p>
 
-            <div class="formula-box">
-                Division: \( \frac{A}{B} \div \frac{C}{D} = \frac{A}{B} \cdot \frac{D}{C} \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Simplifying</div>
-                Simplify \( \frac{x^2 - 1}{x^2 + x} \)<br>
-                Factor numerator: \( (x - 1)(x + 1) \)<br>
-                Factor denominator: \( x(x + 1) \)<br>
-                Cancel \( (x + 1) \): Result is \( \frac{x - 1}{x} \), where \( x \neq -1, 0 \).
-            </div>
-
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What must you do before adding \( \frac{1}{x} + \frac{2}{x-1} \)?<br>
-                <strong>A:</strong> Find a common denominator, which is \( x(x-1) \).
-            </div>
+            <div class="sub-topic">Complex Fractions</div>
+            <p>A fraction containing fractions in the numerator or denominator. Simplify by multiplying the entire numerator and denominator by the LCD of all minor fractions.</p>
         </div>
 
         <div class="concept-card" id="p6">
             <h4>P.6 Rational Exponents and Radicals</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Fractional exponents are just another way to write roots. A denominator in an exponent signifies a root, while the numerator signifies a power.
+                <strong>First Principles:</strong> Radicals and rational exponents are two languages describing the same concept. \(x^{m/n}\) implies a fractional power where the numerator is the exponent and the denominator is the root index.
             </div>
-            <p><strong>Summary:</strong> Converting between radical notation and exponent notation makes evaluating expressions easier. Rationalizing the denominator removes radicals from the bottom of a fraction.</p>
             
             <div class="formula-box">
                 Rational Exponent: \( a^{m/n} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m \)<br>
-                Product Rule for Radicals: \( \sqrt[n]{ab} = \sqrt[n]{a}\sqrt[n]{b} \)
+                Product/Quotient Rules: \( \sqrt[n]{ab} = \sqrt[n]{a}\sqrt[n]{b} \) and \( \sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}} \)
             </div>
 
-            <div class="example-box">
-                <div class="example-title">Example: Rationalizing Denominator</div>
-                Rationalize \( \frac{2}{\sqrt{3}} \)<br>
-                Multiply top and bottom by \( \sqrt{3} \): \( \frac{2\sqrt{3}}{\sqrt{3}\sqrt{3}} = \frac{2\sqrt{3}}{3} \)
-            </div>
-
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Evaluate \( 8^{2/3} \).<br>
-                <strong>A:</strong> Take the cube root first: \(\sqrt[3]{8} = 2\). Then square it: \( 2^2 = 4 \).
-            </div>
+            <div class="sub-topic">Rationalizing Expressions</div>
+            <p>To rationalize a denominator containing a binomial with radicals (e.g., \(a + \sqrt{b}\)), multiply the numerator and denominator by its <strong>conjugate</strong> (\(a - \sqrt{b}\)). This exploits the Difference of Squares to eliminate the radical: \((a+\sqrt{b})(a-\sqrt{b}) = a^2 - b\).</p>
         </div>
 
         <!-- CHAPTER 1 -->
@@ -414,177 +343,85 @@
 
         <div class="concept-card" id="1-1">
             <h4>1.1 Linear Equations in One Variable</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> An equation is like a balanced scale. Whatever you do to one side, you must do to the other to keep it balanced. Our goal is to isolate the unknown variable.
-            </div>
-            <p><strong>Summary:</strong> A linear equation can be written in the form \(ax + b = 0\). Solutions can be a single value (conditional), all real numbers (identity), or no solution (inconsistent).</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Solving a Linear Equation</div>
-                Solve \( 3(x - 2) = 15 \)<br>
-                Distribute: \( 3x - 6 = 15 \)<br>
-                Add 6: \( 3x = 21 \)<br>
-                Divide by 3: \( x = 7 \)
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What is an identity equation?<br>
-                <strong>A:</strong> An equation that is true for all values of the variable, e.g., \( 2x + 2 = 2(x + 1) \).
-            </div>
+            <p><strong>Definitions:</strong> An equation states two algebraic expressions are equal. A linear equation can be written as \(ax + b = 0\).<br>
+            <strong>Types of Equations:</strong>
+            <ul>
+                <li><strong>Identity:</strong> True for all real numbers (e.g., \(2(x+1) = 2x+2\)). Solution set is \(\mathbb{R}\).</li>
+                <li><strong>Conditional:</strong> True for specific values (e.g., \(3x = 12\)).</li>
+                <li><strong>Inconsistent:</strong> True for no values (e.g., \(x = x + 1\)). Solution set is empty \(\emptyset\).</li>
+            </ul></p>
         </div>
 
         <div class="concept-card" id="1-2">
             <h4>1.2 Applications of Linear Equations: Modeling</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Math is a language. Modeling is the process of translating real-world word problems from English into Math, solving them, and translating back.
-            </div>
-            <p><strong>Summary:</strong> Common models include Geometry, Finance (Simple Interest), Uniform Motion (Distance = Rate x Time), Work Rate, and Mixture problems.</p>
-            
-            <div class="formula-box">
-                Simple Interest: \( I = P \cdot r \cdot t \) <br>
-                Uniform Motion: \( d = r \cdot t \) <br>
-                Work Rate: \( \frac{1}{t_1} + \frac{1}{t_2} = \frac{1}{t_{total}} \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Uniform Motion</div>
-                A car travels 120 miles in 2 hours. Find its rate.<br>
-                \( 120 = r \cdot 2 \implies r = 60 \) mph.
+                <strong>First Principles:</strong> Modeling translates physical phenomena into mathematical equations, allowing us to solve real-world problems using algebra.
             </div>
             
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> If Alice paints a room in 3 hours, what is her work rate per hour?<br>
-                <strong>A:</strong> \( \frac{1}{3} \) of the room per hour.
-            </div>
+            <p><strong>Finance (Interest):</strong> \( I = Prt \) (Interest = Principal \(\times\) Rate \(\times\) Time).<br>
+            <strong>Uniform Motion:</strong> \( d = rt \) (Distance = Rate \(\times\) Time). Often involves equating times or summing distances.<br>
+            <strong>Work Rate:</strong> If person A does a job in \(a\) hours, their rate is \(1/a\). Combined rate: \(\frac{1}{a} + \frac{1}{b} = \frac{1}{t_{\text{total}}}\).<br>
+            <strong>Mixtures:</strong> Use the equation \( (\text{Amount 1})(\text{Concentration 1}) + (\text{Amount 2})(\text{Concentration 2}) = (\text{Total Amount})(\text{Final Concentration}) \).</p>
         </div>
 
         <div class="concept-card" id="1-3">
             <h4>1.3 Quadratic Equations</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> A quadratic equation (\(ax^2+bx+c=0\)) represents a parabola. Finding the solution (roots) means finding where the parabola crosses the x-axis.
-            </div>
-            <p><strong>Summary:</strong> Methods to solve include Factoring, Square Root Method, Completing the Square, and the Quadratic Formula. The discriminant tells us the number and type of solutions.</p>
+            <p>A quadratic equation is of the form \(ax^2 + bx + c = 0\) \((a \neq 0)\).</p>
+            <div class="sub-topic">Solving Methods</div>
+            <ul>
+                <li><strong>Factoring:</strong> Relies on the Zero-Product Property. If \(AB = 0\), then \(A=0\) or \(B=0\).</li>
+                <li><strong>Square Root Method:</strong> If \(x^2 = k\), then \(x = \pm \sqrt{k}\).</li>
+                <li><strong>Completing the Square:</strong> To make \(x^2 + bx\) a perfect square, add \((b/2)^2\).</li>
+                <li><strong>Quadratic Formula:</strong> \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \)</li>
+            </ul>
             
             <div class="formula-box">
-                Quadratic Formula: \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \) <br>
-                Discriminant: \( \Delta = b^2 - 4ac \)
-                <ul>
-                    <li>\( \Delta > 0 \): 2 real solutions</li>
-                    <li>\( \Delta = 0 \): 1 real solution</li>
-                    <li>\( \Delta < 0 \): 0 real (2 complex) solutions</li>
-                </ul>
+                <strong>The Discriminant (\(\Delta = b^2 - 4ac\)):</strong><br>
+                \(\Delta > 0\): Two distinct real solutions.<br>
+                \(\Delta = 0\): One repeated real solution.<br>
+                \(\Delta < 0\): Two complex conjugate solutions.
             </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Quadratic Formula</div>
-                Solve \( x^2 - 3x + 2 = 0 \)<br>
-                \( x = \frac{3 \pm \sqrt{(-3)^2 - 4(1)(2)}}{2} = \frac{3 \pm \sqrt{1}}{2} \)<br>
-                \( x = 2 \) or \( x = 1 \)
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> How many real solutions does \( x^2 + 1 = 0 \) have?<br>
-                <strong>A:</strong> Zero, because the discriminant is \( 0^2 - 4(1)(1) = -4 < 0 \).
-            </div>
+            <p><strong>Golden Rectangle:</strong> A rectangle where the ratio of length to width is the Golden Ratio \(\phi = \frac{1+\sqrt{5}}{2} \approx 1.618\).</p>
         </div>
 
         <div class="concept-card" id="1-4">
             <h4>1.4 Complex Numbers</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> What happens if we try to take the square root of a negative number? We invent a new number, \(i\), where \(i^2 = -1\). This expands our number system to 2D!
-            </div>
-            <p><strong>Summary:</strong> A complex number has the form \( a + bi \). Operations include addition, subtraction, multiplication (using FOIL and \(i^2=-1\)), and division (using the complex conjugate).</p>
-
-            <div class="formula-box">
-                Imaginary Unit: \( i = \sqrt{-1} \implies i^2 = -1 \) <br>
-                Complex Conjugate of \( a + bi \) is \( a - bi \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Multiplication</div>
-                Multiply \( (2 + 3i)(1 - 2i) \)<br>
-                \( 2 - 4i + 3i - 6i^2 = 2 - i - 6(-1) = 2 - i + 6 = 8 - i \)
+                <strong>First Principles:</strong> The imaginary unit \(i\) is defined as \(\sqrt{-1}\), meaning \(i^2 = -1\). A complex number has the form \(a + bi\) (Standard Form), where \(a\) is the real part and \(b\) is the imaginary part.
             </div>
             
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Divide \( \frac{1}{i} \).<br>
-                <strong>A:</strong> Multiply top and bottom by \( -i \): \( \frac{-i}{-i^2} = \frac{-i}{1} = -i \).
-            </div>
+            <div class="sub-topic">Operations</div>
+            <p><strong>Addition/Subtraction:</strong> Add/subtract real and imaginary parts independently.<br>
+            <strong>Multiplication:</strong> Use FOIL and replace \(i^2\) with \(-1\).<br>
+            <strong>Division:</strong> Multiply numerator and denominator by the <strong>complex conjugate</strong> of the denominator (\(a - bi\)) to yield a real number in the denominator: \((a+bi)(a-bi) = a^2 + b^2\).</p>
         </div>
 
         <div class="concept-card" id="1-5">
             <h4>1.5 Solving Other Types of Equations</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> We can solve complex equations by disguising them as simpler equations we already know how to solve! For example, by substituting \( u = x^2 \).
-            </div>
-            <p><strong>Summary:</strong> Includes Radical equations (isolate radical, raise to power), Rational equations (multiply by LCD), and Equations Quadratic in Form.</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Radical Equation</div>
-                Solve \( \sqrt{x - 1} = 3 \)<br>
-                Square both sides: \( x - 1 = 9 \implies x = 10 \).<br>
-                Check: \( \sqrt{10-1} = \sqrt{9} = 3 \). Valid!
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What is an extraneous solution?<br>
-                <strong>A:</strong> A solution that emerges from the process of solving (like squaring both sides) but doesn't make the original equation true. Always check your answers!
-            </div>
+            <p><strong>Rational Equations:</strong> Multiply all terms by the LCD to clear fractions. <em>Warning:</em> You must check for extraneous solutions that make the original denominator zero.<br>
+            <strong>Equations with Radicals:</strong> Isolate the radical, then raise both sides to the appropriate power. <em>Warning:</em> Squaring both sides often introduces extraneous solutions. Always check your answers!<br>
+            <strong>Quadratic in Form:</strong> Equations that can be written as \(au^2 + bu + c = 0\) through a substitution (e.g., \(x^4 - 5x^2 + 4 = 0\) let \(u = x^2\)).</p>
         </div>
 
         <div class="concept-card" id="1-6">
             <h4>1.6 Inequalities</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> Inequalities represent a range of solutions rather than a single point. If an equation is "where the target is exactly", an inequality is "anywhere past the line".
-            </div>
-            <p><strong>Summary:</strong> When solving linear inequalities, if you multiply or divide by a negative number, you MUST flip the inequality sign. Test points are used for non-linear inequalities.</p>
-
-            <div class="formula-box">
-                Interval Notation: <br>
-                \( a < x \le b \implies (a, b] \) <br>
-                \( x \ge a \implies [a, \infty) \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Solving Inequality</div>
-                Solve \( -2x + 4 < 10 \)<br>
-                Subtract 4: \( -2x < 6 \)<br>
-                Divide by -2 (FLIP SIGN!): \( x > -3 \)<br>
-                Interval: \( (-3, \infty) \)
-            </div>
+            <p>Solving linear inequalities is identical to solving linear equations, with one massive exception:<br>
+            <strong style="color:red">Whenever you multiply or divide an inequality by a negative number, you MUST reverse the direction of the inequality sign.</strong></p>
             
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Why do we flip the sign when dividing by a negative?<br>
-                <strong>A:</strong> Because negatives reverse order. Since \( 2 < 5 \), multiplying by -1 reflects them across zero, making \( -2 > -5 \).
-            </div>
+            <div class="sub-topic">Polynomial and Rational Inequalities (Test Points)</div>
+            <p>For non-linear inequalities (e.g., \(x^2 - x - 6 > 0\)):<br>
+            1. Move everything to one side so the other is 0.<br>
+            2. Find the roots (or undefined points) to establish boundary points on a number line.<br>
+            3. Pick a test point in each interval and plug it into the inequality to see if it yields a positive or negative result.</p>
         </div>
 
         <div class="concept-card" id="1-7">
-            <h4>1.7 Absolute Value Equations and Inequalities</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> Absolute value means "distance from zero". \( |x| < 3 \) means "all numbers whose distance from 0 is less than 3".
-            </div>
-            <p><strong>Summary:</strong> To solve \(|X| = a\), set \(X=a\) and \(X=-a\). To solve \(|X| < a\), set \(-a < X < a\). To solve \(|X| > a\), set \(X < -a\) OR \(X > a\).</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Absolute Value Inequality</div>
-                Solve \( |2x - 1| \le 5 \)<br>
-                Rewrite: \( -5 \le 2x - 1 \le 5 \)<br>
-                Add 1: \( -4 \le 2x \le 6 \)<br>
-                Divide 2: \( -2 \le x \le 3 \)<br>
-                Interval: \( [-2, 3] \)
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Solve \( |x| = -5 \).<br>
-                <strong>A:</strong> No solution. Distance cannot be negative.
+            <h4>1.7 Equations and Inequalities Involving Absolute Value</h4>
+            <p>Absolute value \(|X|\) is the distance of \(X\) from the origin.</p>
+            <div class="formula-box">
+                Equation: \( |X| = k \) means \( X = k \) or \( X = -k \).<br>
+                "Less Than" Inequality (\(|X| < k\)): Represents a bounded interval between \(-k\) and \(k\). Setup: \( -k < X < k \).<br>
+                "Greater Than" Inequality (\(|X| > k\)): Represents the outer wings extending to infinity. Setup: \( X < -k \) OR \( X > k \).
             </div>
         </div>
 
@@ -594,196 +431,120 @@
         <div class="concept-card" id="2-1">
             <h4>2.1 The Coordinate Plane</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Rene Descartes merged Algebra and Geometry by placing a grid over space. Now, equations (algebra) can be drawn as pictures (geometry), and shapes can be analyzed using numbers.
-            </div>
-            <p><strong>Summary:</strong> The Cartesian plane has an x-axis and y-axis. Key formulas define the geometry of points on this plane.</p>
-
-            <div class="diagram-container">
-                <div class="coordinate-plane">
-                    <div class="axis-x"></div>
-                    <div class="axis-y"></div>
-                    <div class="point" style="left: 210px; top: 90px;"></div>
-                    <span style="position: absolute; left: 220px; top: 70px;">(2, 2)</span>
-                </div>
-                <p><em>The Cartesian Coordinate System</em></p>
-            </div>
-
-            <div class="formula-box">
-                Distance Formula: \( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \) <br>
-                Midpoint Formula: \( M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right) \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Midpoint</div>
-                Find midpoint of \((0, 0)\) and \((4, 6)\).<br>
-                \( M = \left(\frac{0+4}{2}, \frac{0+6}{2}\right) = (2, 3) \)
+                <strong>First Principles:</strong> The Cartesian coordinate system links algebra and geometry. Any algebraic equation with two variables forms a geometric shape when its solutions are plotted as points \((x,y)\).
             </div>
             
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> Which quadrant contains the point \((-3, 4)\)?<br>
-                <strong>A:</strong> Quadrant II (x is negative, y is positive).
+            <div class="formula-box">
+                Distance Formula: \( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \) (Derived from Pythagorean Theorem)<br>
+                Midpoint Formula: \( M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right) \) (Averages of the coordinates)
             </div>
         </div>
 
         <div class="concept-card" id="2-2">
             <h4>2.2 Graphs of Equations</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> A graph is simply the visual collection of ALL points \((x,y)\) that make an equation true.
-            </div>
-            <p><strong>Summary:</strong> We analyze graphs by finding intercepts (where they cross axes) and symmetry (reflection across axes or origin). Circles have a specific standard equation.</p>
-
-            <div class="formula-box">
-                x-intercept: Set \(y=0\), solve for \(x\)<br>
-                y-intercept: Set \(x=0\), solve for \(y\)<br>
-                Equation of a Circle: \( (x - h)^2 + (y - k)^2 = r^2 \) where center is \((h,k)\)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Circle</div>
-                Find center and radius of \( (x - 2)^2 + (y + 3)^2 = 16 \)<br>
-                Center: \( (2, -3) \), Radius: \( \sqrt{16} = 4 \).
-            </div>
+            <p><strong>Intercepts:</strong> To find the x-intercept, let \(y=0\). To find the y-intercept, let \(x=0\).</p>
+            <div class="sub-topic">Symmetry</div>
+            <ul>
+                <li><strong>x-axis symmetry:</strong> Replacing \(y\) with \(-y\) yields an equivalent equation.</li>
+                <li><strong>y-axis symmetry:</strong> Replacing \(x\) with \(-x\) yields an equivalent equation.</li>
+                <li><strong>Origin symmetry:</strong> Replacing both \(x\) with \(-x\) and \(y\) with \(-y\) yields an equivalent equation.</li>
+            </ul>
             
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What kind of symmetry does \(y = x^2\) have?<br>
-                <strong>A:</strong> y-axis symmetry, because replacing \(x\) with \(-x\) doesn't change the equation.
+            <div class="formula-box">
+                Equation of a Circle: \( (x - h)^2 + (y - k)^2 = r^2 \) <br>
+                Center = \((h,k)\), Radius = \(r\)
             </div>
+            <p><strong>Semicircles:</strong> Solving a circle equation for \(y\) gives \(y = k \pm \sqrt{r^2 - (x-h)^2}\). The positive root represents the top semicircle; the negative root is the bottom.</p>
         </div>
 
         <div class="concept-card" id="2-3">
             <h4>2.3 Lines</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> A line represents a constant rate of change. The slope tells us exactly how much \(y\) changes for every unit change in \(x\).
-            </div>
-            <p><strong>Summary:</strong> Lines can be represented in various forms. Parallel lines have equal slopes; perpendicular lines have negative reciprocal slopes.</p>
-
-            <div class="formula-box">
-                Slope (\(m\)): \( m = \frac{y_2 - y_1}{x_2 - x_1} \) <br>
-                Slope-Intercept: \( y = mx + b \) <br>
-                Point-Slope: \( y - y_1 = m(x - x_1) \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Equation of a Line</div>
-                Find equation of line through \((1, 2)\) with slope \(3\).<br>
-                \( y - 2 = 3(x - 1) \implies y - 2 = 3x - 3 \implies y = 3x - 1 \)
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What is the slope of a horizontal line? A vertical line?<br>
-                <strong>A:</strong> Horizontal: \(m=0\). Vertical: \(m\) is undefined.
-            </div>
+            <p>Slope (\(m\)) represents the average rate of change: \( m = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1} \).</p>
+            <div class="sub-topic">Forms of a Linear Equation</div>
+            <ul>
+                <li><strong>Point-Slope Form:</strong> \( y - y_1 = m(x - x_1) \) (Best for writing equations).</li>
+                <li><strong>Slope-Intercept Form:</strong> \( y = mx + b \) (Best for graphing).</li>
+                <li><strong>General Form:</strong> \( Ax + By = C \).</li>
+            </ul>
+            <p><strong>Parallel Lines:</strong> Slopes are exactly the same (\(m_1 = m_2\)).<br>
+            <strong>Perpendicular Lines:</strong> Slopes are negative reciprocals (\(m_1 \cdot m_2 = -1\) or \(m_2 = -1/m_1\)).<br>
+            <strong>Linear Regression:</strong> Statistical process of finding the line of best fit for scattered data.</p>
         </div>
 
         <div class="concept-card" id="2-4">
             <h4>2.4 Functions</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> Think of a function as a machine. You drop an input (\(x\)) into the machine, it does some work on it, and spits out exactly ONE output (\(y\)).
+                <strong>First Principles:</strong> A function \(f\) is a rule that assigns to each input element \(x\) in the Domain exactly ONE output element \(y\) in the Range. 
             </div>
-            <p><strong>Summary:</strong> A relation is a function if each input has exactly one output (Vertical Line Test). Domain = allowed inputs (x), Range = possible outputs (y). We use function notation \(f(x)\).</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Domain</div>
-                Find the domain of \( f(x) = \frac{1}{x - 2} \)<br>
-                Denominator cannot be zero. \( x - 2 \neq 0 \implies x \neq 2 \).<br>
-                Domain: \( (-\infty, 2) \cup (2, \infty) \)
-            </div>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> If \(f(x) = x^2 + 1\), what is \(f(-3)\)?<br>
-                <strong>A:</strong> \( (-3)^2 + 1 = 9 + 1 = 10 \).
-            </div>
+            <p><strong>Vertical Line Test:</strong> If any vertical line intersects a graph in more than one point, the graph does NOT represent a function.<br>
+            <strong>Domain Rules:</strong> Denominators cannot equal zero. Expressions inside even-indexed roots (like square roots) must be \(\ge 0\).</p>
         </div>
 
         <div class="concept-card" id="2-5">
             <h4>2.5 Properties of Functions</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> We can analyze the "behavior" of the function machine by looking at its graph. Is it going up (increasing)? Going down (decreasing)?
-            </div>
-            <p><strong>Summary:</strong> Functions can be increasing, decreasing, or constant over intervals. Relative maximums/minimums are the peaks and valleys. Even functions have y-axis symmetry, Odd functions have origin symmetry.</p>
-
-            <div class="formula-box">
-                Average Rate of Change: \( \frac{f(x_2) - f(x_1)}{x_2 - x_1} \) (This is just slope!)<br>
-                Even: \( f(-x) = f(x) \)<br>
-                Odd: \( f(-x) = -f(x) \)
-            </div>
-
-            <div class="example-box">
-                <div class="example-title">Example: Even or Odd?</div>
-                Is \( f(x) = x^3 \) even, odd, or neither?<br>
-                \( f(-x) = (-x)^3 = -x^3 = -f(x) \). Therefore, it is Odd.
-            </div>
+            <p><strong>Increasing/Decreasing:</strong> A function is increasing if, as \(x\) moves right, \(y\) goes up. It is decreasing if \(y\) goes down.<br>
+            <strong>Relative Extrema:</strong> The highest/lowest points in a local region of the graph (peaks and valleys).<br>
+            <strong>Average Rate of Change:</strong> The slope of the secant line connecting two points on the function: \( \frac{f(b) - f(a)}{b - a} \).</p>
+            
+            <div class="sub-topic">Even and Odd Functions</div>
+            <p><strong>Even Function:</strong> \(f(-x) = f(x)\). Symmetric about the y-axis (e.g., \(y=x^2, y=|x|\)).<br>
+            <strong>Odd Function:</strong> \(f(-x) = -f(x)\). Symmetric about the origin (e.g., \(y=x^3, y=1/x\)).</p>
         </div>
 
         <div class="concept-card" id="2-6">
             <h4>2.6 A Library of Functions</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> Just like letters form the alphabet, there is a fundamental alphabet of basic function shapes. Knowing these "parent graphs" allows us to build complex ones.
-            </div>
-            <p><strong>Summary:</strong> Key functions to memorize: Constant (\(y=c\)), Linear (\(y=x\)), Quadratic (\(y=x^2\)), Cubic (\(y=x^3\)), Square Root (\(y=\sqrt{x}\)), Absolute Value (\(y=|x|\)).</p>
-            
-            <div class="qa-box">
-                <div class="qa-title">Q&A Checkpoint</div>
-                <strong>Q:</strong> What is a piecewise function?<br>
-                <strong>A:</strong> A function defined by different equations over different parts of its domain.
-            </div>
+            <p>You must know the shape, domain, and range of these parent graphs intimately:<br>
+            - Linear (\(f(x) = x\))<br>
+            - Square (\(f(x) = x^2\))<br>
+            - Cube (\(f(x) = x^3\))<br>
+            - Square Root (\(f(x) = \sqrt{x}\))<br>
+            - Cube Root (\(f(x) = \sqrt[3]{x}\))<br>
+            - Absolute Value (\(f(x) = |x|\))<br>
+            - Reciprocal (\(f(x) = 1/x\))</p>
+            <p><strong>Piecewise Functions:</strong> Functions defined by different rules over different parts of their domain. Always pay attention to the inequality domain conditions when evaluating or graphing.</p>
         </div>
 
         <div class="concept-card" id="2-7">
             <h4>2.7 Transformations of Functions</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> Instead of graphing complex functions from scratch, we take a basic "parent graph" and shift, stretch, or flip it.
-            </div>
-            <p><strong>Summary:</strong> Transformations alter the parent graph \(y=f(x)\):<br>
-            - \( f(x) + c \) (Shift UP)<br>
-            - \( f(x - c) \) (Shift RIGHT)<br>
-            - \( -f(x) \) (Reflect over x-axis)<br>
-            - \( af(x) \) (Vertical stretch if \(a>1\))</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Describing Transformation</div>
-                Describe the graph of \( y = (x - 3)^2 + 2 \) relative to \(y=x^2\).<br>
-                It is the standard parabola shifted RIGHT 3 units and UP 2 units.
-            </div>
+            <p>Given the graph of \(y = f(x)\) and positive constants \(c, k\):</p>
+            <ul>
+                <li><strong>Vertical Shifts:</strong> \( f(x) \pm k \) (Up/Down)</li>
+                <li><strong>Horizontal Shifts:</strong> \( f(x \pm c) \) (Left/Right) — <em>Opposite of what you'd expect!</em> (\(x-c\) shifts right).</li>
+                <li><strong>Reflections:</strong> \(-f(x)\) reflects across the x-axis. \(f(-x)\) reflects across the y-axis.</li>
+                <li><strong>Vertical Stretch/Compress:</strong> \(a f(x)\). Stretches vertically if \(a > 1\). Compresses if \(0 < a < 1\).</li>
+                <li><strong>Horizontal Stretch/Compress:</strong> \(f(bx)\). Compresses horizontally if \(b > 1\). Stretches if \(0 < b < 1\).</li>
+            </ul>
         </div>
 
         <div class="concept-card" id="2-8">
             <h4>2.8 Combining Functions; Composite Functions</h4>
-            <div class="first-principles">
-                <strong>First Principles:</strong> We can chain function machines together! The output of the first machine becomes the input of the second machine.
-            </div>
-            <p><strong>Summary:</strong> We can add, subtract, multiply, and divide functions. Composition \( (f \circ g)(x) \) means \( f(g(x)) \).</p>
-
-            <div class="example-box">
-                <div class="example-title">Example: Composition</div>
-                If \( f(x) = 2x \) and \( g(x) = x + 1 \). Find \( (f \circ g)(x) \).<br>
-                \( f(g(x)) = f(x + 1) = 2(x + 1) = 2x + 2 \)
-            </div>
+            <p><strong>Operations:</strong> \((f \pm g)(x) = f(x) \pm g(x)\). The domain is the intersection of the domains of \(f\) and \(g\). For \((f/g)(x)\), additionally exclude any \(x\) where \(g(x) = 0\).</p>
+            <div class="sub-topic">Composition of Functions</div>
+            <p><strong>\( (f \circ g)(x) = f(g(x)) \)</strong>. The output of the inner function \(g(x)\) becomes the input for the outer function \(f\).<br>
+            <strong>Domain of Composition:</strong> Must satisfy the domain of the inner function \(g(x)\) AND the domain of the final composed function \(f(g(x))\).</p>
         </div>
 
         <div class="concept-card" id="2-9">
             <h4>2.9 Inverse Functions</h4>
             <div class="first-principles">
-                <strong>First Principles:</strong> An inverse function is a machine that runs backward. It undoes whatever the original function did, turning outputs back into the original inputs.
+                <strong>First Principles:</strong> An inverse function \(f^{-1}\) perfectly undoes the action of \(f\). If \(f\) maps \(x \to y\), then \(f^{-1}\) maps \(y \to x\). Graphically, it is a reflection across the line \(y = x\).
             </div>
-            <p><strong>Summary:</strong> A function has an inverse only if it is one-to-one (passes Horizontal Line Test). Denoted \(f^{-1}(x)\). The domain of \(f\) becomes the range of \(f^{-1}\).</p>
-
-            <div class="formula-box">
-                Property of Inverses: \( f(f^{-1}(x)) = x \) and \( f^{-1}(f(x)) = x \)<br>
-                To find inverse algebraically: Swap \(x\) and \(y\), then solve for \(y\).
-            </div>
-
+            
+            <p><strong>One-to-One Requirement:</strong> A function only has an inverse if it passes the <strong>Horizontal Line Test</strong> (every output has exactly one input).<br>
+            <strong>Property of Inverses:</strong> \( f(f^{-1}(x)) = x \) AND \( f^{-1}(f(x)) = x \).<br>
+            <strong>Domain & Range:</strong> The domain of \(f\) becomes the range of \(f^{-1}\), and the range of \(f\) becomes the domain of \(f^{-1}\).</p>
+            
             <div class="example-box">
-                <div class="example-title">Example: Finding Inverse</div>
-                Find inverse of \( f(x) = 2x + 3 \).<br>
-                1. \( y = 2x + 3 \)<br>
-                2. Swap: \( x = 2y + 3 \)<br>
-                3. Solve for y: \( 2y = x - 3 \implies y = \frac{x - 3}{2} \)<br>
-                \( f^{-1}(x) = \frac{x - 3}{2} \)
+                <div class="example-title">Example: Finding the Inverse Algebraically</div>
+                Find \(f^{-1}(x)\) for \(f(x) = \frac{2x + 1}{x - 3}\).<br>
+                1. Write as \(y = \frac{2x + 1}{x - 3}\).<br>
+                2. Swap \(x\) and \(y\): \(x = \frac{2y + 1}{y - 3}\).<br>
+                3. Solve for \(y\): <br>
+                &nbsp;&nbsp;&nbsp; \(x(y - 3) = 2y + 1\) <br>
+                &nbsp;&nbsp;&nbsp; \(xy - 3x = 2y + 1\) <br>
+                &nbsp;&nbsp;&nbsp; \(xy - 2y = 3x + 1\) <br>
+                &nbsp;&nbsp;&nbsp; \(y(x - 2) = 3x + 1\) <br>
+                &nbsp;&nbsp;&nbsp; \(y = \frac{3x + 1}{x - 2}\). Thus, \(f^{-1}(x) = \frac{3x + 1}{x - 2}\).
             </div>
         </div>
 

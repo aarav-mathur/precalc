@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter P: Basic Concepts of Algebra - Revision Notes</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <style>
+        :root { --primary: #0f172a; --secondary: #3b82f6; --bg: #f8fafc; --text: #334155; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        h1 { color: var(--primary); font-size: 2.5rem; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; }
+        h2 { color: var(--secondary); margin-top: 3rem; }
+        .card { background: white; border-radius: 0.5rem; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .first-principles { background: #eff6ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1rem; }
+        .example-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem; }
+        .calculator-container { width: 100%; height: 400px; margin-top: 1.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chapter P: Basic Concepts of Algebra</h1>
+        
+        <div class="card">
+            <h2>P.1 The Real Numbers and Their Properties</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> The real number system \(\mathbb{R}\) is the foundation of continuous mathematics. It includes numbers that can be written as fractions (rational) and those that cannot (irrational, like \(\pi\) and \(\sqrt{2}\)).
+            </div>
+            <p><strong>Absolute Value:</strong> The distance of a number from zero on the number line. \(|x| = x\) if \(x \ge 0\), and \(|x| = -x\) if \(x < 0\).</p>
+            <div class="example-box">
+                <strong>Deep Example:</strong> Evaluate \(|x - 5|\) when \(x = 2\).<br>
+                1. Plug in: \(|2 - 5|\)<br>
+                2. Inside the absolute value: \(|-3|\)<br>
+                3. The distance from 0 is 3. So, 3.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>P.3 & P.4 Polynomials & Factoring</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Factoring is the inverse of multiplication. By breaking a polynomial down into its irreducible "prime" factors, we reveal its roots (x-intercepts).
+            </div>
+            <p><strong>Difference of Squares:</strong> \(A^2 - B^2 = (A-B)(A+B)\)</p>
+            <p><strong>Perfect Square Trinomial:</strong> \(A^2 \pm 2AB + B^2 = (A \pm B)^2\)</p>
+            
+            <h3>Interactive Visualization</h3>
+            <p>Interact with the Desmos graph below to see how the factors of a polynomial dictate its roots. Change the sliders for \(a\), \(b\), and \(c\)!</p>
+            <div id="calculator" class="calculator-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>P.6 Rational Exponents and Radicals</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> A rational exponent \(\frac{m}{n}\) is just a compact way of writing "take the \(n\)-th root, then raise to the \(m\)-th power." \(x^{m/n} = \sqrt[n]{x^m}\).
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> Simplify \( (-8)^{2/3} \).<br>
+                Many students incorrectly try to square first, leading to massive numbers. Instead, take the root first!<br>
+                1. Cube root of -8 is -2.<br>
+                2. Square -2: \((-2)^2 = 4\).<br>
+                Result: 4.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var elt = document.getElementById('calculator');
+        var calculator = Desmos.GraphingCalculator(elt);
+        calculator.setExpression({ id: 'graph1', latex: 'y = (x-a)(x-b)(x-c)' });
+        calculator.setExpression({ id: 'slider_a', latex: 'a=1', sliderBounds: { min: -5, max: 5 } });
+        calculator.setExpression({ id: 'slider_b', latex: 'b=-2', sliderBounds: { min: -5, max: 5 } });
+        calculator.setExpression({ id: 'slider_c', latex: 'c=3', sliderBounds: { min: -5, max: 5 } });
+    </script>
+</body>
+</html>

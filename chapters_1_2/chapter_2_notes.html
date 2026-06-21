@@ -14,6 +14,7 @@
         h2 { color: var(--secondary); margin-top: 3rem; }
         .card { background: white; border-radius: 0.5rem; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
         .first-principles { background: #faf5ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1rem; }
+        .example-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem; }
         .calculator-container { width: 100%; height: 400px; margin-top: 1.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; overflow: hidden; }
     </style>
 </head>
@@ -22,6 +23,14 @@
         <h1>Chapter 2: Graphs and Functions</h1>
         
         <div class="card">
+            <h2>2.3 Lines</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> The slope of a line represents its rate of change. It's the ratio of the vertical change to the horizontal change. Parallel lines have equal slopes. Perpendicular lines have negative reciprocal slopes.
+            </div>
+            <p>Point-slope form: \( y - y_1 = m(x - x_1) \)</p>
+        </div>
+
+        <div class="card">
             <h2>2.7 Transformations of Functions</h2>
             <div class="first-principles">
                 <strong>First Principles:</strong> Modifying the input \(x\) translates/stretches the graph horizontally. Modifying the output \(f(x)\) translates/stretches the graph vertically.
@@ -29,6 +38,17 @@
             <h3>Interactive Visualization</h3>
             <p>Observe how \(a, h,\) and \(k\) transform the parent function \(f(x) = |x|\) in \(y = a|x - h| + k\).</p>
             <div id="calculator" class="calculator-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>2.9 Inverse Functions</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> An inverse function completely undoes the original function. Graphically, it is a reflection across the line \(y = x\).
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> Does \(f(x) = x^2\) have an inverse?<br>
+                Many say yes, \(y = \pm \sqrt{x}\). But \(\pm\) makes it NOT a function! A function must be One-to-One (pass the Horizontal Line Test) to have an inverse. Thus, \(x^2\) only has an inverse if we restrict its domain to \(x \ge 0\).
+            </div>
         </div>
     </div>
 

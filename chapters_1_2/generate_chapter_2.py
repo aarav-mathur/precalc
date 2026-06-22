@@ -19,11 +19,15 @@ notes_html = r"""<!DOCTYPE html>
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
         h1 { color: var(--primary); font-size: 2.5rem; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; }
-        h2 { color: var(--secondary); margin-top: 3rem; }
+        h2 { color: var(--secondary); margin-top: 3rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
         .card { background: white; border-radius: 0.5rem; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        .first-principles { background: #faf5ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1rem; }
-        .example-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem; }
+        .first-principles { background: #faf5ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1.5rem; }
+        .formulas { background: #f3e8ff; border-left: 4px solid #9333ea; padding: 1rem; margin-bottom: 1.5rem; }
+        .methods { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .example-box { background: #fff1f2; border-left: 4px solid #e11d48; padding: 1rem; margin-bottom: 1rem; }
         .calculator-container { width: 100%; height: 400px; margin-top: 1.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; overflow: hidden; }
+        ul { margin-top: 0; }
+        h3 { color: #475569; margin-top: 0; }
     </style>
 </head>
 <body>
@@ -33,57 +37,148 @@ notes_html = r"""<!DOCTYPE html>
         <div class="card">
             <h2>2.1 The Rectangular Coordinate System and Graphs</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> The Cartesian plane maps algebraic equations to geometric shapes. The Distance Formula is just the Pythagorean Theorem in disguise: \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\).
+                <strong>First Principles:</strong> The Cartesian plane maps algebraic equations into geometric shapes. René Descartes realized that geometry and algebra are the same thing! 
             </div>
-            <p><strong>Midpoint Formula:</strong> The average of the x and y coordinates: \((\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2})\).</p>
+            <div class="formulas">
+                <h3>Key Formulas</h3>
+                <ul>
+                    <li><strong>Distance Formula:</strong> \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\) (Derived directly from the Pythagorean Theorem \(a^2 + b^2 = c^2\)).</li>
+                    <li><strong>Midpoint Formula:</strong> \((\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2})\). It is literally the average of the x's and the average of the y's.</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Method: Finding Intercepts</h3>
+                <ul>
+                    <li><strong>x-intercept:</strong> Set \(y = 0\) and solve for \(x\). This is where the graph crosses the x-axis.</li>
+                    <li><strong>y-intercept:</strong> Set \(x = 0\) and solve for \(y\). This is where the graph crosses the y-axis.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="card">
             <h2>2.2 Circles</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> A circle is the set of all points exactly \(r\) distance from a center \((h, k)\). Squaring the distance formula gives the standard equation.
+                <strong>First Principles:</strong> A circle is the set of all points exactly \(r\) distance from a center point \((h, k)\). If you set the distance formula equal to \(r\) and square both sides, you get the equation of a circle!
             </div>
-            <p><strong>Standard Form:</strong> \((x - h)^2 + (y - k)^2 = r^2\)</p>
-            <p>To convert from general form to standard form, you must <em>Complete the Square</em> for both x and y.</p>
+            <div class="formulas">
+                <h3>Formulas for Circles</h3>
+                <ul>
+                    <li><strong>Standard Form:</strong> \((x - h)^2 + (y - k)^2 = r^2\) (Center is \((h, k)\), radius is \(r\)).</li>
+                    <li><strong>General Form:</strong> \(x^2 + y^2 + Dx + Ey + F = 0\)</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Step-by-Step Method: Converting General to Standard Form</h3>
+                <ol>
+                    <li>Group \(x\) terms and \(y\) terms together. Move constants to the right side.</li>
+                    <li><strong>Complete the Square for \(x\):</strong> Take half of the \(x\)-coefficient, square it, and add to BOTH sides.</li>
+                    <li><strong>Complete the Square for \(y\):</strong> Take half of the \(y\)-coefficient, square it, and add to BOTH sides.</li>
+                    <li>Factor the left side into two perfect squares: \((x - h)^2 + (y - k)^2\).</li>
+                    <li>The right side simplifies to \(r^2\).</li>
+                </ol>
+            </div>
         </div>
 
         <div class="card">
             <h2>2.3 Lines</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> The slope of a line represents its rate of change. It's the ratio of the vertical change to the horizontal change. Parallel lines have equal slopes. Perpendicular lines have negative reciprocal slopes.
+                <strong>First Principles:</strong> The slope of a line represents its constant rate of change. It is the ratio of vertical change (rise) to horizontal change (run).
             </div>
-            <p>Point-slope form: \( y - y_1 = m(x - x_1) \)</p>
+            <div class="formulas">
+                <h3>Equations of Lines</h3>
+                <ul>
+                    <li><strong>Slope Formula:</strong> \(m = \frac{y_2 - y_1}{x_2 - x_1}\)</li>
+                    <li><strong>Point-Slope Form:</strong> \(y - y_1 = m(x - x_1)\)</li>
+                    <li><strong>Slope-Intercept Form:</strong> \(y = mx + b\)</li>
+                    <li><strong>Standard Form:</strong> \(Ax + By = C\)</li>
+                    <li><strong>Parallel Lines:</strong> Have equal slopes (\(m_1 = m_2\)).</li>
+                    <li><strong>Perpendicular Lines:</strong> Have negative reciprocal slopes (\(m_1 \cdot m_2 = -1\)).</li>
+                </ul>
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> "Find the equation of a line perpendicular to \(y = 3\) passing through \((2, 5)\)."<br>
+                \(y = 3\) is a horizontal line (slope 0). A perpendicular line must be vertical (undefined slope). The equation for a vertical line is \(x = a\). Since it passes through \((2, 5)\), the line is simply \(x = 2\).
+            </div>
         </div>
 
         <div class="card">
             <h2>2.4 Relations and Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> A function is a rule that assigns exactly ONE output to every input. Graphically, it passes the Vertical Line Test.
+                <strong>First Principles:</strong> A function is a strict rule that assigns exactly ONE output (y) to every input (x). It's a reliable machine—if you plug in 5, you will always get the exact same answer back.
             </div>
-            <p><strong>Domain:</strong> The set of all valid inputs (watch out for dividing by zero or taking even roots of negative numbers).</p>
-            <p><strong>Range:</strong> The set of all resulting outputs.</p>
+            <div class="formulas">
+                <h3>Key Definitions</h3>
+                <ul>
+                    <li><strong>Domain:</strong> The set of all valid inputs (x-values).</li>
+                    <li><strong>Range:</strong> The set of all resulting outputs (y-values).</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Method: Finding the Domain Algebraically</h3>
+                <p>Assume the domain is all real numbers \((-\infty, \infty)\) UNLESS:</p>
+                <ol>
+                    <li><strong>Fractions:</strong> The denominator cannot be zero. Set the denominator equal to zero and exclude those x-values.</li>
+                    <li><strong>Even Roots:</strong> The inside of a square root (or any even root) cannot be negative. Set the expression under the root \(\ge 0\) and solve.</li>
+                </ol>
+            </div>
         </div>
 
         <div class="card">
             <h2>2.5 Properties of Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Functions can be increasing, decreasing, or constant on an interval. They can also have symmetry.
+                <strong>First Principles:</strong> Functions have symmetries and behavior trends that help us quickly sketch their graphs without plotting every single point.
             </div>
-            <p><strong>Even Functions:</strong> \(f(-x) = f(x)\). Symmetric about the y-axis.</p>
-            <p><strong>Odd Functions:</strong> \(f(-x) = -f(x)\). Symmetric about the origin.</p>
+            <div class="formulas">
+                <h3>Symmetry</h3>
+                <ul>
+                    <li><strong>Even Functions:</strong> \(f(-x) = f(x)\). The graph is symmetric across the y-axis. (e.g., \(y = x^2\)).</li>
+                    <li><strong>Odd Functions:</strong> \(f(-x) = -f(x)\). The graph has origin symmetry. If you rotate it 180 degrees, it looks exactly the same. (e.g., \(y = x^3\)).</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Method: Increasing and Decreasing Intervals</h3>
+                <p>Always read graphs from left to right (like a book).</p>
+                <ul>
+                    <li><strong>Increasing:</strong> Graph goes uphill.</li>
+                    <li><strong>Decreasing:</strong> Graph goes downhill.</li>
+                    <li><strong>Constant:</strong> Graph is perfectly flat.</li>
+                </ul>
+                <p><em>Note: We always use open parentheses \(( )\) when writing intervals of increasing/decreasing, because at the exact peak or valley, the graph is doing neither!</em></p>
+            </div>
         </div>
 
         <div class="card">
             <h2>2.6 A Library of Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Memorize the parent graphs! The identity \(y=x\), the squaring function \(y=x^2\), the cubing function \(y=x^3\), the absolute value \(y=|x|\), the square root \(y=\sqrt{x}\), and the reciprocal \(y=1/x\).
+                <strong>First Principles:</strong> There are a handful of "Parent Functions" that serve as the building blocks for almost all algebra. You must memorize their shapes!
+            </div>
+            <div class="formulas">
+                <h3>The 6 Parent Functions</h3>
+                <ul>
+                    <li><strong>Identity Function:</strong> \(f(x) = x\) (Diagonal line)</li>
+                    <li><strong>Squaring Function:</strong> \(f(x) = x^2\) (U-shaped Parabola)</li>
+                    <li><strong>Cubing Function:</strong> \(f(x) = x^3\) (S-shaped curve)</li>
+                    <li><strong>Square Root Function:</strong> \(f(x) = \sqrt{x}\) (Half a sideways parabola)</li>
+                    <li><strong>Absolute Value Function:</strong> \(f(x) = |x|\) (V-shape)</li>
+                    <li><strong>Reciprocal Function:</strong> \(f(x) = \frac{1}{x}\) (Two hyperbola branches)</li>
+                </ul>
             </div>
         </div>
 
         <div class="card">
             <h2>2.7 Transformations of Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Modifying the input \(x\) translates/stretches the graph horizontally. Modifying the output \(f(x)\) translates/stretches the graph vertically.
+                <strong>First Principles:</strong> Instead of making a table of values, we can graph complex functions by simply taking a parent function and shifting, stretching, or reflecting it! Modifying the input \(x\) affects the graph horizontally (and acts "backwards"). Modifying the output affects the graph vertically.
+            </div>
+            <div class="formulas">
+                <h3>Transformation Rules for \(y = a \cdot f(b(x - h)) + k\)</h3>
+                <ul>
+                    <li><strong>\(+k\):</strong> Vertical shift up by \(k\).</li>
+                    <li><strong>\(-h\):</strong> Horizontal shift right by \(h\). (Inside the function lies!)</li>
+                    <li><strong>\(-f(x)\):</strong> Vertical reflection across the x-axis.</li>
+                    <li><strong>\(f(-x)\):</strong> Horizontal reflection across the y-axis.</li>
+                    <li><strong>\(a \cdot f(x)\):</strong> Vertical stretch by factor of \(a\).</li>
+                </ul>
             </div>
             <h3>Interactive Visualization</h3>
             <p>Observe how \(a, h,\) and \(k\) transform the parent function \(f(x) = |x|\) in \(y = a|x - h| + k\).</p>
@@ -93,21 +188,47 @@ notes_html = r"""<!DOCTYPE html>
         <div class="card">
             <h2>2.8 Combining Functions; Composite Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Functions can be combined algebraically (\(f+g\), \(f-g\), \(fg\), \(f/g\)) or composed (\(f \circ g\)). Composition means plugging the output of \(g\) directly into \(f\).
+                <strong>First Principles:</strong> Functions can be added, subtracted, multiplied, or divided just like numbers. But they can also be <em>composed</em>. Composition means passing an input through one function machine, and feeding the output directly into another function machine.
+            </div>
+            <div class="formulas">
+                <h3>Composition Notation</h3>
+                <p>\((f \circ g)(x) = f(g(x))\). This is read as "f composed with g of x" or "f of g of x".</p>
             </div>
             <div class="example-box">
-                <strong>Gotcha Example:</strong> \((f \circ g)(x) \neq (g \circ f)(x)\). Function composition is NOT commutative!
+                <strong>Gotcha Example:</strong> Evaluate \((f \circ g)(3)\) when \(f(x) = x^2\) and \(g(x) = x + 1\).<br>
+                Work from the inside out!<br>
+                1. Find \(g(3)\): \(3 + 1 = 4\).<br>
+                2. Feed 4 into \(f\): \(f(4) = 4^2 = 16\).
+            </div>
+            <div class="methods">
+                <h3>Method: Finding the Domain of a Composite Function</h3>
+                <ol>
+                    <li>The input \(x\) must be in the domain of the inner function \(g(x)\).</li>
+                    <li>The output of the inner function, \(g(x)\), must fall within the domain of the outer function \(f\).</li>
+                </ol>
             </div>
         </div>
 
         <div class="card">
             <h2>2.9 Inverse Functions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> An inverse function completely undoes the original function. Graphically, it is a reflection across the line \(y = x\).
+                <strong>First Principles:</strong> An inverse function completely undoes the original function. If \(f(x)\) turns a 2 into a 5, then \(f^{-1}(x)\) turns a 5 back into a 2. Graphically, an inverse is just a reflection across the diagonal line \(y = x\).
             </div>
-            <div class="example-box">
-                <strong>Gotcha Example:</strong> Does \(f(x) = x^2\) have an inverse?<br>
-                Many say yes, \(y = \pm \sqrt{x}\). But \(\pm\) makes it NOT a function! A function must be One-to-One (pass the Horizontal Line Test) to have an inverse. Thus, \(x^2\) only has an inverse if we restrict its domain to \(x \ge 0\).
+            <div class="formulas">
+                <h3>Key Concepts</h3>
+                <ul>
+                    <li><strong>One-to-One:</strong> A function must pass the Horizontal Line Test to have an inverse. If it fails, multiple x-values go to the same y-value, making it impossible to "undo" the mapping uniquely.</li>
+                    <li><strong>Composition Verification:</strong> Two functions \(f\) and \(g\) are inverses if and only if \(f(g(x)) = x\) AND \(g(f(x)) = x\).</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Step-by-Step Method: Finding the Inverse Algebraically</h3>
+                <ol>
+                    <li>Replace \(f(x)\) with \(y\).</li>
+                    <li><strong>Swap \(x\) and \(y\).</strong> (This is the mathematical act of inverting).</li>
+                    <li>Solve the new equation for \(y\).</li>
+                    <li>Replace \(y\) with \(f^{-1}(x)\).</li>
+                </ol>
             </div>
         </div>
     </div>

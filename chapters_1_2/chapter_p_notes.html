@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter P: Basic Concepts of Algebra - Revision Notes</title>
+    <title>Chapter P: Prerequisites - Revision Notes</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <style>
@@ -11,69 +11,160 @@
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
         h1 { color: var(--primary); font-size: 2.5rem; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem; }
-        h2 { color: var(--secondary); margin-top: 3rem; }
+        h2 { color: var(--secondary); margin-top: 3rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
         .card { background: white; border-radius: 0.5rem; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        .first-principles { background: #eff6ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1rem; }
-        .example-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem; }
+        .first-principles { background: #eff6ff; border-left: 4px solid var(--secondary); padding: 1rem; font-style: italic; margin-bottom: 1.5rem; }
+        .formulas { background: #f8fafc; border-left: 4px solid #64748b; padding: 1rem; margin-bottom: 1.5rem; }
+        .methods { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .example-box { background: #fff1f2; border-left: 4px solid #e11d48; padding: 1rem; margin-bottom: 1rem; }
         .calculator-container { width: 100%; height: 400px; margin-top: 1.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; overflow: hidden; }
+        ul { margin-top: 0; }
+        h3 { color: #475569; margin-top: 0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Chapter P: Basic Concepts of Algebra</h1>
+        <h1>Chapter P: Prerequisites</h1>
         
         <div class="card">
             <h2>P.1 The Real Numbers and Their Properties</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> The real number system \(\mathbb{R}\) is the foundation of continuous mathematics. It includes numbers that can be written as fractions (rational) and those that cannot (irrational, like \(\pi\) and \(\sqrt{2}\)).
+                <strong>First Principles:</strong> The real number system \(\mathbb{R}\) forms a continuous line. It contains both rational numbers (fractions) and irrational numbers (numbers with non-repeating, non-terminating decimals).
             </div>
-            <p><strong>Absolute Value:</strong> The distance of a number from zero on the number line. \(|x| = x\) if \(x \ge 0\), and \(|x| = -x\) if \(x &lt; 0\).</p>
+            <div class="formulas">
+                <h3>Key Definitions & Properties</h3>
+                <ul>
+                    <li><strong>Natural Numbers \(\mathbb{N}\):</strong> \(\{1, 2, 3, \dots\}\)</li>
+                    <li><strong>Integers \(\mathbb{Z}\):</strong> \(\{\dots, -2, -1, 0, 1, 2, \dots\}\)</li>
+                    <li><strong>Rational Numbers \(\mathbb{Q}\):</strong> Any number that can be expressed as \(\frac{p}{q}\).</li>
+                    <li><strong>Commutative Property:</strong> \(a + b = b + a\) and \(ab = ba\). (Order doesn't matter).</li>
+                    <li><strong>Associative Property:</strong> \((a+b)+c = a+(b+c)\). (Grouping doesn't matter).</li>
+                    <li><strong>Distributive Property:</strong> \(a(b+c) = ab + ac\).</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Absolute Value Distance</h3>
+                <p>The distance between any two points \(a\) and \(b\) on the real number line is exactly \(|a - b|\) or \(|b - a|\).</p>
+            </div>
         </div>
 
         <div class="card">
             <h2>P.2 Integer Exponents and Scientific Notation</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Exponents are repeated multiplication. A negative exponent means repeated division (the reciprocal).
+                <strong>First Principles:</strong> Exponents are just a shorthand for repeated multiplication. A negative exponent is the inverse of multiplication—it means repeated division (the reciprocal).
             </div>
-            <p><strong>Rules:</strong> \(x^m \cdot x^n = x^{m+n}\), \(\frac{x^m}{x^n} = x^{m-n}\), \((x^m)^n = x^{mn}\).</p>
+            <div class="formulas">
+                <h3>Rules of Exponents</h3>
+                <ul>
+                    <li><strong>Product Rule:</strong> \(b^m \cdot b^n = b^{m+n}\)</li>
+                    <li><strong>Quotient Rule:</strong> \(\frac{b^m}{b^n} = b^{m-n}\)</li>
+                    <li><strong>Power Rule:</strong> \((b^m)^n = b^{m \cdot n}\)</li>
+                    <li><strong>Negative Exponent Rule:</strong> \(b^{-n} = \frac{1}{b^n}\) and \(\frac{1}{b^{-n}} = b^n\)</li>
+                    <li><strong>Zero Exponent Rule:</strong> \(b^0 = 1\) (for \(b \neq 0\))</li>
+                </ul>
+            </div>
+            <div class="example-box">
+                <strong>Gotcha Example:</strong> Simplify \((-3x^4)^2\).<br>
+                Many students forget to square the negative sign or the 3. They write \(-3x^8\).<br>
+                <strong>Correct:</strong> \((-3)^2(x^4)^2 = 9x^8\).
+            </div>
         </div>
 
         <div class="card">
-            <h2>P.3 & P.4 Polynomials & Factoring</h2>
+            <h2>P.3 Polynomials</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Factoring is the inverse of multiplication. By breaking a polynomial down into its irreducible "prime" factors, we reveal its roots (x-intercepts).
+                <strong>First Principles:</strong> A polynomial is an algebraic expression consisting of variables and coefficients, involving only addition, subtraction, multiplication, and non-negative integer exponents.
             </div>
-            <p><strong>Difference of Squares:</strong> \(A^2 - B^2 = (A-B)(A+B)\)</p>
-            <p><strong>Perfect Square Trinomial:</strong> \(A^2 \pm 2AB + B^2 = (A \pm B)^2\)</p>
-            
+            <div class="formulas">
+                <h3>Special Products</h3>
+                <ul>
+                    <li><strong>Sum and Difference of Same Terms:</strong> \((A + B)(A - B) = A^2 - B^2\)</li>
+                    <li><strong>Squaring a Binomial:</strong> \((A + B)^2 = A^2 + 2AB + B^2\)</li>
+                    <li><strong>Cubing a Binomial:</strong> \((A + B)^3 = A^3 + 3A^2B + 3AB^2 + B^3\)</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Method: FOIL (First, Outer, Inner, Last)</h3>
+                <p>To multiply two binomials \((ax+b)(cx+d)\):</p>
+                <ol>
+                    <li>Multiply First terms: \((ax)(cx)\)</li>
+                    <li>Multiply Outer terms: \((ax)(d)\)</li>
+                    <li>Multiply Inner terms: \((b)(cx)\)</li>
+                    <li>Multiply Last terms: \((b)(d)\)</li>
+                    <li>Combine like terms.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>P.4 Factoring Polynomials</h2>
+            <div class="first-principles">
+                <strong>First Principles:</strong> Factoring is the inverse of polynomial multiplication. We break a polynomial down into its irreducible "prime" pieces. This is critical for solving equations because of the Zero-Product Property.
+            </div>
+            <div class="formulas">
+                <h3>Factoring Formulas</h3>
+                <ul>
+                    <li><strong>Difference of Squares:</strong> \(A^2 - B^2 = (A - B)(A + B)\)</li>
+                    <li><strong>Difference of Cubes:</strong> \(A^3 - B^3 = (A - B)(A^2 + AB + B^2)\)</li>
+                    <li><strong>Sum of Cubes:</strong> \(A^3 + B^3 = (A + B)(A^2 - AB + B^2)\)</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>General Strategy for Factoring</h3>
+                <ol>
+                    <li>Factor out the Greatest Common Factor (GCF) first.</li>
+                    <li>If it has 2 terms, check for difference of squares or sum/difference of cubes.</li>
+                    <li>If it has 3 terms, check for perfect square trinomials, or factor by grouping/ac-method.</li>
+                    <li>If it has 4 terms, try factoring by grouping.</li>
+                </ol>
+            </div>
             <h3>Interactive Visualization</h3>
-            <p>Interact with the Desmos graph below to see how the factors of a polynomial dictate its roots. Change the sliders for \(a\), \(b\), and \(c\)!</p>
+            <p>Factored forms reveal the roots (x-intercepts) of a polynomial graph! Move the sliders to change the roots.</p>
             <div id="calculator" class="calculator-container"></div>
         </div>
 
         <div class="card">
             <h2>P.5 Rational Expressions</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> Rational expressions are fractions where the numerator and denominator are polynomials. You can only cancel <em>factors</em>, never <em>terms</em>!
+                <strong>First Principles:</strong> A rational expression is the quotient of two polynomials. It behaves exactly like numerical fractions, meaning you must find common denominators to add/subtract, and you can only cancel common <strong>factors</strong>, not terms.
+            </div>
+            <div class="methods">
+                <h3>Method: Adding/Subtracting Rational Expressions</h3>
+                <ol>
+                    <li>Factor the denominators completely.</li>
+                    <li>Find the Least Common Denominator (LCD).</li>
+                    <li>Multiply the numerator and denominator of each fraction by whatever factors they are missing from the LCD.</li>
+                    <li>Add/subtract the numerators over the common LCD.</li>
+                    <li>Factor the new numerator to see if anything can cancel with the denominator.</li>
+                </ol>
             </div>
             <div class="example-box">
-                <strong>Gotcha Example:</strong> Simplify \(\frac{x^2 + 2x}{x}\).<br>
-                Many students illegally cancel the \(x\)'s to get \(x^2 + 2\).<br>
-                <strong>Correct Way:</strong> Factor the numerator first: \(\frac{x(x + 2)}{x}\). Then cancel the factor \(x\) to get \(x + 2\) (for \(x \neq 0\)).
+                <strong>Gotcha Example:</strong> Simplify \(\frac{x^2 + 5}{x}\).<br>
+                Many students illegally "cancel" the \(x\) to get \(x + 5\). You CANNOT cancel parts of an addition expression!<br>
+                <strong>Correct:</strong> This expression cannot be simplified by factoring. It is already simplified. (Or split into \(\frac{x^2}{x} + \frac{5}{x} = x + \frac{5}{x}\)).
             </div>
         </div>
 
         <div class="card">
             <h2>P.6 Rational Exponents and Radicals</h2>
             <div class="first-principles">
-                <strong>First Principles:</strong> A rational exponent \(\frac{m}{n}\) is just a compact way of writing "take the \(n\)-th root, then raise to the \(m\)-th power." \(x^{m/n} = \sqrt[n]{x^m}\).
+                <strong>First Principles:</strong> A rational (fractional) exponent is just a compact way of writing a radical. The denominator of the exponent is the index of the root, and the numerator is the power.
             </div>
-            <div class="example-box">
-                <strong>Gotcha Example:</strong> Simplify \( (-8)^{2/3} \).<br>
-                Many students incorrectly try to square first, leading to massive numbers. Instead, take the root first!<br>
-                1. Cube root of -8 is -2.<br>
-                2. Square -2: \((-2)^2 = 4\).<br>
-                Result: 4.
+            <div class="formulas">
+                <h3>Key Formulas</h3>
+                <ul>
+                    <li><strong>Definition:</strong> \(a^{m/n} = (\sqrt[n]{a})^m = \sqrt[n]{a^m}\)</li>
+                    <li><strong>Product Property of Radicals:</strong> \(\sqrt[n]{ab} = \sqrt[n]{a}\sqrt[n]{b}\)</li>
+                    <li><strong>Quotient Property of Radicals:</strong> \(\sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}}\)</li>
+                </ul>
+            </div>
+            <div class="methods">
+                <h3>Method: Rationalizing Denominators</h3>
+                <p>When you have a radical in the denominator (like \(\frac{5}{\sqrt{3}}\) or \(\frac{2}{\sqrt{x} - 1}\)), you must eliminate it.</p>
+                <ul>
+                    <li><strong>Single Radical:</strong> Multiply numerator and denominator by the radical. \(\frac{5}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}\).</li>
+                    <li><strong>Binomial Radical:</strong> Multiply by the <em>conjugate</em>. For \(\frac{2}{\sqrt{x} - 1}\), multiply top and bottom by \((\sqrt{x} + 1)\). The denominator becomes \((\sqrt{x})^2 - 1^2 = x - 1\).</li>
+                </ul>
             </div>
         </div>
     </div>
